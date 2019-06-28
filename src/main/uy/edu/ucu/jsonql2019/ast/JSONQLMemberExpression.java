@@ -28,6 +28,11 @@ public class JSONQLMemberExpression extends JSONQLExpression {
 
 	/** {@inheritDoc} */
 	@Override public String toJS() {
-		return null; // TODO Auto-generated method stub
+		StringBuilder str = new StringBuilder();
+		str.append("$getter(").append(object.toJS()).append(")");
+		for (int i = 0; i < properties.length; i++) {
+			str.append(".get(").append(properties[i].toJS()).append(")");
+		}
+		return str.append(".result()").toString();
 	}
 }

@@ -9,7 +9,7 @@ public class JSONQLRoot extends JSONQLExpression {
 	}
 
 	@Override public String toJS() {
-		return null; // TODO Auto-generated method stub
+		return "$root";
 	}
 
 }

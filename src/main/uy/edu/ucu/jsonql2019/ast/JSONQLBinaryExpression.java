@@ -9,7 +9,7 @@ public class JSONQLBinaryExpression extends JSONQLExpression {
 	
 	public JSONQLBinaryExpression(String operator, JSONQLExpression left, JSONQLExpression right) {
 		super();
-		this.operator = operator;
+		this.operator = operator.trim();
 		this.left = left;
 		this.right = right;
 	}
@@ -21,6 +21,20 @@ public class JSONQLBinaryExpression extends JSONQLExpression {
 	
 	/** {@inheritDoc} */
 	@Override public String toJS() {
-		return "("+ left.toJS() +" "+ operator +" "+ right.toJS() +")";
+		if ("* / + - == != < >= > >= && || ".indexOf(operator +" ") < 0) { // A JavaScript operator.
+			return "("+ left.toJS() +" "+ operator +" "+ right.toJS() +")";
+		} else if (operator.equals("~=")){ 
+			return "("+ right.toJS() +".test("+ left.toJS() +")";
+		} else if (operator.equals("!~")){ 
+			return "(!("+ right.toJS() +".test("+ left.toJS() +"))";
+		} else if (operator.equals("~")){ 
+			return "("+ right.toJS() +".exec("+ left.toJS() +")";
+		} else if (operator.equals("/\\")){
+			return "$intersect("+ left.toJS() +","+ right.toJS() +")";
+		} else if (operator.equals("\\/")){ 
+			return "$union("+ left.toJS() +","+ right.toJS() +")";
+		} else {
+			throw new RuntimeException("Operator `"+ operator +"` is not supported!");
+		}
 	}
 }

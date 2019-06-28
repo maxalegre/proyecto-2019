@@ -12,10 +12,12 @@ public class JSONQLUnaryExpression extends JSONQLExpression {
 		this.argument = argument;
 	}
 	
+	/** {@inheritDoc} */
 	@Override public String unparse() {
 		return "("+ operator +" "+ argument.unparse() +")";
 	}
 
+	/** {@inheritDoc} */
 	@Override public String toJS() {
 		return "("+ operator +" "+ argument.toJS() +")";
 	}

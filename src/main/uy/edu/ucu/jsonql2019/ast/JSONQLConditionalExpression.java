@@ -12,10 +12,12 @@ public class JSONQLConditionalExpression extends JSONQLExpression {
 		this.alternate = alternate;
 	}
 
+	/** {@inheritDoc} */
 	@Override public String unparse() {
 		return "("+ consequent.unparse() +" if "+ test.unparse() +" else "+ alternate.unparse() +")";
 	}
 
+	/** {@inheritDoc} */
 	@Override public String toJS() {
 		return "("+ test.toJS() +" ? "+ consequent.toJS() +" : "+ alternate.toJS() +")";
 	}

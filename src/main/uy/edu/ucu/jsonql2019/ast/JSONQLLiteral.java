@@ -19,6 +19,7 @@ public class JSONQLLiteral extends JSONQLExpression {
 		throw new RuntimeException("Value "+ value +" is not a valid literal!");
 	}
 
+	/** {@inheritDoc} */
 	@Override public String unparse() {
 		if (value instanceof Pattern) {
 			return "/"+ ((Pattern) value).toString() +"/"; //FIXME Escape character `/`.
@@ -27,6 +28,7 @@ public class JSONQLLiteral extends JSONQLExpression {
 		}
 	}
 
+	/** {@inheritDoc} */
 	@Override public String toJS() {
 		return unparse();
 	}

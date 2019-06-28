@@ -14,10 +14,12 @@ public class JSONQLBinaryExpression extends JSONQLExpression {
 		this.right = right;
 	}
 
+	/** {@inheritDoc} */
 	@Override public String unparse() {
 		return "("+ left.unparse() +" "+ operator +" "+ right.unparse() +")";
 	}
 	
+	/** {@inheritDoc} */
 	@Override public String toJS() {
 		return "("+ left.toJS() +" "+ operator +" "+ right.toJS() +")";
 	}

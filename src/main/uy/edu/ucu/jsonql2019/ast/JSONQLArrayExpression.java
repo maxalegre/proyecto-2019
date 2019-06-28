@@ -17,29 +17,13 @@ public class JSONQLArrayExpression extends JSONQLExpression {
 		this.elements = elements.toArray(new JSONQLExpression[elements.size()]);
 	}
 
+	/** {@inheritDoc} */
 	@Override public String unparse() {
-		StringBuilder str = new StringBuilder("[");
-		int i = 0;
-		for (JSONQLExpression element : elements) {
-			if (i > 0) {
-				str.append(",");
-			}
-			str.append(element.unparse());
-		}
-		str.append("]");
-		return str.toString();
+		return unparse(new StringBuilder("["), elements).append("]").toString();
 	}
 
+	/** {@inheritDoc} */
 	@Override public String toJS() {
-		StringBuilder str = new StringBuilder("[");
-		int i = 0;
-		for (JSONQLExpression element : elements) {
-			if (i > 0) {
-				str.append(",");
-			}
-			str.append(element.toJS());
-		}
-		str.append("]");
-		return str.toString();
+		return toJS(new StringBuilder("["), elements).append("]").toString();
 	}
 }

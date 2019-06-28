@@ -49,6 +49,8 @@ public abstract class JSONQLExpression {
 		return obj;
 	}
 	
+	/** Generic implementation based on the code generation by Eclipse and reflection.
+	 */
 	@Override public boolean equals(Object other) {
 		if (this == other) {
 			return true;
@@ -73,6 +75,8 @@ public abstract class JSONQLExpression {
 		return true;
 	}
 
+	/** Generic implementation based on the code generation by Eclipse and reflection.
+	 */
 	@Override public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
@@ -86,5 +90,31 @@ public abstract class JSONQLExpression {
 			result = prime * result + ((fieldValue == null) ? 0 : fieldValue.hashCode());
 		}
 		return result;
+	}
+	
+	/** Helper method to unparse a list of expression, separated by commas.
+	 */
+	public static StringBuilder unparse(StringBuilder str, JSONQLExpression... list) {
+		int i = 0;
+		for (JSONQLExpression element : list) {
+			if (i > 0) {
+				str.append(",");
+			}
+			str.append(element.unparse());
+		}
+		return str;
+	}
+	
+	/** Helper method to convert to JavaScript a list of expression, separated by commas.
+	 */
+	public static StringBuilder toJS(StringBuilder str, JSONQLExpression... list) {
+		int i = 0;
+		for (JSONQLExpression element : list) {
+			if (i > 0) {
+				str.append(",");
+			}
+			str.append(element.toJS());
+		}
+		return str;
 	}
 }

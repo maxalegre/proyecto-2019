@@ -13,22 +13,28 @@ import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.json.simple.parser.JSONParser;
 
+/** JSONHandler implementation using `org.json.simple` parser and unparser.
+ */
 public class SimpleJSONHandler implements JSONHandler {
 	public final JSONParser parser = new JSONParser();
 	
+	/** {@inheritDoc} */
 	@Override public Object parse(String json) throws Exception {
 		return toPOJO(parser.parse(json));
 	}
 
+	/** {@inheritDoc} */
 	@Override public Object parse(Reader json) throws Exception {
 		return toPOJO(parser.parse(json));
 	}
 
+	/** {@inheritDoc} */
 	@Override public Object parse(InputStream json) throws Exception {
 		Reader reader = new InputStreamReader(json);
 		return parse(reader);
 	}
 
+	/** {@inheritDoc} */
 	@Override public String stringify(Object value) throws Exception {
 		return JSONValue.toJSONString(fromPOJO(value));
 	}
@@ -78,14 +84,5 @@ public class SimpleJSONHandler implements JSONHandler {
 		} else {
 			throw new JSONQLRuntimeException(); //TODO Add error message.
 		}
-	}
-	
-	/** This main method is for testing purposes only.
-	 */
-	public static void main(String[] args) throws Exception {
-		SimpleJSONHandler handler = new SimpleJSONHandler();
-		Object value = handler.parse("[1,true,null,{\"a\":[]}]");
-		System.out.println(value);
-		System.out.println(handler.stringify(value));
 	}
 }

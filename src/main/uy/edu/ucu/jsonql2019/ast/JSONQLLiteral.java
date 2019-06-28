@@ -12,11 +12,11 @@ public class JSONQLLiteral extends JSONQLExpression {
 	
 	public JSONQLLiteral(Object value) {
 		super();
-		if (value == null || value instanceof Boolean || value instanceof Double
-				|| value instanceof String || value instanceof Pattern) {
-			this.value = value;
+		if (!(value == null || value instanceof Boolean || value instanceof Double
+				|| value instanceof String || value instanceof Pattern)) {
+			throw new RuntimeException("Value "+ value +" is not a valid literal!");
 		}
-		throw new RuntimeException("Value "+ value +" is not a valid literal!");
+		this.value = value;
 	}
 
 	/** {@inheritDoc} */

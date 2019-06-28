@@ -8,7 +8,7 @@ public class JSONQLUnaryExpression extends JSONQLExpression {
 	
 	public JSONQLUnaryExpression(String operator, JSONQLExpression argument) {
 		super();
-		this.operator = operator;
+		this.operator = operator.trim();
 		this.argument = argument;
 	}
 	
@@ -19,6 +19,10 @@ public class JSONQLUnaryExpression extends JSONQLExpression {
 
 	/** {@inheritDoc} */
 	@Override public String toJS() {
-		return "("+ operator +" "+ argument.toJS() +")";
+		if ("! + - ".indexOf(operator +" ") < 0) { // A JavaScript operator.
+			return "("+ operator +" "+ argument.toJS() +")";
+		} else {
+			throw new RuntimeException("Operator `"+ operator +"` is not supported!");
+		}
 	}
 }

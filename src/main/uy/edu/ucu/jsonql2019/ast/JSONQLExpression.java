@@ -27,7 +27,13 @@ public abstract class JSONQLExpression {
 			if (i > 0) {
 				str.append(",");
 			}
-			str.append(field.getName());
+			Object fieldValue;
+			try {
+				fieldValue = field.get(this);
+			} catch (Exception e) {
+				throw new RuntimeException(e); // This should not happen.
+			}
+			str.append(fieldValue);
 		}
 		str.append(")");
 		return str.toString();
@@ -40,10 +46,17 @@ public abstract class JSONQLExpression {
 		Map<String, Object> obj = new HashMap<String, Object>();
 		obj.put("type", type);
 		for (Field field : this.getClass().getFields()) {
+			String fieldName = field.getName();
+			Object fieldValue;
 			try {
-				obj.put(field.getName(), field.get(this));
+				fieldValue = field.get(this);
 			} catch (Exception e) {
 				throw new RuntimeException(e); // This should not happen.
+			}
+			if (fieldValue instanceof JSONQLExpression) {
+				obj.put(fieldName, ((JSONQLExpression)fieldValue).toJSON());
+			} else {
+				obj.put(fieldName, fieldValue);
 			}
 		}
 		return obj;

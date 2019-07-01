@@ -1,11 +1,18 @@
 package uy.edu.ucu.jsonql2019.ast;
 
+import java.util.*;
+
 import uy.edu.ucu.jsonql2019.JSONQLVisitor;
 
 /** Class for AST nodes for the following operators in JSONQL: `*`, `/`, `+`, `-`, 
  * `==`, `!=`, `<`, `<=`, `>`, `>=`, `&&`, `||`, `~=`, `!~`, `~`, `/\`, `\/`. 
  */
 public class JSONQLBinaryExpression extends JSONQLExpression {
+	public static final Set<String> BINARY_OPERATORS = new HashSet<String>(
+			Arrays.asList("*", "/", "+", "-", "==", "!=", "<", ">=", ">", ">=",
+					"&&","||", "~=", "!~", "~", "/\\", "\\/")
+		);
+	
 	public final String operator;
 	public final JSONQLExpression left, right;
 	

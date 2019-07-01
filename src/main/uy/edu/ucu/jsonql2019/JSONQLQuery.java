@@ -22,13 +22,13 @@ public interface JSONQLQuery {
 	
 	/** Parses and runs this query with the resulting value as reference.
 	 */
-	Object parseAndRun(String json);
+	Object parseAndRun(String json) throws Exception;
 	
 	/** Reads, parses and runs this query with the resulting value as reference.
 	 */
-	Object parseAndRun(Reader json) throws IOException;
+	Object parseAndRun(Reader json) throws Exception;
 	
 	/** Reads, parses and runs this query with the resulting value as reference.
 	 */
-	Object parseAndRun(InputStream json) throws IOException;
+	Object parseAndRun(InputStream json) throws Exception;
 }

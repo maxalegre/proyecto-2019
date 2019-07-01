@@ -2,6 +2,8 @@ package uy.edu.ucu.jsonql2019.ast;
 
 import java.util.List;
 
+import uy.edu.ucu.jsonql2019.JSONQLVisitor;
+
 /** Class for AST nodes of member expressions, e.g. `x[1]`, `x["a"]` or `x.a`.
  */
 public class JSONQLMemberExpression extends JSONQLExpression {
@@ -27,12 +29,7 @@ public class JSONQLMemberExpression extends JSONQLExpression {
 	}
 
 	/** {@inheritDoc} */
-	@Override public String toJS() {
-		StringBuilder str = new StringBuilder();
-		str.append("$getter(").append(object.toJS()).append(")");
-		for (int i = 0; i < properties.length; i++) {
-			str.append(".get(").append(properties[i].toJS()).append(")");
-		}
-		return str.append(".result()").toString();
+	@Override public <R, C> R traverse(JSONQLVisitor<R, C> visitor, C context) {
+		return visitor.visit(this, context);
 	}
 }

@@ -1,5 +1,7 @@
 package uy.edu.ucu.jsonql2019.ast;
 
+import uy.edu.ucu.jsonql2019.JSONQLVisitor;
+
 /** Class for AST nodes for identifiers.
  */
 public class JSONQLIdentifier extends JSONQLExpression {
@@ -16,7 +18,7 @@ public class JSONQLIdentifier extends JSONQLExpression {
 	}
 
 	/** {@inheritDoc} */
-	@Override public String toJS() {
-		return name;
+	@Override public <R, C> R traverse(JSONQLVisitor<R, C> visitor, C context) {
+		return visitor.visit(this, context);
 	}
 }

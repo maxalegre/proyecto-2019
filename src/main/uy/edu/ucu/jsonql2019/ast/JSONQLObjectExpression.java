@@ -1,10 +1,9 @@
 package uy.edu.ucu.jsonql2019.ast;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
+
+import uy.edu.ucu.jsonql2019.JSONQLVisitor;
 
 /** Class for AST nodes for object literals.
  */
@@ -58,11 +57,7 @@ public class JSONQLObjectExpression extends JSONQLExpression {
 	}
 
 	/** {@inheritDoc} */
-	@Override public String toJS() {
-		//FIXME This may not generate valid JS, because of the expressions for the keys.
-		List<JSONQLProperty> properties = propertyList(this.properties);
-		return unparse(new StringBuilder("{"), 
-				properties.toArray(new JSONQLProperty[properties.size()])
-			).append("}").toString();
+	@Override public <R, C> R traverse(JSONQLVisitor<R, C> visitor, C context) {
+		return visitor.visit(this, context);
 	}
 }

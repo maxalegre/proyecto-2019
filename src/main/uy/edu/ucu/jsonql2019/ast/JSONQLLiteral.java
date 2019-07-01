@@ -4,6 +4,8 @@ import java.util.regex.Pattern;
 
 import org.json.simple.JSONValue;
 
+import uy.edu.ucu.jsonql2019.JSONQLVisitor;
+
 /** Class for AST nodes for numerals, string literals, boolean constants, 
  * regular expression literals and `null`. 
  */
@@ -29,7 +31,7 @@ public class JSONQLLiteral extends JSONQLExpression {
 	}
 
 	/** {@inheritDoc} */
-	@Override public String toJS() {
-		return unparse();
+	@Override public <R, C> R traverse(JSONQLVisitor<R, C> visitor, C context) {
+		return visitor.visit(this, context);
 	}
 }

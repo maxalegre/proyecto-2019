@@ -1,5 +1,7 @@
 package uy.edu.ucu.jsonql2019.ast;
 
+import uy.edu.ucu.jsonql2019.JSONQLVisitor;
+
 /** Class for AST nodes for the following operators in JSONQL: `*`, `/`, `+`, `-`, 
  * `==`, `!=`, `<`, `<=`, `>`, `>=`, `&&`, `||`, `~=`, `!~`, `~`, `/\`, `\/`. 
  */
@@ -20,21 +22,7 @@ public class JSONQLBinaryExpression extends JSONQLExpression {
 	}
 	
 	/** {@inheritDoc} */
-	@Override public String toJS() {
-		if ("* / + - == != < >= > >= && || ".indexOf(operator +" ") < 0) { // A JavaScript operator.
-			return "("+ left.toJS() +" "+ operator +" "+ right.toJS() +")";
-		} else if (operator.equals("~=")){ 
-			return "("+ right.toJS() +".test("+ left.toJS() +")";
-		} else if (operator.equals("!~")){ 
-			return "(!("+ right.toJS() +".test("+ left.toJS() +"))";
-		} else if (operator.equals("~")){ 
-			return "("+ right.toJS() +".exec("+ left.toJS() +")";
-		} else if (operator.equals("/\\")){
-			return "$intersect("+ left.toJS() +","+ right.toJS() +")";
-		} else if (operator.equals("\\/")){ 
-			return "$union("+ left.toJS() +","+ right.toJS() +")";
-		} else {
-			throw new RuntimeException("Operator `"+ operator +"` is not supported!");
-		}
+	@Override public <R, C> R traverse(JSONQLVisitor<R, C> visitor, C context) {
+		return visitor.visit(this, context);
 	}
 }

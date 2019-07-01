@@ -1,5 +1,7 @@
 package uy.edu.ucu.jsonql2019.ast;
 
+import uy.edu.ucu.jsonql2019.JSONQLVisitor;
+
 /** Class for AST nodes for the following operators in JSONQL: `!`, `+`, `-`. 
  */
 public class JSONQLUnaryExpression extends JSONQLExpression {
@@ -18,11 +20,7 @@ public class JSONQLUnaryExpression extends JSONQLExpression {
 	}
 
 	/** {@inheritDoc} */
-	@Override public String toJS() {
-		if ("! + - ".indexOf(operator +" ") < 0) { // A JavaScript operator.
-			return "("+ operator +" "+ argument.toJS() +")";
-		} else {
-			throw new RuntimeException("Operator `"+ operator +"` is not supported!");
-		}
+	@Override public <R, C> R traverse(JSONQLVisitor<R, C> visitor, C context) {
+		return visitor.visit(this, context);
 	}
 }

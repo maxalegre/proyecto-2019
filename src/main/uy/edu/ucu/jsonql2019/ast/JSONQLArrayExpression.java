@@ -2,6 +2,8 @@ package uy.edu.ucu.jsonql2019.ast;
 
 import java.util.List;
 
+import uy.edu.ucu.jsonql2019.JSONQLVisitor;
+
 /** Class for AST nodes for array expressions, i.e. arrays defined by extension. 
  */
 public class JSONQLArrayExpression extends JSONQLExpression {
@@ -23,7 +25,7 @@ public class JSONQLArrayExpression extends JSONQLExpression {
 	}
 
 	/** {@inheritDoc} */
-	@Override public String toJS() {
-		return toJS(new StringBuilder("["), elements).append("]").toString();
+	@Override public <R, C> R traverse(JSONQLVisitor<R, C> visitor, C context) {
+		return visitor.visit(this, context);
 	}
 }

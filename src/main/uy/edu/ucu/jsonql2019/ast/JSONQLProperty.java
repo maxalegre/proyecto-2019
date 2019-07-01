@@ -1,5 +1,7 @@
 package uy.edu.ucu.jsonql2019.ast;
 
+import uy.edu.ucu.jsonql2019.JSONQLVisitor;
+
 /** Class for AST nodes for _key-value_ pairs, used to define properties in object literals.
  */
 public class JSONQLProperty extends JSONQLExpression {
@@ -17,7 +19,7 @@ public class JSONQLProperty extends JSONQLExpression {
 	}
 
 	/** {@inheritDoc} */
-	@Override public String toJS() {
-		return key.toJS() +":"+ value.toJS();
+	@Override public <R, C> R traverse(JSONQLVisitor<R, C> visitor, C context) {
+		return visitor.visit(this, context);
 	}
 }

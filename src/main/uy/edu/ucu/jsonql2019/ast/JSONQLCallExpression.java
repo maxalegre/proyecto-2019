@@ -1,5 +1,7 @@
 package uy.edu.ucu.jsonql2019.ast;
 
+import uy.edu.ucu.jsonql2019.JSONQLVisitor;
+
 public class JSONQLCallExpression extends JSONQLExpression {
 	public final String callee;
 	public final JSONQLExpression[] arguments;
@@ -17,8 +19,7 @@ public class JSONQLCallExpression extends JSONQLExpression {
 	}
 
 	/** {@inheritDoc} */
-	@Override public String toJS() {
-		StringBuilder str = (new StringBuilder("(")).append(callee).append("(");
-		return toJS(str, arguments).append("(").toString();
+	@Override public <R, C> R traverse(JSONQLVisitor<R, C> visitor, C context) {
+		return visitor.visit(this, context);
 	}
 }

@@ -4,6 +4,8 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
+import uy.edu.ucu.jsonql2019.JSONQLVisitor;
+
 /** Base class for JSONQL code representation for the _Expression_ syntactic category.
  */
 public abstract class JSONQLExpression {
@@ -12,9 +14,9 @@ public abstract class JSONQLExpression {
 	 */
 	public abstract String unparse();
 	
-	/** Compiles this AST node to Javascript.
+	/** Traverse this AST using a `JSONQLVisitor`.
 	 */
-	public abstract String toJS();
+	public abstract <R, C> R traverse(JSONQLVisitor<R, C> visitor, C context);
 	
 	/** Returns an string representation for this AST node, mostly meant for logging and debugging.
 	 */
@@ -114,19 +116,6 @@ public abstract class JSONQLExpression {
 				str.append(",");
 			}
 			str.append(element.unparse());
-		}
-		return str;
-	}
-	
-	/** Helper method to convert to JavaScript a list of expression, separated by commas.
-	 */
-	public static StringBuilder toJS(StringBuilder str, JSONQLExpression... list) {
-		int i = 0;
-		for (JSONQLExpression element : list) {
-			if (i > 0) {
-				str.append(",");
-			}
-			str.append(element.toJS());
 		}
 		return str;
 	}

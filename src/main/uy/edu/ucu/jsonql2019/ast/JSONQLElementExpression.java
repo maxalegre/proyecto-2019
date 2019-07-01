@@ -1,5 +1,7 @@
 package uy.edu.ucu.jsonql2019.ast;
 
+import uy.edu.ucu.jsonql2019.JSONQLVisitor;
+
 /** Class for AST nodes of the member operator `<-`, in all its forms.
  */
 public class JSONQLElementExpression extends JSONQLExpression {
@@ -15,10 +17,9 @@ public class JSONQLElementExpression extends JSONQLExpression {
 	@Override public String unparse() {
 		return "("+ left.unparse() +" <- "+ right.unparse() +")";
 	}
-
+	
 	/** {@inheritDoc} */
-	@Override public String toJS() {
-		return null; // TODO Auto-generated method stub
+	@Override public <R, C> R traverse(JSONQLVisitor<R, C> visitor, C context) {
+		return visitor.visit(this, context);
 	}
-
 }

@@ -1,5 +1,7 @@
 package uy.edu.ucu.jsonql2019.ast;
 
+import uy.edu.ucu.jsonql2019.JSONQLVisitor;
+
 /** Class for AST nodes for conditional expressions. 
  */
 public class JSONQLConditionalExpression extends JSONQLExpression {
@@ -18,7 +20,7 @@ public class JSONQLConditionalExpression extends JSONQLExpression {
 	}
 
 	/** {@inheritDoc} */
-	@Override public String toJS() {
-		return "("+ test.toJS() +" ? "+ consequent.toJS() +" : "+ alternate.toJS() +")";
+	@Override public <R, C> R traverse(JSONQLVisitor<R, C> visitor, C context) {
+		return visitor.visit(this, context);
 	}
 }

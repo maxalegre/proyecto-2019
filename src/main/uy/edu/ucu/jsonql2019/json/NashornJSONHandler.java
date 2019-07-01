@@ -17,15 +17,19 @@ import uy.edu.ucu.jsonql2019.JSONHandler;
  */
 @SuppressWarnings({ "deprecation", "removal" })
 public class NashornJSONHandler implements JSONHandler {
-	public static ScriptEngine nashorn = new ScriptEngineManager().getEngineByName("nashorn");
-	
-	public final ScriptObjectMirror jsParse, jsStringify;
+	private final ScriptObjectMirror jsParse, jsStringify;
 
-	public NashornJSONHandler() throws ScriptException {
+	public NashornJSONHandler(ScriptEngine scriptEngine) throws ScriptException {
+		scriptEngine = scriptEngine != null ? scriptEngine
+				: new ScriptEngineManager().getEngineByName("nashorn");
 		String jsCode = "(function (json) { return Java.asJSONCompatible(JSON.parse(json)); })";
-		this.jsParse = (ScriptObjectMirror) nashorn.eval(jsCode);
+		this.jsParse = (ScriptObjectMirror) scriptEngine.eval(jsCode);
 		jsCode = "(function (value) { return JSON.stringify(value); })";
-		this.jsStringify = (ScriptObjectMirror) nashorn.eval(jsCode);
+		this.jsStringify = (ScriptObjectMirror) scriptEngine.eval(jsCode);
+	}
+	
+	public NashornJSONHandler() throws ScriptException {
+		this(null);
 	}
 	
 	/** {@inheritDoc} */

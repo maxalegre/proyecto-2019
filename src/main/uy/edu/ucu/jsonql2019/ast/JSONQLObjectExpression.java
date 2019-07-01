@@ -14,9 +14,9 @@ public class JSONQLObjectExpression extends JSONQLExpression {
 	 */
 	public static Map<JSONQLExpression, JSONQLExpression> propertyMap(List<JSONQLProperty> properties) {
 		Map<JSONQLExpression, JSONQLExpression> result = new HashMap<>();
-		for (JSONQLProperty property : properties) {
+		properties.stream().forEach(property -> {
 			result.put(property.key, property.value);
-		}
+		});
 		return result;
 	}
 	

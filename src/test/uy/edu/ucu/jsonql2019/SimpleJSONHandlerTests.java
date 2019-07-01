@@ -9,6 +9,8 @@ import java.util.Map;
 
 import org.junit.Test;
 
+import uy.edu.ucu.jsonql2019.json.SimpleJSONHandler;
+
 public class SimpleJSONHandlerTests {
 
 	@Test

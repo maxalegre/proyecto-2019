@@ -1,4 +1,4 @@
-package uy.edu.ucu.jsonql2019;
+package uy.edu.ucu.jsonql2019.json;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -11,6 +11,7 @@ import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
 import jdk.nashorn.api.scripting.ScriptObjectMirror;
+import uy.edu.ucu.jsonql2019.JSONHandler;
 
 /** JSONHandler implementation using Oracle's Nashorn JS script engine.
  */

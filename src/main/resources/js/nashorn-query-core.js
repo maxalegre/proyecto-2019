@@ -4,5 +4,7 @@
 	function JSONQL($root) {
 		this.$root = $root;
 	}
-	return JSONQL;
-)();
+	return function (query, root) {
+		return query.call(new JSONQL(root));
+	};
+})();

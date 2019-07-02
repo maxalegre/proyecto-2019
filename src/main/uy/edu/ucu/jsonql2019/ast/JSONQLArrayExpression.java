@@ -9,7 +9,7 @@ import uy.edu.ucu.jsonql2019.JSONQLVisitor;
 public class JSONQLArrayExpression extends JSONQLExpression {
 	public final JSONQLExpression[] elements;
 	
-	public JSONQLArrayExpression(JSONQLExpression[] elements) {
+	public JSONQLArrayExpression(JSONQLExpression... elements) {
 		super();
 		this.elements = elements;
 	}

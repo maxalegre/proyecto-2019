@@ -51,26 +51,32 @@ public class NashornJSONQLQuery implements JSONQLQuery {
 			);
 	}
 	
+	/** {@inheritDoc} */
 	@Override public Object run(Object reference) throws JSONQLRuntimeException {
 		return core.call(null, query, reference);
 	}
 
+	/** {@inheritDoc} */
 	@Override public JSONHandler getHandler() {
 		return handler;
 	}
 
+	/** {@inheritDoc} */
 	@Override public void setHandler(JSONHandler handler) {
 		this.handler = handler;
 	}
 
+	/** {@inheritDoc} */
 	@Override public Object parseAndRun(String json) throws Exception {
 		return run(getHandler().parse(json));
 	}
 
+	/** {@inheritDoc} */
 	@Override public Object parseAndRun(Reader json) throws Exception {
 		return run(getHandler().parse(json));
 	}
 
+	/** {@inheritDoc} */
 	@Override public Object parseAndRun(InputStream json) throws Exception {
 		return run(getHandler().parse(json));
 	}

@@ -16,8 +16,7 @@ import jdk.nashorn.api.scripting.ScriptObjectMirror;
 import uy.edu.ucu.jsonql2019.JSONHandler;
 import uy.edu.ucu.jsonql2019.JSONQLQuery;
 import uy.edu.ucu.jsonql2019.JSONQLRuntimeException;
-import uy.edu.ucu.jsonql2019.ast.JSONQLExpression;
-import uy.edu.ucu.jsonql2019.ast.JSONQLRoot;
+import uy.edu.ucu.jsonql2019.ast.*;
 import uy.edu.ucu.jsonql2019.json.NashornJSONHandler;
 
 /** Nashorn implementation of JSONQLQuery.
@@ -80,8 +79,11 @@ public class NashornJSONQLQuery implements JSONQLQuery {
 	 */
 	public static void main(String[] args) throws Exception {
 		NashornJSONQLQuery query = new NashornJSONQLQuery(
-				new JSONQLRoot()
+				new JSONQLBinaryExpression("\\/", 
+					new JSONQLArrayExpression(),
+					new JSONQLRoot()
+				)
 			);
-		System.out.println(query.parseAndRun("[1,2.3,true,null]"));
+		System.out.println(query.parseAndRun("[1,0,1]"));
 	}
 }

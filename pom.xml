@@ -7,6 +7,7 @@
   <description>Proyecto 2019</description>
   <build>
     <sourceDirectory>src/main</sourceDirectory>
+    <testSourceDirectory>src/test</testSourceDirectory>
     <resources>
       <resource>
         <directory>src/main</directory>

@@ -1,6 +1,6 @@
 package uy.edu.ucu.jsonql2019.eval;
 
-import java.util.List;
+import java.util.*;
 import java.util.stream.IntStream;
 
 import uy.edu.ucu.jsonql2019.JSONQLVisitor;
@@ -86,12 +86,21 @@ public class JSONQL_JSCompiler implements JSONQLVisitor<StringBuilder, StringBui
 	}
 
 	@Override public StringBuilder visit(JSONQLElementExpression ast, StringBuilder context) {
-		// TODO Auto-generated method stub
-		return null;
+		ast.right.traverse(this, context.append("$elem("));
+		if (ast.left instanceof JSONQLProperty) {
+			JSONQLProperty leftProperty = (JSONQLProperty)ast.left;
+			leftProperty.key.traverse(this, context.append(","));
+			leftProperty.value.traverse(this, context.append(","));
+		} else {
+			ast.left.traverse(this, context.append(","));
+		}
+		return context.append(")");
 	}
 
 	@Override public StringBuilder visit(JSONQLIdentifier ast, StringBuilder context) {
-		//FIXME Check if the identifier is a reserved word for JavaScript.
+		if (JSONQLIdentifier.JS_RESERVED_WORDS.contains(ast.name)) {
+			throw new RuntimeException("Identifier `"+ ast.name +"` is a JS reserved word!");
+		}
 		return context.append(ast.name);
 	}
 
@@ -100,13 +109,15 @@ public class JSONQL_JSCompiler implements JSONQLVisitor<StringBuilder, StringBui
 	}
 
 	@Override public StringBuilder visit(JSONQLMemberExpression ast, StringBuilder context) {
-		ast.object.traverse(this, context.append("this.$getter("));
-		context.append(")");
+		ast.object.traverse(this, context.append("this.$get("));
+		context.append(",");
 		for (int i = 0; i < ast.properties.length; i++) {
-			ast.properties[i].traverse(this, context.append(".get("));
-			context.append(")");
+			if (i > 0) {
+				context.append(",");
+			}
+			ast.properties[i].traverse(this, context);
 		}
-		return context.append(".result()");
+		return context.append(")");
 	}
 
 	@Override public StringBuilder visit(JSONQLObjectComprehension ast, StringBuilder context) {
@@ -115,20 +126,19 @@ public class JSONQL_JSCompiler implements JSONQLVisitor<StringBuilder, StringBui
 	}
 
 	@Override public StringBuilder visit(JSONQLObjectExpression ast, StringBuilder context) {
-		//FIXME This may not generate valid JS, because of the expressions for the keys.
-		List<JSONQLProperty> properties = JSONQLObjectExpression.propertyList(ast.properties);
+		final List<JSONQLProperty> properties = JSONQLObjectExpression.propertyList(ast.properties);
 		IntStream.range(0, properties.size()).forEach(i -> {
 				JSONQLProperty property = properties.get(i);
-				context.append(i == 0 ? "{" : ",");
+				context.append(i == 0 ? "this.$obj(" : ",");
 				property.traverse(this, context);
 			});
-		return context.append("}");
+		return context.append(")");
 	}
 
 	@Override public StringBuilder visit(JSONQLProperty ast, StringBuilder context) {
-		ast.key.traverse(this, context);
-		ast.value.traverse(this, context.append(":"));
-		return context;
+		ast.key.traverse(this, context.append("["));
+		ast.value.traverse(this, context.append(","));
+		return context.append("]");
 	}
 
 	@Override public StringBuilder visit(JSONQLRoot ast, StringBuilder context) {

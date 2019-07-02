@@ -11,9 +11,9 @@ import org.junit.Test;
 
 import uy.edu.ucu.jsonql2019.json.SimpleJSONHandler;
 
-public class SimpleJSONHandlerTests {
+public class TestSimpleJSONHandler {
 
-	@Test
+	@Test 
 	public void testJSONValueParsing() throws Exception {
 		JSONHandler handler = new SimpleJSONHandler();
 		assertEquals(1.0, handler.parse("1.0"));
@@ -27,7 +27,7 @@ public class SimpleJSONHandlerTests {
 	@Test
 	public void testJSONArrayParsing() throws Exception {
 		JSONHandler handler = new SimpleJSONHandler();
-		List<Object> array = new ArrayList<Object>();
+		List<Object> array = new ArrayList<>();
 		assertEquals(array, handler.parse("[]"));
 		array.add(1.2);
 		assertEquals(array, handler.parse("[1.2]"));
@@ -35,14 +35,14 @@ public class SimpleJSONHandlerTests {
 		assertEquals(array, handler.parse("[1.2,false]"));
 		array.add("x");
 		assertEquals(array, handler.parse("[1.2,false,\"x\"]"));
-		array.add(new ArrayList<Object>(array));
+		array.add(new ArrayList<>(array));
 		assertEquals(array, handler.parse("[1.2,false,\"x\",[1.2,false,\"x\"]]"));
 	}
 
 	@Test
 	public void testJSONObjectParsing() throws Exception {
 		JSONHandler handler = new SimpleJSONHandler();
-		Map<String, Object> obj = new LinkedHashMap<String, Object>();
+		Map<String, Object> obj = new LinkedHashMap<>();
 		assertEquals(obj, handler.parse("{}"));
 		obj.put("T", true);
 		assertEquals(obj, handler.parse("{\"T\":true}"));

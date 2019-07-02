@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import uy.edu.ucu.jsonql2019.ast.JSONQLLiteral;
 
-public class JSONQLCodeReprTests {
+public class TestJSONQLCodeRepr {
 
 	@Test public void testLiteral() {
 		JSONQLLiteral[] literals = new JSONQLLiteral[] {

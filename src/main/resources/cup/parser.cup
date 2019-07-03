@@ -11,7 +11,7 @@ parser code {:
 	}
 
 	public static Symbol parse(Reader input) throws Exception {
-		return (new Parser(new Lexer(input))).parse();
+		return (new JSONQLParser(new JSONQLLexer(input))).parse();
 	}
 
 	public static void main(String[] args) throws Exception {

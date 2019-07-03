@@ -18,6 +18,12 @@
       <resource>
         <directory>src/main/resources</directory>
       </resource>
+      <resource>
+        <directory>src/generated/java</directory>
+        <excludes>
+          <exclude>**/*.java</exclude>
+        </excludes>
+      </resource>
     </resources>
     <plugins>
       <plugin>
@@ -27,6 +33,45 @@
           <release>10</release>
         </configuration>
       </plugin>
+      <!-- Parser generation with CUP -->
+      <plugin>
+        <groupId>com.github.vbmacher</groupId>
+        <artifactId>cup-maven-plugin</artifactId>
+        <version>11b-20160615</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <className>JSONQLParser</className>
+          <symbolsName>JSONQLTokens</symbolsName>
+          <symbolsInterface>true</symbolsInterface>
+          <outputDirectory>src/generated/java</outputDirectory>
+          <cupDefinition>src/main/resources/cup/parser.cup</cupDefinition>
+        </configuration>
+      </plugin>
+      <!-- Lexer generation with JFlex -->
+      <plugin>
+        <groupId>de.jflex</groupId>
+        <artifactId>jflex-maven-plugin</artifactId>
+        <version>1.7.0</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>src/generated/java</outputDirectory>
+              <lexDefinitions>
+                <lexDefinition>src/main/resources/jflex/lexer.lex</lexDefinition>
+              </lexDefinitions>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
   <dependencies>
@@ -35,5 +80,10 @@
   		<artifactId>json-simple</artifactId>
   		<version>1.1.1</version>
   	</dependency>
+    <dependency>
+      <groupId>com.github.vbmacher</groupId>
+      <artifactId>java-cup-runtime</artifactId>
+      <version>11b-20160615</version>
+    </dependency>
   </dependencies>
 </project>

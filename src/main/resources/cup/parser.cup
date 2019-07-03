@@ -1,0 +1,34 @@
+package uy.edu.ucu.jsonql2019.parser;
+
+import uy.edu.ucu.jsonql2019.ast.*;
+import java.io.*;
+import java.util.*;
+import java_cup.runtime.Symbol;
+
+parser code {:
+	public void syntax_error(Symbol currentToken) {
+		report_error("Syntax error at [" + (currentToken.left+1) +"," + (currentToken.right+1) +"]", null);
+	}
+
+	public static Symbol parse(Reader input) throws Exception {
+		return (new Parser(new Lexer(input))).parse();
+	}
+
+	public static void main(String[] args) throws Exception {
+		if (args.length < 1) {
+			System.out.println(parse(new InputStreamReader(System.in, "UTF8")).value);
+		} else for (int i = 0; i < args.length; ++i) {
+			System.out.println(parse(new InputStreamReader(new FileInputStream(args[i]), "UTF8")).value);
+		}
+	}
+:}
+
+terminal ROOT;
+
+non terminal JSONQLExpression exp;
+
+start with exp;
+
+exp ::= ROOT
+        {: RESULT = JSONQLRoot.ROOT; :}
+;

@@ -13,6 +13,9 @@ parser code {:
 	public static Symbol parse(Reader input) throws Exception {
 		return (new JSONQLParser(new JSONQLLexer(input))).parse();
 	}
+    public static Symbol parse(String input) throws Exception {
+		return JSONQLParser(new StringReader(input));
+	}
 
 	public static void main(String[] args) throws Exception {
 		if (args.length < 1) {

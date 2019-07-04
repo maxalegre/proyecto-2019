@@ -39,12 +39,12 @@ public class JSONQLLexer implements sym, java_cup.runtime.Scanner {
    */
   private static final String ZZ_CMAP_PACKED = 
     "\11\0\1\3\1\2\1\22\1\23\1\1\22\0\1\3\1\0\1\14"+
-    "\4\0\1\15\3\0\1\41\1\35\1\20\1\0\1\17\1\25\11\21"+
-    "\1\34\6\0\4\27\1\24\1\27\2\0\1\42\4\0\1\40\11\0"+
-    "\1\26\2\0\1\36\1\16\1\37\3\0\1\11\1\30\2\27\1\7"+
-    "\1\10\2\0\1\43\2\0\1\12\1\0\1\31\3\0\1\5\1\13"+
-    "\1\4\1\6\2\0\1\26\1\44\1\0\1\32\1\0\1\33\7\0"+
-    "\1\22\u1fa2\0\1\22\1\22\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\udfe6\0";
+    "\4\0\1\15\2\0\1\40\1\42\1\35\1\20\1\0\1\17\1\25"+
+    "\11\21\1\34\6\0\4\27\1\24\1\27\2\0\1\43\4\0\1\41"+
+    "\11\0\1\26\2\0\1\36\1\16\1\37\3\0\1\11\1\30\2\27"+
+    "\1\7\1\10\2\0\1\44\2\0\1\12\1\0\1\31\3\0\1\5"+
+    "\1\13\1\4\1\6\2\0\1\26\1\45\1\0\1\32\1\0\1\33"+
+    "\7\0\1\22\u1fa2\0\1\22\1\22\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\udfe6\0";
 
   /** 
    * Translates characters to character classes
@@ -57,14 +57,14 @@ public class JSONQLLexer implements sym, java_cup.runtime.Scanner {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\1\0\1\1\2\2\5\1\2\3\1\1\1\4\1\5"+
-    "\1\6\1\7\1\10\1\11\3\1\3\0\1\12\2\0"+
-    "\1\12\5\0\1\3\12\0\2\13\1\0\1\14\1\0"+
-    "\1\15\2\0\1\3\1\13\1\16\1\0\1\17\7\0"+
-    "\1\20\1\21";
+    "\1\0\1\1\2\2\4\1\1\3\1\1\2\4\1\1"+
+    "\1\5\1\6\1\7\1\10\1\11\1\12\1\13\3\1"+
+    "\3\0\1\14\2\0\1\14\5\0\1\4\12\0\2\15"+
+    "\1\0\1\16\1\0\1\17\2\0\1\4\1\15\1\20"+
+    "\1\0\1\21\7\0\1\22\1\23";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[66];
+    int [] result = new int[68];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -89,18 +89,18 @@ public class JSONQLLexer implements sym, java_cup.runtime.Scanner {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\45\0\112\0\45\0\157\0\224\0\271\0\336"+
-    "\0\u0103\0\u0128\0\u014d\0\u0172\0\45\0\45\0\45\0\45"+
-    "\0\45\0\45\0\u0197\0\u01bc\0\u01e1\0\u0206\0\u022b\0\271"+
-    "\0\271\0\u0250\0\336\0\45\0\u0275\0\u0197\0\u029a\0\u02bf"+
-    "\0\u02e4\0\u0309\0\u032e\0\u0353\0\u0378\0\u01e1\0\u039d\0\u03c2"+
-    "\0\u03e7\0\u040c\0\u0431\0\u0456\0\u047b\0\u04a0\0\u04c5\0\u0378"+
-    "\0\u04ea\0\45\0\u050f\0\u0534\0\u0431\0\u0559\0\45\0\u057e"+
-    "\0\45\0\u05a3\0\u05c8\0\u05ed\0\u0612\0\u0637\0\u065c\0\u0681"+
-    "\0\u065c\0\u0681";
+    "\0\0\0\46\0\114\0\46\0\162\0\230\0\276\0\344"+
+    "\0\46\0\u010a\0\u0130\0\u0156\0\u017c\0\46\0\46\0\46"+
+    "\0\46\0\46\0\46\0\46\0\u01a2\0\u01c8\0\u01ee\0\u0214"+
+    "\0\u023a\0\276\0\276\0\u0260\0\344\0\46\0\u0286\0\u01a2"+
+    "\0\u02ac\0\u02d2\0\u02f8\0\u031e\0\u0344\0\u036a\0\u0390\0\u01ee"+
+    "\0\u03b6\0\u03dc\0\u0402\0\u0428\0\u044e\0\u0474\0\u049a\0\u04c0"+
+    "\0\u04e6\0\u0390\0\u050c\0\46\0\u0532\0\u0558\0\u044e\0\u057e"+
+    "\0\46\0\u05a4\0\46\0\u05ca\0\u05f0\0\u0616\0\u063c\0\u0662"+
+    "\0\u0688\0\u06ae\0\u0688\0\u06ae";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[66];
+    int [] result = new int[68];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -124,35 +124,36 @@ public class JSONQLLexer implements sym, java_cup.runtime.Scanner {
 
   private static final String ZZ_TRANS_PACKED_0 =
     "\1\2\1\3\2\4\1\5\3\2\1\6\3\2\1\7"+
-    "\1\10\2\2\1\11\1\12\1\2\1\4\1\2\1\13"+
-    "\3\2\1\14\1\15\1\16\1\17\1\20\1\21\1\22"+
-    "\1\23\1\24\1\25\2\2\47\0\1\4\47\0\1\26"+
-    "\50\0\1\27\33\0\2\30\1\0\11\30\1\31\1\0"+
-    "\1\32\26\30\2\33\1\0\12\33\1\34\1\35\26\33"+
-    "\21\0\1\12\3\0\1\13\12\0\1\36\1\0\1\37"+
-    "\2\0\1\40\2\0\4\40\1\41\11\40\1\42\2\0"+
-    "\1\41\1\42\20\40\2\0\4\40\1\41\11\40\1\42"+
-    "\2\0\1\41\1\42\1\43\16\40\6\0\1\44\47\0"+
-    "\1\45\54\0\1\12\3\0\1\13\12\0\1\36\1\0"+
-    "\1\46\33\0\1\47\21\0\1\50\50\0\1\51\36\0"+
-    "\2\30\2\0\1\30\4\0\3\30\10\0\2\30\17\0"+
-    "\2\33\2\0\1\33\4\0\3\33\10\0\2\33\44\0"+
-    "\1\52\34\0\1\42\3\0\1\42\37\0\1\53\1\42"+
-    "\3\0\1\42\13\0\1\53\12\0\1\54\11\0\1\42"+
-    "\2\0\1\54\1\42\26\0\3\55\7\0\1\56\2\0"+
-    "\1\55\1\56\1\0\2\55\26\0\1\57\72\0\1\60"+
-    "\14\0\1\61\43\0\1\62\50\0\1\63\41\0\1\64"+
-    "\55\0\1\65\3\0\1\65\37\0\1\53\1\65\3\0"+
-    "\1\65\13\0\1\53\12\0\3\55\7\0\1\55\2\0"+
-    "\2\55\1\0\2\55\23\0\1\66\2\55\7\0\1\56"+
-    "\2\0\1\66\1\56\1\0\2\55\26\0\1\67\75\0"+
-    "\1\70\10\0\1\71\100\0\1\72\10\0\3\55\6\0"+
-    "\1\53\1\55\2\0\2\55\1\0\2\55\10\0\1\53"+
-    "\34\0\1\73\44\0\1\74\56\0\1\75\44\0\1\76"+
-    "\5\0\1\77\44\0\1\100\104\0\1\101\44\0\1\102";
+    "\1\10\1\2\1\11\1\12\1\13\1\2\1\4\1\2"+
+    "\1\14\3\2\1\15\1\16\1\17\1\20\1\21\1\22"+
+    "\1\23\1\24\1\25\1\26\1\27\2\2\50\0\1\4"+
+    "\50\0\1\30\51\0\1\31\34\0\2\32\1\0\11\32"+
+    "\1\33\1\0\1\34\27\32\2\35\1\0\12\35\1\36"+
+    "\1\37\27\35\21\0\1\13\3\0\1\14\13\0\1\40"+
+    "\1\0\1\41\2\0\1\42\2\0\4\42\1\43\11\42"+
+    "\1\44\2\0\1\43\1\44\21\42\2\0\4\42\1\43"+
+    "\11\42\1\44\2\0\1\43\1\44\1\45\17\42\6\0"+
+    "\1\46\50\0\1\47\55\0\1\13\3\0\1\14\13\0"+
+    "\1\40\1\0\1\50\33\0\1\51\22\0\1\52\51\0"+
+    "\1\53\37\0\2\32\2\0\1\32\4\0\3\32\10\0"+
+    "\2\32\20\0\2\35\2\0\1\35\4\0\3\35\10\0"+
+    "\2\35\45\0\1\54\35\0\1\44\3\0\1\44\40\0"+
+    "\1\55\1\44\3\0\1\44\14\0\1\55\12\0\1\56"+
+    "\11\0\1\44\2\0\1\56\1\44\27\0\3\57\7\0"+
+    "\1\60\2\0\1\57\1\60\1\0\2\57\27\0\1\61"+
+    "\74\0\1\62\14\0\1\63\44\0\1\64\51\0\1\65"+
+    "\42\0\1\66\56\0\1\67\3\0\1\67\40\0\1\55"+
+    "\1\67\3\0\1\67\14\0\1\55\12\0\3\57\7\0"+
+    "\1\57\2\0\2\57\1\0\2\57\24\0\1\70\2\57"+
+    "\7\0\1\60\2\0\1\70\1\60\1\0\2\57\27\0"+
+    "\1\71\77\0\1\72\10\0\1\73\102\0\1\74\10\0"+
+    "\3\57\6\0\1\55\1\57\2\0\2\57\1\0\2\57"+
+    "\11\0\1\55\34\0\1\75\45\0\1\76\60\0\1\77"+
+    "\45\0\1\100\5\0\1\101\45\0\1\102\106\0\1\103"+
+    "\45\0\1\104";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[1702];
+    int [] result = new int[1748];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -190,13 +191,13 @@ public class JSONQLLexer implements sym, java_cup.runtime.Scanner {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\1\11\1\1\1\11\10\1\6\11\3\1\3\0"+
-    "\1\1\2\0\1\11\5\0\1\1\12\0\2\1\1\0"+
-    "\1\1\1\0\1\11\2\0\2\1\1\11\1\0\1\11"+
-    "\7\0\2\1";
+    "\1\0\1\11\1\1\1\11\4\1\1\11\4\1\7\11"+
+    "\3\1\3\0\1\1\2\0\1\11\5\0\1\1\12\0"+
+    "\2\1\1\0\1\1\1\0\1\11\2\0\2\1\1\11"+
+    "\1\0\1\11\7\0\2\1";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[66];
+    int [] result = new int[68];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -325,7 +326,7 @@ public class JSONQLLexer implements sym, java_cup.runtime.Scanner {
     char [] map = new char[0x110000];
     int i = 0;  /* index in packed string  */
     int j = 0;  /* index in unpacked array */
-    while (i < 162) {
+    while (i < 164) {
       int  count = packed.charAt(i++);
       char value = packed.charAt(i++);
       do map[j++] = value; while (--count > 0);
@@ -695,87 +696,97 @@ public class JSONQLLexer implements sym, java_cup.runtime.Scanner {
             { emit_warning("Unrecognized character '" +yytext()+"' -- ignored");
             } 
             // fall through
-          case 18: break;
+          case 20: break;
           case 2: 
             { 
             } 
             // fall through
-          case 19: break;
-          case 3: 
-            { return symbolFactory.newSymbol("NUMBER",NUMBER,Double.parseDouble(yytext()));
-            } 
-            // fall through
-          case 20: break;
-          case 4: 
-            { return symbolFactory.newSymbol("LBRACE",LBRACE);
-            } 
-            // fall through
           case 21: break;
-          case 5: 
-            { return symbolFactory.newSymbol("RBRACE",RBRACE);
+          case 3: 
+            { return symbolFactory.newSymbol("DIV",DIV);
             } 
             // fall through
           case 22: break;
-          case 6: 
-            { return symbolFactory.newSymbol("COLON",COLON);
+          case 4: 
+            { System.out.println("Number");return symbolFactory.newSymbol("NUMBER",NUMBER,Double.parseDouble(yytext()));
             } 
             // fall through
           case 23: break;
-          case 7: 
-            { return symbolFactory.newSymbol("COMMA",COMMA);
+          case 5: 
+            { return symbolFactory.newSymbol("LBRACE",LBRACE);
             } 
             // fall through
           case 24: break;
-          case 8: 
-            { return symbolFactory.newSymbol("LBRACK",LBRACK);
+          case 6: 
+            { return symbolFactory.newSymbol("RBRACE",RBRACE);
             } 
             // fall through
           case 25: break;
-          case 9: 
-            { return symbolFactory.newSymbol("RBRACK",RBRACK);
+          case 7: 
+            { return symbolFactory.newSymbol("COLON",COLON);
             } 
             // fall through
           case 26: break;
-          case 10: 
-            { return symbolFactory.newSymbol("STRING",STRING,new String(yytext()));
+          case 8: 
+            { return symbolFactory.newSymbol("COMMA",COMMA);
             } 
             // fall through
           case 27: break;
-          case 11: 
-            { return symbolFactory.newSymbol("NUMBER",NUMBER,Double.valueOf(Integer.parseInt(yytext().split("x")[1], 16)));
+          case 9: 
+            { return symbolFactory.newSymbol("LBRACK",LBRACK);
             } 
             // fall through
           case 28: break;
-          case 12: 
-            { return symbolFactory.newSymbol("NUMBER",NUMBER,Double.NaN);
+          case 10: 
+            { return symbolFactory.newSymbol("RBRACK",RBRACK);
             } 
             // fall through
           case 29: break;
-          case 13: 
-            { System.out.println("TEST"); return symbolFactory.newSymbol("TRUE",TRUE);
+          case 11: 
+            { return symbolFactory.newSymbol("MULT",MULT);
             } 
             // fall through
           case 30: break;
-          case 14: 
-            { return symbolFactory.newSymbol("NULL",NULL);
+          case 12: 
+            { return symbolFactory.newSymbol("STRING",STRING,new String(yytext()));
             } 
             // fall through
           case 31: break;
-          case 15: 
-            { return symbolFactory.newSymbol("FALSE",FALSE);
+          case 13: 
+            { return symbolFactory.newSymbol("NUMBER",NUMBER,Double.valueOf(Integer.parseInt(yytext().split("x")[1], 16)));
             } 
             // fall through
           case 32: break;
-          case 16: 
-            { return symbolFactory.newSymbol("NUMBER",NUMBER,Double.POSITIVE_INFINITY);
+          case 14: 
+            { return symbolFactory.newSymbol("NUMBER",NUMBER,Double.NaN);
             } 
             // fall through
           case 33: break;
-          case 17: 
-            { return symbolFactory.newSymbol("NUMBER",NUMBER,Double.NEGATIVE_INFINITY);
+          case 15: 
+            { return symbolFactory.newSymbol("TRUE",TRUE);
             } 
             // fall through
           case 34: break;
+          case 16: 
+            { return symbolFactory.newSymbol("NULL",NULL);
+            } 
+            // fall through
+          case 35: break;
+          case 17: 
+            { return symbolFactory.newSymbol("FALSE",FALSE);
+            } 
+            // fall through
+          case 36: break;
+          case 18: 
+            { return symbolFactory.newSymbol("NUMBER",NUMBER,Double.POSITIVE_INFINITY);
+            } 
+            // fall through
+          case 37: break;
+          case 19: 
+            { return symbolFactory.newSymbol("NUMBER",NUMBER,Double.NEGATIVE_INFINITY);
+            } 
+            // fall through
+          case 38: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }

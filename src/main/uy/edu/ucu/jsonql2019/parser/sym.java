@@ -8,24 +8,28 @@ package uy.edu.ucu.jsonql2019.parser;
 /** CUP generated interface containing symbol constants. */
 public interface sym {
   /* terminals */
-  public static final int LBRACE = 3;
-  public static final int COLON = 7;
-  public static final int NUMBER = 12;
-  public static final int TRUE = 9;
-  public static final int NULL = 11;
-  public static final int STRING = 13;
+  public static final int LBRACE = 5;
+  public static final int COLON = 9;
+  public static final int NUMBER = 14;
+  public static final int MULT = 3;
+  public static final int TRUE = 11;
+  public static final int NULL = 13;
+  public static final int STRING = 15;
   public static final int EOF = 0;
-  public static final int FALSE = 10;
+  public static final int FALSE = 12;
+  public static final int RBRACK = 8;
+  public static final int DIV = 4;
   public static final int ROOT = 2;
-  public static final int RBRACK = 6;
-  public static final int COMMA = 8;
+  public static final int COMMA = 10;
   public static final int error = 1;
-  public static final int LBRACK = 5;
-  public static final int RBRACE = 4;
+  public static final int LBRACK = 7;
+  public static final int RBRACE = 6;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
   "ROOT",
+  "MULT",
+  "DIV",
   "LBRACE",
   "RBRACE",
   "LBRACK",

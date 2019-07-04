@@ -13,9 +13,6 @@ parser code {:
 	public static Symbol parse(Reader input) throws Exception {
 		return (new JSONQLParser(new JSONQLLexer(input))).parse();
 	}
-    public static Symbol parse(String input) throws Exception {
-		return JSONQLParser(new StringReader(input));
-	}
 
 	public static void main(String[] args) throws Exception {
 		if (args.length < 1) {
@@ -26,7 +23,7 @@ parser code {:
 	}
 :}
 
-terminal ROOT, LBRACE,RBRACE,LBRACK,RBRACK, COLON, COMMA, TRUE, FALSE, NULL;
+terminal ROOT, MULT, DIV, INTDIV, LBRACE,RBRACE,LBRACK,RBRACK, COLON, COMMA, TRUE, FALSE, NULL;
 terminal Double NUMBER;
 terminal String	STRING;
 
@@ -35,14 +32,19 @@ non terminal Object VALUE;
 non terminal Map<String,Object> OBJECT; 
 non terminal List<Object> ARRAY;       
 non terminal List<Object> VALUES;
-non terminal Map<String,Object> PAIRS;     
+non terminal Map<String,Object> PAIRS;  
+
+precedence left MULT, DIV;   
 
 start with exp;
 
 exp ::= ROOT {: RESULT = JSONQLRoot.ROOT; :} |
-		VALUE {: RESULT = JSONQLRoot.ROOT; :} ;
+		VALUE {: RESULT = JSONQLRoot.ROOT; :} |
+		exp:l MULT exp:r {: RESULT = new JSONQLBinaryExpression("*",l,r); :} |
+		exp:l DIV exp:r {: RESULT = new JSONQLBinaryExpression("/",l,r); :}
+		exp:l INTDIV exp:r {: RESULT = new JSONQLBinaryExpression("//",l,r); :} ;
 		
-VALUE ::= 	NUMBER:i {:RESULT=i;:} |
+VALUE ::= 	NUMBER:i {:RESULT=new Double(i);:} |
 			STRING:s {:RESULT=s;:} |
 			TRUE {: RESULT=true; :} |
 		  	FALSE {: RESULT=false; :} 

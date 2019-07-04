@@ -63,7 +63,7 @@ Hexa=[+-]?0[xX][0-9a-fA-F]+
 
 <YYINITIAL> {    
 
-   true     		{ System.out.println("TEST"); return symbolFactory.newSymbol("TRUE",TRUE); }
+   true     		{ return symbolFactory.newSymbol("TRUE",TRUE); }
    false     		{ return symbolFactory.newSymbol("FALSE",FALSE); }  
    null   			{ return symbolFactory.newSymbol("NULL",NULL); }
    
@@ -73,6 +73,10 @@ Hexa=[+-]?0[xX][0-9a-fA-F]+
    ","     			{ return symbolFactory.newSymbol("COMMA",COMMA); }
    "["     			{ return symbolFactory.newSymbol("LBRACK",LBRACK); }
    "]"     			{ return symbolFactory.newSymbol("RBRACK",RBRACK); }
+   
+   "*"     			{ return symbolFactory.newSymbol("MULT",MULT); }
+   "/"     			{ return symbolFactory.newSymbol("DIV",DIV); }
+   "//"     		{ return symbolFactory.newSymbol("INTDIV",INTDIV); }
      
    {String}     	{ return symbolFactory.newSymbol("STRING",STRING,new String(yytext())); }
    {Hexa}			{ return symbolFactory.newSymbol("NUMBER",NUMBER,Double.valueOf(Integer.parseInt(yytext().split("x")[1], 16))); }           	

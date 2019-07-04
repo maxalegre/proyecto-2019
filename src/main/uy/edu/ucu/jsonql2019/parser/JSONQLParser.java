@@ -34,12 +34,13 @@ public class JSONQLParser extends java_cup.runtime.lr_parser {
   /** Production table. */
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
-    "\000\022\000\002\002\004\000\002\002\003\000\002\002" +
-    "\003\000\002\003\003\000\002\003\003\000\002\003\003" +
-    "\000\002\010\002\000\002\003\005\000\002\003\003\000" +
-    "\002\003\003\000\002\004\004\000\002\004\005\000\002" +
-    "\007\005\000\002\007\007\000\002\005\004\000\002\005" +
-    "\005\000\002\006\003\000\002\006\005" });
+    "\000\024\000\002\002\004\000\002\002\003\000\002\002" +
+    "\003\000\002\002\005\000\002\002\005\000\002\003\003" +
+    "\000\002\003\003\000\002\003\003\000\002\010\002\000" +
+    "\002\003\005\000\002\003\003\000\002\003\003\000\002" +
+    "\004\004\000\002\004\005\000\002\007\005\000\002\007" +
+    "\007\000\002\005\004\000\002\005\005\000\002\006\003" +
+    "\000\002\006\005" });
 
   /** Access to production table. */
   public short[][] production_table() {return _production_table;}
@@ -47,31 +48,39 @@ public class JSONQLParser extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\037\000\020\004\015\005\004\007\016\013\011\014" +
-    "\014\016\005\017\012\001\002\000\006\006\031\017\030" +
-    "\001\002\000\012\002\ufffe\006\ufffe\010\ufffe\012\ufffe\001" +
-    "\002\000\012\002\ufff8\006\ufff8\010\ufff8\012\ufff8\001\002" +
-    "\000\012\002\ufff9\006\ufff9\010\ufff9\012\ufff9\001\002\000" +
-    "\004\002\027\001\002\000\012\002\ufffc\006\ufffc\010\ufffc" +
-    "\012\ufffc\001\002\000\012\002\ufffd\006\ufffd\010\ufffd\012" +
-    "\ufffd\001\002\000\004\002\uffff\001\002\000\004\015\ufffb" +
-    "\001\002\000\004\002\000\001\002\000\020\005\004\007" +
-    "\016\010\020\013\011\014\014\016\005\017\012\001\002" +
-    "\000\006\010\ufff1\012\ufff1\001\002\000\012\002\ufff3\006" +
-    "\ufff3\010\ufff3\012\ufff3\001\002\000\006\010\023\012\022" +
-    "\001\002\000\016\005\004\007\016\013\011\014\014\016" +
-    "\005\017\012\001\002\000\012\002\ufff2\006\ufff2\010\ufff2" +
-    "\012\ufff2\001\002\000\006\010\ufff0\012\ufff0\001\002\000" +
-    "\004\015\026\001\002\000\012\002\ufffa\006\ufffa\010\ufffa" +
-    "\012\ufffa\001\002\000\004\002\001\001\002\000\004\011" +
-    "\040\001\002\000\012\002\ufff7\006\ufff7\010\ufff7\012\ufff7" +
-    "\001\002\000\006\006\034\012\033\001\002\000\004\017" +
-    "\035\001\002\000\012\002\ufff6\006\ufff6\010\ufff6\012\ufff6" +
-    "\001\002\000\004\011\036\001\002\000\016\005\004\007" +
-    "\016\013\011\014\014\016\005\017\012\001\002\000\006" +
-    "\006\ufff4\012\ufff4\001\002\000\016\005\004\007\016\013" +
-    "\011\014\014\016\005\017\012\001\002\000\006\006\ufff5" +
-    "\012\ufff5\001\002" });
+    "\000\043\000\020\004\015\007\004\011\016\015\011\016" +
+    "\014\020\006\021\012\001\002\000\006\010\035\021\034" +
+    "\001\002\000\016\002\ufff6\005\ufff6\006\ufff6\010\ufff6\012" +
+    "\ufff6\014\ufff6\001\002\000\016\002\ufffc\005\ufffc\006\ufffc" +
+    "\010\ufffc\012\ufffc\014\ufffc\001\002\000\016\002\ufff7\005" +
+    "\ufff7\006\ufff7\010\ufff7\012\ufff7\014\ufff7\001\002\000\010" +
+    "\002\031\005\027\006\030\001\002\000\016\002\ufffa\005" +
+    "\ufffa\006\ufffa\010\ufffa\012\ufffa\014\ufffa\001\002\000\016" +
+    "\002\ufffb\005\ufffb\006\ufffb\010\ufffb\012\ufffb\014\ufffb\001" +
+    "\002\000\010\002\uffff\005\uffff\006\uffff\001\002\000\004" +
+    "\017\ufff9\001\002\000\010\002\000\005\000\006\000\001" +
+    "\002\000\020\007\004\011\016\012\020\015\011\016\014" +
+    "\020\006\021\012\001\002\000\006\012\uffef\014\uffef\001" +
+    "\002\000\016\002\ufff1\005\ufff1\006\ufff1\010\ufff1\012\ufff1" +
+    "\014\ufff1\001\002\000\006\012\023\014\022\001\002\000" +
+    "\016\007\004\011\016\015\011\016\014\020\006\021\012" +
+    "\001\002\000\016\002\ufff0\005\ufff0\006\ufff0\010\ufff0\012" +
+    "\ufff0\014\ufff0\001\002\000\006\012\uffee\014\uffee\001\002" +
+    "\000\004\017\026\001\002\000\016\002\ufff8\005\ufff8\006" +
+    "\ufff8\010\ufff8\012\ufff8\014\ufff8\001\002\000\020\004\015" +
+    "\007\004\011\016\015\011\016\014\020\006\021\012\001" +
+    "\002\000\020\004\015\007\004\011\016\015\011\016\014" +
+    "\020\006\021\012\001\002\000\004\002\001\001\002\000" +
+    "\010\002\ufffd\005\ufffd\006\ufffd\001\002\000\010\002\ufffe" +
+    "\005\ufffe\006\ufffe\001\002\000\004\013\044\001\002\000" +
+    "\016\002\ufff5\005\ufff5\006\ufff5\010\ufff5\012\ufff5\014\ufff5" +
+    "\001\002\000\006\010\040\014\037\001\002\000\004\021" +
+    "\041\001\002\000\016\002\ufff4\005\ufff4\006\ufff4\010\ufff4" +
+    "\012\ufff4\014\ufff4\001\002\000\004\013\042\001\002\000" +
+    "\016\007\004\011\016\015\011\016\014\020\006\021\012" +
+    "\001\002\000\006\010\ufff2\014\ufff2\001\002\000\016\007" +
+    "\004\011\016\015\011\016\014\020\006\021\012\001\002" +
+    "\000\006\010\ufff3\014\ufff3\001\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -79,19 +88,22 @@ public class JSONQLParser extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\037\000\012\002\007\003\012\004\006\005\005\001" +
-    "\001\000\004\007\031\001\001\000\002\001\001\000\002" +
+    "\000\043\000\012\002\007\003\012\004\006\005\004\001" +
+    "\001\000\004\007\035\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
     "\001\000\002\001\001\000\002\001\001\000\004\010\024" +
     "\001\001\000\002\001\001\000\012\003\016\004\006\005" +
-    "\005\006\020\001\001\000\002\001\001\000\002\001\001" +
-    "\000\002\001\001\000\010\003\023\004\006\005\005\001" +
+    "\004\006\020\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\010\003\023\004\006\005\004\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\012\002\032\003\012\004\006\005" +
+    "\004\001\001\000\012\002\031\003\012\004\006\005\004" +
+    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
     "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
-    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
-    "\001\001\000\002\001\001\000\010\003\036\004\006\005" +
-    "\005\001\001\000\002\001\001\000\010\003\040\004\006" +
-    "\005\005\001\001\000\002\001\001" });
+    "\010\003\042\004\006\005\004\001\001\000\002\001\001" +
+    "\000\010\003\044\004\006\005\004\001\001\000\002\001" +
+    "\001" });
 
   /** Access to <code>reduce_goto</code> table. */
   public short[][] reduce_table() {return _reduce_table;}
@@ -204,19 +216,49 @@ class CUP$JSONQLParser$actions {
           return CUP$JSONQLParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 3: // VALUE ::= NUMBER 
+          case 3: // exp ::= exp MULT exp 
+            {
+              JSONQLExpression RESULT =null;
+		int lleft = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-2)).left;
+		int lright = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-2)).right;
+		JSONQLExpression l = (JSONQLExpression)((java_cup.runtime.Symbol) CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-2)).value;
+		int rleft = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).left;
+		int rright = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).right;
+		JSONQLExpression r = (JSONQLExpression)((java_cup.runtime.Symbol) CUP$JSONQLParser$stack.peek()).value;
+		 System.out.println("Entré");RESULT = new JSONQLBinaryExpression("*",l,r); 
+              CUP$JSONQLParser$result = parser.getSymbolFactory().newSymbol("exp",0, ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-2)), ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()), RESULT);
+            }
+          return CUP$JSONQLParser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 4: // exp ::= exp DIV exp 
+            {
+              JSONQLExpression RESULT =null;
+		int lleft = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-2)).left;
+		int lright = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-2)).right;
+		JSONQLExpression l = (JSONQLExpression)((java_cup.runtime.Symbol) CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-2)).value;
+		int rleft = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).left;
+		int rright = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).right;
+		JSONQLExpression r = (JSONQLExpression)((java_cup.runtime.Symbol) CUP$JSONQLParser$stack.peek()).value;
+		 RESULT = new JSONQLBinaryExpression("/",l,r); 
+              CUP$JSONQLParser$result = parser.getSymbolFactory().newSymbol("exp",0, ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-2)), ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()), RESULT);
+            }
+          return CUP$JSONQLParser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 5: // VALUE ::= NUMBER 
             {
               Object RESULT =null;
 		int ileft = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).left;
 		int iright = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).right;
 		Double i = (Double)((java_cup.runtime.Symbol) CUP$JSONQLParser$stack.peek()).value;
-		RESULT=i;
+		RESULT=new Double(i);
               CUP$JSONQLParser$result = parser.getSymbolFactory().newSymbol("VALUE",1, ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()), RESULT);
             }
           return CUP$JSONQLParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 4: // VALUE ::= STRING 
+          case 6: // VALUE ::= STRING 
             {
               Object RESULT =null;
 		int sleft = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).left;
@@ -228,7 +270,7 @@ class CUP$JSONQLParser$actions {
           return CUP$JSONQLParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 5: // VALUE ::= TRUE 
+          case 7: // VALUE ::= TRUE 
             {
               Object RESULT =null;
 		 RESULT=true; 
@@ -237,7 +279,7 @@ class CUP$JSONQLParser$actions {
           return CUP$JSONQLParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 6: // NT$0 ::= 
+          case 8: // NT$0 ::= 
             {
               Object RESULT =null;
  RESULT=false; 
@@ -246,7 +288,7 @@ class CUP$JSONQLParser$actions {
           return CUP$JSONQLParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 7: // VALUE ::= FALSE NT$0 NULL 
+          case 9: // VALUE ::= FALSE NT$0 NULL 
             {
               Object RESULT =null;
               // propagate RESULT from NT$0
@@ -257,7 +299,7 @@ class CUP$JSONQLParser$actions {
           return CUP$JSONQLParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 8: // VALUE ::= OBJECT 
+          case 10: // VALUE ::= OBJECT 
             {
               Object RESULT =null;
 		int oleft = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).left;
@@ -269,7 +311,7 @@ class CUP$JSONQLParser$actions {
           return CUP$JSONQLParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 9: // VALUE ::= ARRAY 
+          case 11: // VALUE ::= ARRAY 
             {
               Object RESULT =null;
 		int aleft = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).left;
@@ -281,7 +323,7 @@ class CUP$JSONQLParser$actions {
           return CUP$JSONQLParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 10: // OBJECT ::= LBRACE RBRACE 
+          case 12: // OBJECT ::= LBRACE RBRACE 
             {
               Map<String,Object> RESULT =null;
 		RESULT= new HashMap<String,Object>();
@@ -290,7 +332,7 @@ class CUP$JSONQLParser$actions {
           return CUP$JSONQLParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 11: // OBJECT ::= LBRACE PAIRS RBRACE 
+          case 13: // OBJECT ::= LBRACE PAIRS RBRACE 
             {
               Map<String,Object> RESULT =null;
 		int pleft = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-1)).left;
@@ -302,7 +344,7 @@ class CUP$JSONQLParser$actions {
           return CUP$JSONQLParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 12: // PAIRS ::= STRING COLON VALUE 
+          case 14: // PAIRS ::= STRING COLON VALUE 
             {
               Map<String,Object> RESULT =null;
 		int kleft = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-2)).left;
@@ -317,7 +359,7 @@ class CUP$JSONQLParser$actions {
           return CUP$JSONQLParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 13: // PAIRS ::= PAIRS COMMA STRING COLON VALUE 
+          case 15: // PAIRS ::= PAIRS COMMA STRING COLON VALUE 
             {
               Map<String,Object> RESULT =null;
 		int pleft = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-4)).left;
@@ -335,7 +377,7 @@ class CUP$JSONQLParser$actions {
           return CUP$JSONQLParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 14: // ARRAY ::= LBRACK RBRACK 
+          case 16: // ARRAY ::= LBRACK RBRACK 
             {
               List<Object> RESULT =null;
 		RESULT=new ArrayList();
@@ -344,7 +386,7 @@ class CUP$JSONQLParser$actions {
           return CUP$JSONQLParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 15: // ARRAY ::= LBRACK VALUES RBRACK 
+          case 17: // ARRAY ::= LBRACK VALUES RBRACK 
             {
               List<Object> RESULT =null;
 		int vleft = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-1)).left;
@@ -356,7 +398,7 @@ class CUP$JSONQLParser$actions {
           return CUP$JSONQLParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 16: // VALUES ::= VALUE 
+          case 18: // VALUES ::= VALUE 
             {
               List<Object> RESULT =null;
 		int vleft = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).left;
@@ -368,7 +410,7 @@ class CUP$JSONQLParser$actions {
           return CUP$JSONQLParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 17: // VALUES ::= VALUES COMMA VALUE 
+          case 19: // VALUES ::= VALUES COMMA VALUE 
             {
               List<Object> RESULT =null;
 		int aleft = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-2)).left;

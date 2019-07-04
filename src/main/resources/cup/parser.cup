@@ -26,11 +26,38 @@ parser code {:
 	}
 :}
 
-terminal ROOT, TRUE;
+terminal ROOT, LBRACE,RBRACE,LBRACK,RBRACK, COLON, COMMA, TRUE, FALSE, NULL;
+terminal Double NUMBER;
+terminal String	STRING;
 
 non terminal JSONQLExpression exp;
+non terminal Object VALUE;  
+non terminal Map<String,Object> OBJECT; 
+non terminal List<Object> ARRAY;       
+non terminal List<Object> VALUES;
+non terminal Map<String,Object> PAIRS;     
 
 start with exp;
 
 exp ::= ROOT {: RESULT = JSONQLRoot.ROOT; :} |
-	 	TRUE {: RESULT = true; :} ;
+		VALUE {: RESULT = JSONQLRoot.ROOT; :} ;
+		
+VALUE ::= 	NUMBER:i {:RESULT=i;:} |
+			STRING:s {:RESULT=s;:} |
+			TRUE {: RESULT=true; :} |
+		  	FALSE {: RESULT=false; :} 
+		  	NULL {:RESULT=null;:} |
+	       	OBJECT:o {:RESULT=o;:} |  
+           	ARRAY:a  {:RESULT=a;:};    
+           	
+OBJECT ::= LBRACE RBRACE {:RESULT= new HashMap<String,Object>();:} | 
+	       LBRACE PAIRS:p RBRACE {: RESULT=p; :}; 	
+			
+PAIRS  ::= STRING:k COLON VALUE:v {:RESULT=new HashMap<String,Object>(); RESULT.put(k,v);:} | 
+	       PAIRS:p COMMA STRING:k COLON VALUE:v {:p.put(k,v); System.out.println("p: "+p); RESULT=p;:}; 
+	   
+ARRAY  ::= LBRACK RBRACK  {:RESULT=new ArrayList();:} |
+		   LBRACK VALUES:v RBRACK {:System.out.println("array: " + v); RESULT=v;:} ;
+ 
+VALUES ::= VALUE:v {:RESULT=new ArrayList(); RESULT.add(v);:} |
+           VALUES:a COMMA VALUE:v {:a.add(v); RESULT=a;:} ;

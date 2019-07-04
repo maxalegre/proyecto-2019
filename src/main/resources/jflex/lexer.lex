@@ -51,7 +51,9 @@ import java.io.InputStreamReader;
 LineTerminator=\r|\n|\r\n
 WhiteSpace={LineTerminator}|[ \t\f]
 Boolean=true|false
-Double=(0|[1-9][0-9]*)(\.[0-9]+)?((e|E)(\+|-)?[0-9]+)?
+String=(\"([^\\'\n]|\\[bfnrt'\\\/])*\")|(\'([^\\'\n]|\\[bfnrt'\\\/])*\')
+Number=[+-]?(([0-9].)?[0-9]+)([eE][+-]?[0-9]+)?
+Hexa=[+-]?0[xX][0-9a-fA-F]+
 
 %eofval{
     return symbolFactory.newSymbol("EOF",sym.EOF);
@@ -61,9 +63,27 @@ Double=(0|[1-9][0-9]*)(\.[0-9]+)?((e|E)(\+|-)?[0-9]+)?
 
 <YYINITIAL> {    
 
-   true     			{ return symbolFactory.newSymbol("TRUE",TRUE); }  
+   true     		{ System.out.println("TEST"); return symbolFactory.newSymbol("TRUE",TRUE); }
+   false     		{ return symbolFactory.newSymbol("FALSE",FALSE); }  
+   null   			{ return symbolFactory.newSymbol("NULL",NULL); }
+   
+   "{"     			{ return symbolFactory.newSymbol("LBRACE",LBRACE); }  
+   "}"     			{ return symbolFactory.newSymbol("RBRACE",RBRACE); }
+   ":"     			{ return symbolFactory.newSymbol("COLON",COLON); }
+   ","     			{ return symbolFactory.newSymbol("COMMA",COMMA); }
+   "["     			{ return symbolFactory.newSymbol("LBRACK",LBRACK); }
+   "]"     			{ return symbolFactory.newSymbol("RBRACK",RBRACK); }
+     
+   {String}     	{ return symbolFactory.newSymbol("STRING",STRING,new String(yytext())); }
+   {Hexa}			{ return symbolFactory.newSymbol("NUMBER",NUMBER,Double.valueOf(Integer.parseInt(yytext().split("x")[1], 16))); }           	
+   {Number}   		{ return symbolFactory.newSymbol("NUMBER",NUMBER,Double.parseDouble(yytext())); }
+   [+-]?NaN+  		{ return symbolFactory.newSymbol("NUMBER",NUMBER,Double.NaN); }	
+   \+?Infinity+ 	{ return symbolFactory.newSymbol("NUMBER",NUMBER,Double.POSITIVE_INFINITY); }
+   \-Infinity+ 		{ return symbolFactory.newSymbol("NUMBER",NUMBER,Double.NEGATIVE_INFINITY); }
+   {WhiteSpace} 	{                              }
    
 }     
    
 // error fallback
+
 [^]          { emit_warning("Unrecognized character '" +yytext()+"' -- ignored"); }

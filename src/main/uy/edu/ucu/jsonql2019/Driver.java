@@ -9,9 +9,9 @@ import java_cup.runtime.*;
 public class Driver {
 
 	public static void parseFile(String file) throws Exception {
-//		JSONQLParser parser = new JSONQLParser(new JSONQLLexer(new FileReader(file)));
-//		Symbol result = parser.parse();
-//		System.out.println(result.sym + ": " + result.value);
+		JSONQLParser parser = new JSONQLParser(new JSONQLLexer(new FileReader(file)));
+		Symbol result = parser.parse();
+		System.out.println(result.sym + ": " + result.value);
 	}
 
 	public static void main(String[] args) throws Exception {

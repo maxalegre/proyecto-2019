@@ -6,7 +6,7 @@ import java.lang.*;
 import java.io.InputStreamReader;
 
 %%
-%class Lexer 
+%class JSONQLLexer 
 %implements sym
 %public
 %unicode
@@ -15,13 +15,8 @@ import java.io.InputStreamReader;
 %cup
 %char
 %{
-	
 
-    public Lexer(ComplexSymbolFactory sf, java.io.InputStream is){
-		this(is);
-        symbolFactory = sf;
-    }
-	public Lexer(ComplexSymbolFactory sf, java.io.Reader reader){
+	public JSONQLLexer(ComplexSymbolFactory sf, java.io.Reader reader){
 		this(reader);
         symbolFactory = sf;
     }
@@ -66,45 +61,9 @@ Double=(0|[1-9][0-9]*)(\.[0-9]+)?((e|E)(\+|-)?[0-9]+)?
 
 <YYINITIAL> {    
 
-   ","     			{ return symbolFactory.newSymbol("COMA",COMA); }  
-   "*"     			{ return symbolFactory.newSymbol("MULT",MULT); }  
-   "/"     			{ return symbolFactory.newSymbol("DIV",DIV); }
-   "//"     		{ return symbolFactory.newSymbol("INTDIV",INTDIV); }
-   "%"     			{ return symbolFactory.newSymbol("MOD",MOD); }
-   "+"     			{ return symbolFactory.newSymbol("PLUS",PLUS); }
-   "-"     			{ return symbolFactory.newSymbol("MINUS",MINUS); }
-   "("     			{ return symbolFactory.newSymbol("LPAREN",LPAREN); }
-   ")"     			{ return symbolFactory.newSymbol("RPAREN",RPAREN); }
-   	"=="			{ return symbolFactory.newSymbol("EQUAL",EQUAL);}
-	"!="  		    { return symbolFactory.newSymbol("NOT_EQUAL",NOT_EQUAL);}
-	"<"				{ return symbolFactory.newSymbol("LESS",LESS); }
-	">"				{ return symbolFactory.newSymbol("GREATER",GREATER); }
-	"<="			{ return symbolFactory.newSymbol("LESS_EQUAL",LESS_EQUAL); }
-	">="			{ return symbolFactory.newSymbol("GREATER_EQUAL",GREATER_EQUAL); }
-	"!"				{ return symbolFactory.newSymbol("NOT",NOT); }
-	"&&"			{ return symbolFactory.newSymbol("AND",AND); }
-	"||"			{ return symbolFactory.newSymbol("OR",OR); }
-	"\""			{ return symbolFactory.newSymbol("QUOT",QUOT); }
-	"~"				{ return symbolFactory.newSymbol("ENC",ENC); }
-	"~="			{ return symbolFactory.newSymbol("ENCA",ENCA); }
-	"!~"			{ return symbolFactory.newSymbol("NENCA",NENCA); }
-	"{"     		{ return symbolFactory.newSymbol("LBRACES",LBRACES); }
-   	"}"     		{ return symbolFactory.newSymbol("RBRACES",RBRACES); }
-   	"["     		{ return symbolFactory.newSymbol("LBRACKETS",LBRACKETS); }
-   	"]"     		{ return symbolFactory.newSymbol("RBRACKETS",RBRACKETS); }
-   	"."     		{ return symbolFactory.newSymbol("PERIOD",PERIOD); }
-   	"."     		{ return symbolFactory.newSymbol("PERIOD",PERIOD); }
-   	"$"     		{ return symbolFactory.newSymbol("DOLAR",DOLAR); }
-   	"<-"     		{ return symbolFactory.newSymbol("ARROW",ARROW); }
-   	"/\"     		{ return symbolFactory.newSymbol("INTER",INTER); }
-   	"\/"     		{ return symbolFactory.newSymbol("UNION",UNION); }
-	
-     
-   {Boolean}   		{ return symbolFactory.newSymbol("BOOLEAN",BOOLEAN,Boolean.parseBoolean(yytext())); } 
-   {Double}      { return symbolFactory.newSymbol("NUMBER",NUMBER,Double.parseDouble(yytext())); }
-   {WhiteSpace} 	{            /* nop */                  }
+   true     			{ return symbolFactory.newSymbol("TRUE",TRUE); }  
    
 }     
    
 // error fallback
-.|\n          { emit_warning("Unrecognized character '" +yytext()+"' -- ignored"); }
+[^]          { emit_warning("Unrecognized character '" +yytext()+"' -- ignored"); }

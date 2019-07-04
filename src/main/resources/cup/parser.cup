@@ -23,12 +23,11 @@ parser code {:
 	}
 :}
 
-terminal ROOT;
+terminal ROOT, TRUE;
 
 non terminal JSONQLExpression exp;
 
 start with exp;
 
-exp ::= ROOT
-        {: RESULT = JSONQLRoot.ROOT; :}
-;
+exp ::= ROOT {: RESULT = JSONQLRoot.ROOT; :} |
+	 	TRUE {: RESULT = true; :} ;

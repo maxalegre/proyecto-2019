@@ -23,47 +23,57 @@ parser code {:
 	}
 :}
 
-terminal ROOT, MULT, DIV,LPARENT, RPARENT, PLUS, MINUS, LBRACE,RBRACE,LBRACK,RBRACK, COLON, COMMA, BOOL, NULL;
+terminal ROOT, MULT, DIV,LPARENT, RPARENT, EQUAL, NOT_EQUAL, LESS, GREATER, LESS_EQUAL, GREATER_EQUAL, NOT, AND, OR, PLUS, MINUS, LBRACE,RBRACE,LBRACK,RBRACK, COLON, COMMA, NULL;
 terminal Double NUMBER;
 terminal String	STRING;
+terminal Boolean BOOL;
 
-non terminal JSONQLExpression exp, EB;
-non terminal Object VALUE;  
-non terminal Map<String,Object> OBJECT; 
-non terminal List<Object> ARRAY;       
-non terminal List<Object> VALUES;
+non terminal JSONQLExpression S;
+non terminal JSONQLExpression EXP;
+non terminal JSONQLObjectExpression OBJECT; 
+non terminal JSONQLArrayExpression ARRAY;       
+non terminal List<JSONQLMemberExpression> VALUES;
 non terminal Map<String,Object> PAIRS;  
 
+precedence left PLUS, MINUS;   
 precedence left MULT, DIV;   
+precedence left AND, EQUAL, OR, NOT_EQUAL, GREATER, LESS, GREATER_EQUAL, LESS_EQUAL;
 
-start with exp;
+start with S;
 
-exp ::= ROOT {: RESULT = JSONQLRoot.ROOT; :} |
-		VALUE {: RESULT = JSONQLRoot.ROOT; :} |
-		exp:l MULT exp:r {: RESULT = new JSONQLBinaryExpression("*",l,r); :} |
-		exp:l DIV exp:r {: RESULT = new JSONQLBinaryExpression("/",l,r); :} |
-		exp:l PLUS exp:r {: RESULT = new JSONQLBinaryExpression("+",l,r); :} |
-		exp:l MINUS exp:r {: RESULT = new JSONQLBinaryExpression("-",l,r); :} |
-		LPARENT exp:r RPARENT {: RESULT = r;:} |
-		exp:l DIV exp:r {: RESULT = new JSONQLBinaryExpression("/",l,r); :}  ;
-		
-VALUE ::= 	BOOL:b {:RESULT=b;:}
-			NUMBER:i {:RESULT=new Double(i);:} |
-			STRING:s {:RESULT=s;:} |
-		  	NULL {:RESULT=null;:} |
-	       	OBJECT:o {:RESULT=o;:} |  
-           	ARRAY:a  {:RESULT=a;:};    
+S ::= EXP:op {: RESULT=op; :};  
+
+EXP ::= ROOT {: RESULT = JSONQLRoot.ROOT; :} |
+		BOOL:b {:RESULT = new JSONQLLiteral(b);:}
+		NUMBER:n {:RESULT = new JSONQLLiteral(n);:} |
+		STRING:s {:RESULT = new JSONQLLiteral(s);:} |
+	  	NULL {:RESULT = new JSONQLLiteral(null);:} |
+       	OBJECT:o {:RESULT = o;:} |  
+       	ARRAY:a  {:RESULT = a;:} |
+       	LPARENT EXP:r RPARENT {: RESULT = r;:} |
+       	EXP:l MULT EXP:r {: RESULT = new JSONQLBinaryExpression("*",l,r); :} |
+		EXP:l DIV EXP:r {: RESULT = new JSONQLBinaryExpression("/",l,r); :} |
+		EXP:l PLUS EXP:r {: RESULT = new JSONQLBinaryExpression("+",l,r); :} |
+		EXP:l MINUS EXP:r {: RESULT = new JSONQLBinaryExpression("-",l,r); :} |
+       	EXP:n1 EQUAL EXP:n2 {:RESULT= new JSONQLBinaryExpression("==",n1,n2);:} |
+		EXP:n1 NOT_EQUAL EXP:n2 {:RESULT= new JSONQLBinaryExpression("!=",n1,n2);:} |
+		EXP:n1 LESS EXP:n2 {:RESULT= new JSONQLBinaryExpression("<",n1,n2);:} |
+		EXP:n1 GREATER EXP:n2 {:RESULT= new JSONQLBinaryExpression(">",n1,n2);:} |
+		EXP:n1 LESS_EQUAL EXP:n2 {:RESULT= new JSONQLBinaryExpression("<=",n1,n2);:} |
+		EXP:n1 GREATER_EQUAL EXP:n2 {:RESULT= new JSONQLBinaryExpression(">=",n1,n2);:} |
+		NOT EXP:b  {:RESULT=new JSONQLUnaryExpression("!",b);:} |
+		EXP:n1 AND EXP:n2 {:RESULT= new JSONQLBinaryExpression("&&",n1,n2);:} |
+		EXP:n1 OR EXP:n2 {:RESULT= new JSONQLBinaryExpression("||",n1,n2);:};   
            	
 OBJECT ::= LBRACE RBRACE {:RESULT= new HashMap<String,Object>();:} | 
 	       LBRACE PAIRS:p RBRACE {: RESULT=p; :}; 	
 			
-PAIRS  ::= STRING:k COLON VALUE:v {:RESULT=new HashMap<String,Object>(); RESULT.put(k,v);:} | 
-	       PAIRS:p COMMA STRING:k COLON VALUE:v {:p.put(k,v); System.out.println("p: "+p); RESULT=p;:}; 
+PAIRS  ::= STRING:k COLON EXP:v {:RESULT=new HashMap<String,Object>(); RESULT.put(k,v);:} | 
+	       PAIRS:p COMMA STRING:k COLON EXP:v {:p.put(k,v); System.out.println("p: "+p); RESULT=p;:}; 
 	   
-ARRAY  ::= LBRACK RBRACK  {:RESULT=new ArrayList();:} |
+ARRAY  ::= LBRACK RBRACK  {:JSONSQLArrayExpression[] a = new JSONSQLArrayExpression()[];RESULT= new JSONSQLArrayExpression(a);:} |
 		   LBRACK VALUES:v RBRACK {:System.out.println("array: " + v); RESULT=v;:} ;
  
-VALUES ::= VALUE:v {:RESULT=new ArrayList(); RESULT.add(v);:} |
-           VALUES:a COMMA VALUE:v {:a.add(v); RESULT=a;:} ;
-           
+VALUES ::= EXP:v {:RESULT= new JSONSQLArrayExpression(v);:} |
+           VALUES:a COMMA EXP:v {:a.elements.add(v); RESULT=a;:} ;
 

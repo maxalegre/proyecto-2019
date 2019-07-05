@@ -32,9 +32,8 @@ Hexa=[+-]?0[xX][0-9a-fA-F]+
 
 \$							{ return new Symbol(ROOT, yyline, yycolumn); }
 
-true     		{ return new Symbol(TRUE, yyline, yycolumn); }
-false     		{ return new Symbol(FALSE, yyline, yycolumn); }  
-null   			{ return new Symbol(NULL, yyline, yycolumn); }
+true|false     		{ return new Symbol(BOOL, yyline, yycolumn); }
+null   				{ return new Symbol(NULL, yyline, yycolumn); }
    
 "{"     			{ return new Symbol(LBRACE, yyline, yycolumn); }  
 "}"     			{ return new Symbol(RBRACE, yyline, yycolumn); }
@@ -51,6 +50,15 @@ null   			{ return new Symbol(NULL, yyline, yycolumn); }
 "("     			{ return new Symbol(LPARENT, yyline, yycolumn); }  
 ")"     			{ return new Symbol(RPARENT, yyline, yycolumn); }
 
+"=="			{ return new Symbol(EQUAL, yyline, yycolumn);}
+"!="  		    { return new Symbol(NOT_EQUAL, yyline, yycolumn);}
+"<"				{ return new Symbol(LESS, yyline, yycolumn); }
+">"				{ return new Symbol(GREATER, yyline, yycolumn); }
+"<="			{ return new Symbol(LESS_EQUAL, yyline, yycolumn); }
+">="			{ return new Symbol(GREATER_EQUAL, yyline, yycolumn); }
+"!"				{ return new Symbol(NOT, yyline, yycolumn); }
+"&&"			{ return new Symbol(AND, yyline, yycolumn); }
+"||"			{ return new Symbol(OR, yyline, yycolumn); }
      
 {String}     	{ return new Symbol(STRING, yyline, yycolumn,new String(yytext())); }
 {Hexa}			{ return new Symbol(NUMBER, yyline, yycolumn,Double.valueOf(Integer.parseInt(yytext().split("x")[1], 16))); }           	

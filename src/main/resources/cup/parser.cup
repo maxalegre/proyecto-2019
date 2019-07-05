@@ -23,11 +23,11 @@ parser code {:
 	}
 :}
 
-terminal ROOT, MULT, DIV, LBRACE,RBRACE,LBRACK,RBRACK, COLON, COMMA, TRUE, FALSE, NULL;
+terminal ROOT, MULT, DIV,LPARENT, RPARENT, PLUS, MINUS, LBRACE,RBRACE,LBRACK,RBRACK, COLON, COMMA, BOOL, NULL;
 terminal Double NUMBER;
 terminal String	STRING;
 
-non terminal JSONQLExpression exp;
+non terminal JSONQLExpression exp, EB;
 non terminal Object VALUE;  
 non terminal Map<String,Object> OBJECT; 
 non terminal List<Object> ARRAY;       
@@ -44,12 +44,12 @@ exp ::= ROOT {: RESULT = JSONQLRoot.ROOT; :} |
 		exp:l DIV exp:r {: RESULT = new JSONQLBinaryExpression("/",l,r); :} |
 		exp:l PLUS exp:r {: RESULT = new JSONQLBinaryExpression("+",l,r); :} |
 		exp:l MINUS exp:r {: RESULT = new JSONQLBinaryExpression("-",l,r); :} |
-		LPARENT exp:r RPARENT {: RESULT = r;:} ;
+		LPARENT exp:r RPARENT {: RESULT = r;:} |
+		exp:l DIV exp:r {: RESULT = new JSONQLBinaryExpression("/",l,r); :}  ;
 		
-VALUE ::= 	NUMBER:i {:RESULT=new Double(i);:} |
+VALUE ::= 	BOOL:b {:RESULT=b;:}
+			NUMBER:i {:RESULT=new Double(i);:} |
 			STRING:s {:RESULT=s;:} |
-			TRUE {: RESULT=true; :} |
-		  	FALSE {: RESULT=false; :} 
 		  	NULL {:RESULT=null;:} |
 	       	OBJECT:o {:RESULT=o;:} |  
            	ARRAY:a  {:RESULT=a;:};    
@@ -65,3 +65,5 @@ ARRAY  ::= LBRACK RBRACK  {:RESULT=new ArrayList();:} |
  
 VALUES ::= VALUE:v {:RESULT=new ArrayList(); RESULT.add(v);:} |
            VALUES:a COMMA VALUE:v {:a.add(v); RESULT=a;:} ;
+           
+

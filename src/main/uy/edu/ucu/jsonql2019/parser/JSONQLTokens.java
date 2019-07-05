@@ -6,7 +6,7 @@
 package uy.edu.ucu.jsonql2019.parser;
 
 /** CUP generated interface containing symbol constants. */
-public interface sym {
+public interface JSONQLTokens {
   /* terminals */
   public static final int LBRACE = 5;
   public static final int COLON = 9;

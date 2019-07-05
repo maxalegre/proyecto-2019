@@ -49,7 +49,7 @@
 				</executions>
 				<configuration>
 					<className>JSONQLParser</className>
-					<symbolsName>sym</symbolsName>
+					<symbolsName>JSONQLTokens</symbolsName>
 					<symbolsInterface>true</symbolsInterface>
 					<outputDirectory>src/main</outputDirectory>
 					<cupDefinition>src/main/resources/cup/parser.cup</cupDefinition>

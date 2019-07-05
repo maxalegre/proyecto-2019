@@ -14,14 +14,11 @@ public class Driver {
 	}
 	public static void main(String[] args) {
 		try {
-			
 			 parseFile("input.txt");
-			 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
 
 }

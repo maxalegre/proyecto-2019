@@ -17,7 +17,7 @@ import java_cup.runtime.XMLElement;
 public class JSONQLParser extends java_cup.runtime.lr_parser {
 
  public final Class getSymbolContainer() {
-    return sym.class;
+    return JSONQLTokens.class;
 }
 
   /** Default constructor. */
@@ -225,7 +225,7 @@ class CUP$JSONQLParser$actions {
 		int rleft = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).left;
 		int rright = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).right;
 		JSONQLExpression r = (JSONQLExpression)((java_cup.runtime.Symbol) CUP$JSONQLParser$stack.peek()).value;
-		 System.out.println("Entré");RESULT = new JSONQLBinaryExpression("*",l,r); 
+		 RESULT = new JSONQLBinaryExpression("*",l,r); 
               CUP$JSONQLParser$result = parser.getSymbolFactory().newSymbol("exp",0, ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-2)), ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()), RESULT);
             }
           return CUP$JSONQLParser$result;

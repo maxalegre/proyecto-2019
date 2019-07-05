@@ -23,7 +23,7 @@ parser code {:
 	}
 :}
 
-terminal ROOT, MULT, DIV, INTDIV, LBRACE,RBRACE,LBRACK,RBRACK, COLON, COMMA, TRUE, FALSE, NULL;
+terminal ROOT, MULT, DIV, LBRACE,RBRACE,LBRACK,RBRACK, COLON, COMMA, TRUE, FALSE, NULL;
 terminal Double NUMBER;
 terminal String	STRING;
 
@@ -41,8 +41,7 @@ start with exp;
 exp ::= ROOT {: RESULT = JSONQLRoot.ROOT; :} |
 		VALUE {: RESULT = JSONQLRoot.ROOT; :} |
 		exp:l MULT exp:r {: RESULT = new JSONQLBinaryExpression("*",l,r); :} |
-		exp:l DIV exp:r {: RESULT = new JSONQLBinaryExpression("/",l,r); :}
-		exp:l INTDIV exp:r {: RESULT = new JSONQLBinaryExpression("//",l,r); :} ;
+		exp:l DIV exp:r {: RESULT = new JSONQLBinaryExpression("/",l,r); :} ;
 		
 VALUE ::= 	NUMBER:i {:RESULT=new Double(i);:} |
 			STRING:s {:RESULT=s;:} |

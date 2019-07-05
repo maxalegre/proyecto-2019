@@ -41,7 +41,10 @@ start with exp;
 exp ::= ROOT {: RESULT = JSONQLRoot.ROOT; :} |
 		VALUE {: RESULT = JSONQLRoot.ROOT; :} |
 		exp:l MULT exp:r {: RESULT = new JSONQLBinaryExpression("*",l,r); :} |
-		exp:l DIV exp:r {: RESULT = new JSONQLBinaryExpression("/",l,r); :} ;
+		exp:l DIV exp:r {: RESULT = new JSONQLBinaryExpression("/",l,r); :} |
+		exp:l PLUS exp:r {: RESULT = new JSONQLBinaryExpression("+",l,r); :} |
+		exp:l MINUS exp:r {: RESULT = new JSONQLBinaryExpression("-",l,r); :} |
+		LPARENT exp:r RPARENT {: RESULT = r;:} ;
 		
 VALUE ::= 	NUMBER:i {:RESULT=new Double(i);:} |
 			STRING:s {:RESULT=s;:} |

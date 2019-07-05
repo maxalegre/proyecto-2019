@@ -45,6 +45,12 @@ null   			{ return new Symbol(NULL, yyline, yycolumn); }
    
 "*"     			{ return new Symbol(MULT, yyline, yycolumn); }
 "/"     			{ return new Symbol(DIV, yyline, yycolumn); }
+"+"     			{ return new Symbol(PLUS, yyline, yycolumn); }
+"-"     			{ return new Symbol(MINUS, yyline, yycolumn); }
+
+"("     			{ return new Symbol(LPARENT, yyline, yycolumn); }  
+")"     			{ return new Symbol(RPARENT, yyline, yycolumn); }
+
      
 {String}     	{ return new Symbol(STRING, yyline, yycolumn,new String(yytext())); }
 {Hexa}			{ return new Symbol(NUMBER, yyline, yycolumn,Double.valueOf(Integer.parseInt(yytext().split("x")[1], 16))); }           	

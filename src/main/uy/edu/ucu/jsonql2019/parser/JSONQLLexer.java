@@ -670,7 +670,7 @@ public class JSONQLLexer implements java_cup.runtime.Scanner, JSONQLTokens {
             // fall through
           case 34: break;
           case 4: 
-            { System.out.println("Number: " + yytext());return new Symbol(NUMBER, yyline, yycolumn,Double.parseDouble(yytext()));
+            { System.out.println("NUMBER: " + yytext());return new Symbol(NUMBER, yyline, yycolumn,Double.parseDouble(yytext()));
             } 
             // fall through
           case 35: break;
@@ -700,7 +700,7 @@ public class JSONQLLexer implements java_cup.runtime.Scanner, JSONQLTokens {
             // fall through
           case 40: break;
           case 10: 
-            { return new Symbol(LBRACK, yyline, yycolumn);
+            { System.out.println("LBRACK: " + yytext());return new Symbol(LBRACK, yyline, yycolumn);
             } 
             // fall through
           case 41: break;
@@ -745,7 +745,7 @@ public class JSONQLLexer implements java_cup.runtime.Scanner, JSONQLTokens {
             // fall through
           case 49: break;
           case 19: 
-            { return new Symbol(STRING, yyline, yycolumn,new String(yytext()));
+            { System.out.println("STRING: " + yytext());return new Symbol(STRING, yyline, yycolumn,new String(yytext()));
             } 
             // fall through
           case 50: break;

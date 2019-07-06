@@ -705,7 +705,7 @@ public class JSONQLLexer implements java_cup.runtime.Scanner, JSONQLTokens {
             // fall through
           case 41: break;
           case 11: 
-            { return new Symbol(RBRACK, yyline, yycolumn);
+            { System.out.println("RBRACK: " + yytext()); return new Symbol(RBRACK, yyline, yycolumn);
             } 
             // fall through
           case 42: break;

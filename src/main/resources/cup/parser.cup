@@ -18,7 +18,8 @@ parser code {:
 		if (args.length < 1) {
 			System.out.println(parse(new InputStreamReader(System.in, "UTF8")).value);
 		} else for (int i = 0; i < args.length; ++i) {
-			System.out.println(parse(new InputStreamReader(new FileInputStream(args[i]), "UTF8")).value);
+			System.out.println(parse(new InputStreamReader(new FileInputStream("input.txt"), "UTF8")).value);
+			//System.out.println(parse(new InputStreamReader(new FileInputStream(args[i]), "UTF8")).value);
 		}
 	}
 :}
@@ -41,39 +42,41 @@ precedence left AND, EQUAL, OR, NOT_EQUAL, GREATER, LESS, GREATER_EQUAL, LESS_EQ
 
 start with S;
 
-S ::= EXP:op {:System.out.println("S"); RESULT=op; :};  
+S ::= EXP:op {: RESULT=op; :} ;  
 
 EXP ::= ROOT {: RESULT = JSONQLRoot.ROOT; :} |
-		BOOL:b {:RESULT = new JSONQLLiteral(b);:} |
-		NUMBER:n {:RESULT = new JSONQLLiteral(n);:} |
-		STRING:s {:System.out.println("STRING");RESULT = new JSONQLLiteral(s);:} |
-	  	NULL {:RESULT = new JSONQLLiteral(null);:} |
-       	OBJECT:o {:RESULT = o;:} |  
-       	ARRAY:a  {:RESULT = a;:} |
-       	LPARENT EXP:r RPARENT {: RESULT = r;:} |
+		BOOL:b {: RESULT = new JSONQLLiteral(b); :} |
+		NUMBER:n {: RESULT = new JSONQLLiteral(n); :} |
+		STRING:s {: RESULT = new JSONQLLiteral(s); :} |
+	  	NULL {:RESULT = new JSONQLLiteral(null); :} |
+       	OBJECT:o {: RESULT = o; :} |  
+       	ARRAY:a  {: RESULT = a; :} |
+       	MINUS EXP:n {: RESULT = new JSONQLUnaryExpression("-",n); :} |
+       	PLUS EXP:n {: RESULT = new JSONQLUnaryExpression("+",n); :} |
+       	LPARENT EXP:r RPARENT {: RESULT = r; :} |
        	EXP:l MULT EXP:r {: RESULT = new JSONQLBinaryExpression("*",l,r); :} |
 		EXP:l DIV EXP:r {: RESULT = new JSONQLBinaryExpression("/",l,r); :} |
 		EXP:l PLUS EXP:r {: RESULT = new JSONQLBinaryExpression("+",l,r); :} |
 		EXP:l MINUS EXP:r {: RESULT = new JSONQLBinaryExpression("-",l,r); :} |
-       	EXP:n1 EQUAL EXP:n2 {:RESULT= new JSONQLBinaryExpression("==",n1,n2);:} |
-		EXP:n1 NOT_EQUAL EXP:n2 {:RESULT= new JSONQLBinaryExpression("!=",n1,n2);:} |
-		EXP:n1 LESS EXP:n2 {:RESULT= new JSONQLBinaryExpression("<",n1,n2);:} |
-		EXP:n1 GREATER EXP:n2 {:RESULT= new JSONQLBinaryExpression(">",n1,n2);:} |
-		EXP:n1 LESS_EQUAL EXP:n2 {:RESULT= new JSONQLBinaryExpression("<=",n1,n2);:} |
-		EXP:n1 GREATER_EQUAL EXP:n2 {:RESULT= new JSONQLBinaryExpression(">=",n1,n2);:} |
-		NOT EXP:b  {:RESULT=new JSONQLUnaryExpression("!",b);:} |
-		EXP:n1 AND EXP:n2 {:RESULT= new JSONQLBinaryExpression("&&",n1,n2);:} |
-		EXP:n1 OR EXP:n2 {:RESULT= new JSONQLBinaryExpression("||",n1,n2);:};   
+       	EXP:n1 EQUAL EXP:n2 {: RESULT = new JSONQLBinaryExpression("==",n1,n2); :} |
+		EXP:n1 NOT_EQUAL EXP:n2 {: RESULT = new JSONQLBinaryExpression("!=",n1,n2); :} |
+		EXP:n1 LESS EXP:n2 {: RESULT = new JSONQLBinaryExpression("<",n1,n2); :} |
+		EXP:n1 GREATER EXP:n2 {: RESULT = new JSONQLBinaryExpression(">",n1,n2); :} |
+		EXP:n1 LESS_EQUAL EXP:n2 {: RESULT = new JSONQLBinaryExpression("<=",n1,n2); :} |
+		EXP:n1 GREATER_EQUAL EXP:n2 {: RESULT = new JSONQLBinaryExpression(">=",n1,n2); :} |
+		NOT EXP:b  {: RESULT = new JSONQLUnaryExpression("!",b); :} |
+		EXP:n1 AND EXP:n2 {: RESULT = new JSONQLBinaryExpression("&&",n1,n2); :} |
+		EXP:n1 OR EXP:n2 {: RESULT = new JSONQLBinaryExpression("||",n1,n2); :} ;   
            	
 OBJECT ::= LBRACE RBRACE {: Map<JSONQLExpression, JSONQLExpression> a = new HashMap(); RESULT = new JSONQLObjectExpression(a); :} | 
 	       LBRACE PAIRS:p RBRACE {: RESULT = new JSONQLObjectExpression(p); :}; 	
 			
-PAIRS  ::= EXP:k COLON EXP:v {:RESULT=new HashMap<JSONQLExpression,JSONQLExpression>(); RESULT.put(k,v);:} | 
-	       PAIRS:p COMMA EXP:k COLON EXP:v {:p.put(k,v); System.out.println("p: "+p); RESULT=p;:}; 
+PAIRS  ::= EXP:k COLON EXP:v {: RESULT = new HashMap<JSONQLExpression,JSONQLExpression>(); RESULT.put(k,v); :} | 
+	       PAIRS:p COMMA EXP:k COLON EXP:v {: p.put(k,v); RESULT = p; :}; 
 	   
-ARRAY  ::= LBRACK RBRACK {:System.out.println("EMPTY ARRAY");JSONQLArrayExpression a = new JSONQLArrayExpression(); RESULT= a;:} |
-		   LBRACK VALUES:v RBRACK {:System.out.println("ARRAY"); RESULT = new JSONQLArrayExpression(v);:} ;
+ARRAY  ::= LBRACK RBRACK {: JSONQLArrayExpression a = new JSONQLArrayExpression(); RESULT = a; :} |
+		   LBRACK VALUES:v RBRACK {: RESULT = new JSONQLArrayExpression(v);:} ;
  
-VALUES ::= EXP:v {:List<JSONQLExpression> a = List.of(v);;RESULT = a;:} |
-           VALUES:a COMMA EXP:v {:a.add(v); RESULT=a;:} ;
+VALUES ::= EXP:v {: List<JSONQLExpression> a = List.of(v);;RESULT = a; :} |
+           VALUES:a COMMA EXP:v {: a.add(v); RESULT=a; :} ;
 

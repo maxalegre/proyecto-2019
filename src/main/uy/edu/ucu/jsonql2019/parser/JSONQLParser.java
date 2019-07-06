@@ -34,16 +34,17 @@ public class JSONQLParser extends java_cup.runtime.lr_parser {
   /** Production table. */
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
-    "\000\037\000\002\002\004\000\002\002\003\000\002\003" +
+    "\000\041\000\002\002\004\000\002\002\003\000\002\003" +
     "\003\000\002\003\003\000\002\003\003\000\002\003\003" +
     "\000\002\003\003\000\002\003\003\000\002\003\003\000" +
-    "\002\003\005\000\002\003\005\000\002\003\005\000\002" +
+    "\002\003\004\000\002\003\004\000\002\003\005\000\002" +
     "\003\005\000\002\003\005\000\002\003\005\000\002\003" +
     "\005\000\002\003\005\000\002\003\005\000\002\003\005" +
-    "\000\002\003\005\000\002\003\004\000\002\003\005\000" +
-    "\002\003\005\000\002\004\004\000\002\004\005\000\002" +
-    "\007\005\000\002\007\007\000\002\005\004\000\002\005" +
-    "\005\000\002\006\003\000\002\006\005" });
+    "\000\002\003\005\000\002\003\005\000\002\003\005\000" +
+    "\002\003\004\000\002\003\005\000\002\003\005\000\002" +
+    "\004\004\000\002\004\005\000\002\007\005\000\002\007" +
+    "\007\000\002\005\004\000\002\005\005\000\002\006\003" +
+    "\000\002\006\005" });
 
   /** Access to production table. */
   public short[][] production_table() {return _production_table;}
@@ -51,141 +52,157 @@ public class JSONQLParser extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\072\000\024\004\014\007\017\017\016\024\004\026" +
-    "\015\032\012\033\007\034\013\035\005\001\002\000\026" +
-    "\004\014\007\017\017\016\024\004\025\065\026\015\032" +
-    "\012\033\007\034\013\035\005\001\002\000\046\002\ufffe" +
-    "\005\ufffe\006\ufffe\010\ufffe\011\ufffe\012\ufffe\013\ufffe\014" +
-    "\ufffe\015\ufffe\016\ufffe\020\ufffe\021\ufffe\022\ufffe\023\ufffe" +
-    "\025\ufffe\027\ufffe\030\ufffe\031\ufffe\001\002\000\046\002" +
-    "\ufffa\005\ufffa\006\ufffa\010\ufffa\011\ufffa\012\ufffa\013\ufffa" +
-    "\014\ufffa\015\ufffa\016\ufffa\020\ufffa\021\ufffa\022\ufffa\023" +
-    "\ufffa\025\ufffa\027\ufffa\030\ufffa\031\ufffa\001\002\000\046" +
-    "\002\ufffd\005\ufffd\006\ufffd\010\ufffd\011\ufffd\012\ufffd\013" +
-    "\ufffd\014\ufffd\015\ufffd\016\ufffd\020\ufffd\021\ufffd\022\ufffd" +
-    "\023\ufffd\025\ufffd\027\ufffd\030\ufffd\031\ufffd\001\002\000" +
-    "\046\002\ufff9\005\ufff9\006\ufff9\010\ufff9\011\ufff9\012\ufff9" +
-    "\013\ufff9\014\ufff9\015\ufff9\016\ufff9\020\ufff9\021\ufff9\022" +
-    "\ufff9\023\ufff9\025\ufff9\027\ufff9\030\ufff9\031\ufff9\001\002" +
-    "\000\004\002\062\001\002\000\046\002\ufffb\005\ufffb\006" +
-    "\ufffb\010\ufffb\011\ufffb\012\ufffb\013\ufffb\014\ufffb\015\ufffb" +
-    "\016\ufffb\020\ufffb\021\ufffb\022\ufffb\023\ufffb\025\ufffb\027" +
-    "\ufffb\030\ufffb\031\ufffb\001\002\000\046\002\ufffc\005\ufffc" +
-    "\006\ufffc\010\ufffc\011\ufffc\012\ufffc\013\ufffc\014\ufffc\015" +
-    "\ufffc\016\ufffc\020\ufffc\021\ufffc\022\ufffc\023\ufffc\025\ufffc" +
-    "\027\ufffc\030\ufffc\031\ufffc\001\002\000\046\002\uffff\005" +
-    "\uffff\006\uffff\010\uffff\011\uffff\012\uffff\013\uffff\014\uffff" +
-    "\015\uffff\016\uffff\020\uffff\021\uffff\022\uffff\023\uffff\025" +
-    "\uffff\027\uffff\030\uffff\031\uffff\001\002\000\026\004\014" +
-    "\007\017\017\016\024\004\026\015\027\054\032\012\033" +
-    "\007\034\013\035\005\001\002\000\024\004\014\007\017" +
-    "\017\016\024\004\026\015\032\012\033\007\034\013\035" +
-    "\005\001\002\000\024\004\014\007\017\017\016\024\004" +
-    "\026\015\032\012\033\007\034\013\035\005\001\002\000" +
-    "\034\002\000\005\023\006\030\011\025\012\031\013\032" +
-    "\014\024\015\027\016\033\020\021\021\034\022\026\023" +
-    "\022\001\002\000\024\004\014\007\017\017\016\024\004" +
-    "\026\015\032\012\033\007\034\013\035\005\001\002\000" +
-    "\024\004\014\007\017\017\016\024\004\026\015\032\012" +
-    "\033\007\034\013\035\005\001\002\000\024\004\014\007" +
-    "\017\017\016\024\004\026\015\032\012\033\007\034\013" +
-    "\035\005\001\002\000\024\004\014\007\017\017\016\024" +
-    "\004\026\015\032\012\033\007\034\013\035\005\001\002" +
-    "\000\024\004\014\007\017\017\016\024\004\026\015\032" +
-    "\012\033\007\034\013\035\005\001\002\000\024\004\014" +
-    "\007\017\017\016\024\004\026\015\032\012\033\007\034" +
-    "\013\035\005\001\002\000\024\004\014\007\017\017\016" +
-    "\024\004\026\015\032\012\033\007\034\013\035\005\001" +
-    "\002\000\024\004\014\007\017\017\016\024\004\026\015" +
-    "\032\012\033\007\034\013\035\005\001\002\000\024\004" +
-    "\014\007\017\017\016\024\004\026\015\032\012\033\007" +
-    "\034\013\035\005\001\002\000\024\004\014\007\017\017" +
-    "\016\024\004\026\015\032\012\033\007\034\013\035\005" +
-    "\001\002\000\024\004\014\007\017\017\016\024\004\026" +
-    "\015\032\012\033\007\034\013\035\005\001\002\000\024" +
-    "\004\014\007\017\017\016\024\004\026\015\032\012\033" +
-    "\007\034\013\035\005\001\002\000\046\002\uffeb\005\uffeb" +
-    "\006\uffeb\010\uffeb\011\uffeb\012\uffeb\013\uffeb\014\uffeb\015" +
-    "\uffeb\016\uffeb\020\uffeb\021\uffeb\022\uffeb\023\uffeb\025\uffeb" +
-    "\027\uffeb\030\uffeb\031\uffeb\001\002\000\046\002\uffee\005" +
-    "\uffee\006\uffee\010\uffee\011\uffee\012\uffee\013\uffee\014\uffee" +
-    "\015\uffee\016\uffee\020\uffee\021\uffee\022\uffee\023\uffee\025" +
-    "\uffee\027\uffee\030\uffee\031\uffee\001\002\000\046\002\ufff1" +
-    "\005\ufff1\006\ufff1\010\ufff1\011\ufff1\012\ufff1\013\ufff1\014" +
-    "\ufff1\015\ufff1\016\ufff1\020\ufff1\021\ufff1\022\ufff1\023\ufff1" +
-    "\025\ufff1\027\ufff1\030\ufff1\031\ufff1\001\002\000\046\002" +
-    "\ufff2\005\ufff2\006\ufff2\010\ufff2\011\ufff2\012\ufff2\013\ufff2" +
-    "\014\ufff2\015\ufff2\016\ufff2\020\ufff2\021\ufff2\022\ufff2\023" +
-    "\ufff2\025\ufff2\027\ufff2\030\ufff2\031\ufff2\001\002\000\046" +
-    "\002\ufff6\005\ufff6\006\ufff6\010\ufff6\011\025\012\031\013" +
-    "\032\014\024\015\027\016\033\020\021\021\034\022\ufff6" +
-    "\023\ufff6\025\ufff6\027\ufff6\030\ufff6\031\ufff6\001\002\000" +
-    "\046\002\uffef\005\uffef\006\uffef\010\uffef\011\uffef\012\uffef" +
-    "\013\uffef\014\uffef\015\uffef\016\uffef\020\uffef\021\uffef\022" +
-    "\uffef\023\uffef\025\uffef\027\uffef\030\uffef\031\uffef\001\002" +
-    "\000\046\002\ufff5\005\023\006\030\010\ufff5\011\025\012" +
-    "\031\013\032\014\024\015\027\016\033\020\021\021\034" +
-    "\022\ufff5\023\ufff5\025\ufff5\027\ufff5\030\ufff5\031\ufff5\001" +
-    "\002\000\046\002\ufff3\005\ufff3\006\ufff3\010\ufff3\011\ufff3" +
-    "\012\ufff3\013\ufff3\014\ufff3\015\ufff3\016\ufff3\020\ufff3\021" +
-    "\ufff3\022\ufff3\023\ufff3\025\ufff3\027\ufff3\030\ufff3\031\ufff3" +
-    "\001\002\000\046\002\ufff0\005\ufff0\006\ufff0\010\ufff0\011" +
-    "\ufff0\012\ufff0\013\ufff0\014\ufff0\015\ufff0\016\ufff0\020\ufff0" +
-    "\021\ufff0\022\ufff0\023\ufff0\025\ufff0\027\ufff0\030\ufff0\031" +
-    "\ufff0\001\002\000\046\002\ufff7\005\ufff7\006\ufff7\010\ufff7" +
-    "\011\025\012\031\013\032\014\024\015\027\016\033\020" +
-    "\021\021\034\022\ufff7\023\ufff7\025\ufff7\027\ufff7\030\ufff7" +
-    "\031\ufff7\001\002\000\046\002\ufff4\005\023\006\030\010" +
-    "\ufff4\011\025\012\031\013\032\014\024\015\027\016\033" +
-    "\020\021\021\034\022\ufff4\023\ufff4\025\ufff4\027\ufff4\030" +
-    "\ufff4\031\ufff4\001\002\000\046\002\uffec\005\uffec\006\uffec" +
-    "\010\uffec\011\uffec\012\uffec\013\uffec\014\uffec\015\uffec\016" +
-    "\uffec\020\uffec\021\uffec\022\uffec\023\uffec\025\uffec\027\uffec" +
-    "\030\uffec\031\uffec\001\002\000\034\005\023\006\030\010" +
-    "\052\011\025\012\031\013\032\014\024\015\027\016\033" +
-    "\020\021\021\034\022\026\023\022\001\002\000\046\002" +
-    "\ufff8\005\ufff8\006\ufff8\010\ufff8\011\ufff8\012\ufff8\013\ufff8" +
-    "\014\ufff8\015\ufff8\016\ufff8\020\ufff8\021\ufff8\022\ufff8\023" +
-    "\ufff8\025\ufff8\027\ufff8\030\ufff8\031\ufff8\001\002\000\046" +
-    "\002\uffed\005\023\006\030\010\uffed\011\025\012\031\013" +
-    "\032\014\024\015\027\016\033\020\021\021\034\022\026" +
-    "\023\022\025\uffed\027\uffed\030\uffed\031\uffed\001\002\000" +
-    "\046\002\uffe6\005\uffe6\006\uffe6\010\uffe6\011\uffe6\012\uffe6" +
-    "\013\uffe6\014\uffe6\015\uffe6\016\uffe6\020\uffe6\021\uffe6\022" +
-    "\uffe6\023\uffe6\025\uffe6\027\uffe6\030\uffe6\031\uffe6\001\002" +
-    "\000\006\027\060\031\057\001\002\000\036\005\023\006" +
-    "\030\011\025\012\031\013\032\014\024\015\027\016\033" +
-    "\020\021\021\034\022\026\023\022\027\uffe4\031\uffe4\001" +
-    "\002\000\024\004\014\007\017\017\016\024\004\026\015" +
-    "\032\012\033\007\034\013\035\005\001\002\000\046\002" +
-    "\uffe5\005\uffe5\006\uffe5\010\uffe5\011\uffe5\012\uffe5\013\uffe5" +
-    "\014\uffe5\015\uffe5\016\uffe5\020\uffe5\021\uffe5\022\uffe5\023" +
-    "\uffe5\025\uffe5\027\uffe5\030\uffe5\031\uffe5\001\002\000\036" +
-    "\005\023\006\030\011\025\012\031\013\032\014\024\015" +
-    "\027\016\033\020\021\021\034\022\026\023\022\027\uffe3" +
-    "\031\uffe3\001\002\000\004\002\001\001\002\000\006\025" +
-    "\071\031\070\001\002\000\034\005\023\006\030\011\025" +
-    "\012\031\013\032\014\024\015\027\016\033\020\021\021" +
-    "\034\022\026\023\022\030\066\001\002\000\046\002\uffea" +
-    "\005\uffea\006\uffea\010\uffea\011\uffea\012\uffea\013\uffea\014" +
-    "\uffea\015\uffea\016\uffea\020\uffea\021\uffea\022\uffea\023\uffea" +
-    "\025\uffea\027\uffea\030\uffea\031\uffea\001\002\000\024\004" +
-    "\014\007\017\017\016\024\004\026\015\032\012\033\007" +
-    "\034\013\035\005\001\002\000\036\005\023\006\030\011" +
-    "\025\012\031\013\032\014\024\015\027\016\033\020\021" +
-    "\021\034\022\026\023\022\025\uffe8\031\uffe8\001\002\000" +
-    "\024\004\014\007\017\017\016\024\004\026\015\032\012" +
-    "\033\007\034\013\035\005\001\002\000\046\002\uffe9\005" +
-    "\uffe9\006\uffe9\010\uffe9\011\uffe9\012\uffe9\013\uffe9\014\uffe9" +
-    "\015\uffe9\016\uffe9\020\uffe9\021\uffe9\022\uffe9\023\uffe9\025" +
-    "\uffe9\027\uffe9\030\uffe9\031\uffe9\001\002\000\034\005\023" +
-    "\006\030\011\025\012\031\013\032\014\024\015\027\016" +
-    "\033\020\021\021\034\022\026\023\022\030\073\001\002" +
-    "\000\024\004\014\007\017\017\016\024\004\026\015\032" +
-    "\012\033\007\034\013\035\005\001\002\000\036\005\023" +
-    "\006\030\011\025\012\031\013\032\014\024\015\027\016" +
-    "\033\020\021\021\034\022\026\023\022\025\uffe7\031\uffe7" +
-    "\001\002" });
+    "\000\076\000\030\004\016\007\021\017\017\022\014\023" +
+    "\004\024\005\026\020\032\013\033\010\034\015\035\006" +
+    "\001\002\000\030\004\016\007\021\017\017\022\014\023" +
+    "\004\024\005\026\020\032\013\033\010\034\015\035\006" +
+    "\001\002\000\032\004\016\007\021\017\017\022\014\023" +
+    "\004\024\005\025\070\026\020\032\013\033\010\034\015" +
+    "\035\006\001\002\000\046\002\ufffe\005\ufffe\006\ufffe\010" +
+    "\ufffe\011\ufffe\012\ufffe\013\ufffe\014\ufffe\015\ufffe\016\ufffe" +
+    "\020\ufffe\021\ufffe\022\ufffe\023\ufffe\025\ufffe\027\ufffe\030" +
+    "\ufffe\031\ufffe\001\002\000\046\002\ufffa\005\ufffa\006\ufffa" +
+    "\010\ufffa\011\ufffa\012\ufffa\013\ufffa\014\ufffa\015\ufffa\016" +
+    "\ufffa\020\ufffa\021\ufffa\022\ufffa\023\ufffa\025\ufffa\027\ufffa" +
+    "\030\ufffa\031\ufffa\001\002\000\046\002\ufffd\005\ufffd\006" +
+    "\ufffd\010\ufffd\011\ufffd\012\ufffd\013\ufffd\014\ufffd\015\ufffd" +
+    "\016\ufffd\020\ufffd\021\ufffd\022\ufffd\023\ufffd\025\ufffd\027" +
+    "\ufffd\030\ufffd\031\ufffd\001\002\000\046\002\ufff9\005\ufff9" +
+    "\006\ufff9\010\ufff9\011\ufff9\012\ufff9\013\ufff9\014\ufff9\015" +
+    "\ufff9\016\ufff9\020\ufff9\021\ufff9\022\ufff9\023\ufff9\025\ufff9" +
+    "\027\ufff9\030\ufff9\031\ufff9\001\002\000\004\002\065\001" +
+    "\002\000\046\002\ufffb\005\ufffb\006\ufffb\010\ufffb\011\ufffb" +
+    "\012\ufffb\013\ufffb\014\ufffb\015\ufffb\016\ufffb\020\ufffb\021" +
+    "\ufffb\022\ufffb\023\ufffb\025\ufffb\027\ufffb\030\ufffb\031\ufffb" +
+    "\001\002\000\030\004\016\007\021\017\017\022\014\023" +
+    "\004\024\005\026\020\032\013\033\010\034\015\035\006" +
+    "\001\002\000\046\002\ufffc\005\ufffc\006\ufffc\010\ufffc\011" +
+    "\ufffc\012\ufffc\013\ufffc\014\ufffc\015\ufffc\016\ufffc\020\ufffc" +
+    "\021\ufffc\022\ufffc\023\ufffc\025\ufffc\027\ufffc\030\ufffc\031" +
+    "\ufffc\001\002\000\046\002\uffff\005\uffff\006\uffff\010\uffff" +
+    "\011\uffff\012\uffff\013\uffff\014\uffff\015\uffff\016\uffff\020" +
+    "\uffff\021\uffff\022\uffff\023\uffff\025\uffff\027\uffff\030\uffff" +
+    "\031\uffff\001\002\000\030\004\016\007\021\017\017\022" +
+    "\014\023\004\024\005\026\020\032\013\033\010\034\015" +
+    "\035\006\001\002\000\032\004\016\007\021\017\017\022" +
+    "\014\023\004\024\005\026\020\027\055\032\013\033\010" +
+    "\034\015\035\006\001\002\000\030\004\016\007\021\017" +
+    "\017\022\014\023\004\024\005\026\020\032\013\033\010" +
+    "\034\015\035\006\001\002\000\034\002\000\005\025\006" +
+    "\032\011\027\012\034\013\033\014\026\015\031\016\035" +
+    "\020\023\021\036\022\030\023\024\001\002\000\030\004" +
+    "\016\007\021\017\017\022\014\023\004\024\005\026\020" +
+    "\032\013\033\010\034\015\035\006\001\002\000\030\004" +
+    "\016\007\021\017\017\022\014\023\004\024\005\026\020" +
+    "\032\013\033\010\034\015\035\006\001\002\000\030\004" +
+    "\016\007\021\017\017\022\014\023\004\024\005\026\020" +
+    "\032\013\033\010\034\015\035\006\001\002\000\030\004" +
+    "\016\007\021\017\017\022\014\023\004\024\005\026\020" +
+    "\032\013\033\010\034\015\035\006\001\002\000\030\004" +
+    "\016\007\021\017\017\022\014\023\004\024\005\026\020" +
+    "\032\013\033\010\034\015\035\006\001\002\000\030\004" +
+    "\016\007\021\017\017\022\014\023\004\024\005\026\020" +
+    "\032\013\033\010\034\015\035\006\001\002\000\030\004" +
+    "\016\007\021\017\017\022\014\023\004\024\005\026\020" +
+    "\032\013\033\010\034\015\035\006\001\002\000\030\004" +
+    "\016\007\021\017\017\022\014\023\004\024\005\026\020" +
+    "\032\013\033\010\034\015\035\006\001\002\000\030\004" +
+    "\016\007\021\017\017\022\014\023\004\024\005\026\020" +
+    "\032\013\033\010\034\015\035\006\001\002\000\030\004" +
+    "\016\007\021\017\017\022\014\023\004\024\005\026\020" +
+    "\032\013\033\010\034\015\035\006\001\002\000\030\004" +
+    "\016\007\021\017\017\022\014\023\004\024\005\026\020" +
+    "\032\013\033\010\034\015\035\006\001\002\000\030\004" +
+    "\016\007\021\017\017\022\014\023\004\024\005\026\020" +
+    "\032\013\033\010\034\015\035\006\001\002\000\046\002" +
+    "\uffe9\005\uffe9\006\uffe9\010\uffe9\011\uffe9\012\uffe9\013\uffe9" +
+    "\014\uffe9\015\uffe9\016\uffe9\020\uffe9\021\uffe9\022\uffe9\023" +
+    "\uffe9\025\uffe9\027\uffe9\030\uffe9\031\uffe9\001\002\000\046" +
+    "\002\uffec\005\uffec\006\uffec\010\uffec\011\uffec\012\uffec\013" +
+    "\uffec\014\uffec\015\uffec\016\uffec\020\uffec\021\uffec\022\uffec" +
+    "\023\uffec\025\uffec\027\uffec\030\uffec\031\uffec\001\002\000" +
+    "\046\002\ufff0\005\ufff0\006\ufff0\010\ufff0\011\ufff0\012\ufff0" +
+    "\013\ufff0\014\ufff0\015\ufff0\016\ufff0\020\ufff0\021\ufff0\022" +
+    "\ufff0\023\ufff0\025\ufff0\027\ufff0\030\ufff0\031\ufff0\001\002" +
+    "\000\046\002\uffef\005\uffef\006\uffef\010\uffef\011\uffef\012" +
+    "\uffef\013\uffef\014\uffef\015\uffef\016\uffef\020\uffef\021\uffef" +
+    "\022\uffef\023\uffef\025\uffef\027\uffef\030\uffef\031\uffef\001" +
+    "\002\000\046\002\ufff4\005\ufff4\006\ufff4\010\ufff4\011\027" +
+    "\012\034\013\033\014\026\015\031\016\035\020\023\021" +
+    "\036\022\ufff4\023\ufff4\025\ufff4\027\ufff4\030\ufff4\031\ufff4" +
+    "\001\002\000\046\002\uffed\005\uffed\006\uffed\010\uffed\011" +
+    "\uffed\012\uffed\013\uffed\014\uffed\015\uffed\016\uffed\020\uffed" +
+    "\021\uffed\022\uffed\023\uffed\025\uffed\027\uffed\030\uffed\031" +
+    "\uffed\001\002\000\046\002\ufff3\005\025\006\032\010\ufff3" +
+    "\011\027\012\034\013\033\014\026\015\031\016\035\020" +
+    "\023\021\036\022\ufff3\023\ufff3\025\ufff3\027\ufff3\030\ufff3" +
+    "\031\ufff3\001\002\000\046\002\ufff1\005\ufff1\006\ufff1\010" +
+    "\ufff1\011\ufff1\012\ufff1\013\ufff1\014\ufff1\015\ufff1\016\ufff1" +
+    "\020\ufff1\021\ufff1\022\ufff1\023\ufff1\025\ufff1\027\ufff1\030" +
+    "\ufff1\031\ufff1\001\002\000\046\002\uffee\005\uffee\006\uffee" +
+    "\010\uffee\011\uffee\012\uffee\013\uffee\014\uffee\015\uffee\016" +
+    "\uffee\020\uffee\021\uffee\022\uffee\023\uffee\025\uffee\027\uffee" +
+    "\030\uffee\031\uffee\001\002\000\046\002\ufff5\005\ufff5\006" +
+    "\ufff5\010\ufff5\011\027\012\034\013\033\014\026\015\031" +
+    "\016\035\020\023\021\036\022\ufff5\023\ufff5\025\ufff5\027" +
+    "\ufff5\030\ufff5\031\ufff5\001\002\000\046\002\ufff2\005\025" +
+    "\006\032\010\ufff2\011\027\012\034\013\033\014\026\015" +
+    "\031\016\035\020\023\021\036\022\ufff2\023\ufff2\025\ufff2" +
+    "\027\ufff2\030\ufff2\031\ufff2\001\002\000\046\002\uffea\005" +
+    "\uffea\006\uffea\010\uffea\011\uffea\012\uffea\013\uffea\014\uffea" +
+    "\015\uffea\016\uffea\020\uffea\021\uffea\022\uffea\023\uffea\025" +
+    "\uffea\027\uffea\030\uffea\031\uffea\001\002\000\034\005\025" +
+    "\006\032\010\054\011\027\012\034\013\033\014\026\015" +
+    "\031\016\035\020\023\021\036\022\030\023\024\001\002" +
+    "\000\046\002\ufff6\005\ufff6\006\ufff6\010\ufff6\011\ufff6\012" +
+    "\ufff6\013\ufff6\014\ufff6\015\ufff6\016\ufff6\020\ufff6\021\ufff6" +
+    "\022\ufff6\023\ufff6\025\ufff6\027\ufff6\030\ufff6\031\ufff6\001" +
+    "\002\000\046\002\uffe4\005\uffe4\006\uffe4\010\uffe4\011\uffe4" +
+    "\012\uffe4\013\uffe4\014\uffe4\015\uffe4\016\uffe4\020\uffe4\021" +
+    "\uffe4\022\uffe4\023\uffe4\025\uffe4\027\uffe4\030\uffe4\031\uffe4" +
+    "\001\002\000\006\027\060\031\061\001\002\000\036\005" +
+    "\025\006\032\011\027\012\034\013\033\014\026\015\031" +
+    "\016\035\020\023\021\036\022\030\023\024\027\uffe2\031" +
+    "\uffe2\001\002\000\046\002\uffe3\005\uffe3\006\uffe3\010\uffe3" +
+    "\011\uffe3\012\uffe3\013\uffe3\014\uffe3\015\uffe3\016\uffe3\020" +
+    "\uffe3\021\uffe3\022\uffe3\023\uffe3\025\uffe3\027\uffe3\030\uffe3" +
+    "\031\uffe3\001\002\000\030\004\016\007\021\017\017\022" +
+    "\014\023\004\024\005\026\020\032\013\033\010\034\015" +
+    "\035\006\001\002\000\036\005\025\006\032\011\027\012" +
+    "\034\013\033\014\026\015\031\016\035\020\023\021\036" +
+    "\022\030\023\024\027\uffe1\031\uffe1\001\002\000\046\002" +
+    "\uffeb\005\025\006\032\010\uffeb\011\027\012\034\013\033" +
+    "\014\026\015\031\016\035\020\023\021\036\022\030\023" +
+    "\024\025\uffeb\027\uffeb\030\uffeb\031\uffeb\001\002\000\046" +
+    "\002\ufff7\005\025\006\032\010\ufff7\011\027\012\034\013" +
+    "\033\014\026\015\031\016\035\020\023\021\036\022\ufff7" +
+    "\023\ufff7\025\ufff7\027\ufff7\030\ufff7\031\ufff7\001\002\000" +
+    "\004\002\001\001\002\000\006\025\074\031\073\001\002" +
+    "\000\034\005\025\006\032\011\027\012\034\013\033\014" +
+    "\026\015\031\016\035\020\023\021\036\022\030\023\024" +
+    "\030\071\001\002\000\046\002\uffe8\005\uffe8\006\uffe8\010" +
+    "\uffe8\011\uffe8\012\uffe8\013\uffe8\014\uffe8\015\uffe8\016\uffe8" +
+    "\020\uffe8\021\uffe8\022\uffe8\023\uffe8\025\uffe8\027\uffe8\030" +
+    "\uffe8\031\uffe8\001\002\000\030\004\016\007\021\017\017" +
+    "\022\014\023\004\024\005\026\020\032\013\033\010\034" +
+    "\015\035\006\001\002\000\036\005\025\006\032\011\027" +
+    "\012\034\013\033\014\026\015\031\016\035\020\023\021" +
+    "\036\022\030\023\024\025\uffe6\031\uffe6\001\002\000\030" +
+    "\004\016\007\021\017\017\022\014\023\004\024\005\026" +
+    "\020\032\013\033\010\034\015\035\006\001\002\000\046" +
+    "\002\uffe7\005\uffe7\006\uffe7\010\uffe7\011\uffe7\012\uffe7\013" +
+    "\uffe7\014\uffe7\015\uffe7\016\uffe7\020\uffe7\021\uffe7\022\uffe7" +
+    "\023\uffe7\025\uffe7\027\uffe7\030\uffe7\031\uffe7\001\002\000" +
+    "\034\005\025\006\032\011\027\012\034\013\033\014\026" +
+    "\015\031\016\035\020\023\021\036\022\030\023\024\030" +
+    "\076\001\002\000\030\004\016\007\021\017\017\022\014" +
+    "\023\004\024\005\026\020\032\013\033\010\034\015\035" +
+    "\006\001\002\000\036\005\025\006\032\011\027\012\034" +
+    "\013\033\014\026\015\031\016\035\020\023\021\036\022" +
+    "\030\023\024\025\uffe5\031\uffe5\001\002\000\046\002\ufff8" +
+    "\005\025\006\032\010\ufff8\011\027\012\034\013\033\014" +
+    "\026\015\031\016\035\020\023\021\036\022\ufff8\023\ufff8" +
+    "\025\ufff8\027\ufff8\030\ufff8\031\ufff8\001\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -193,35 +210,37 @@ public class JSONQLParser extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\072\000\012\002\010\003\017\004\005\005\007\001" +
-    "\001\000\012\003\063\004\005\005\007\007\062\001\001" +
-    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
-    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
-    "\001\001\000\002\001\001\000\012\003\055\004\005\005" +
-    "\007\006\054\001\001\000\010\003\052\004\005\005\007" +
-    "\001\001\000\010\003\050\004\005\005\007\001\001\000" +
-    "\002\001\001\000\010\003\047\004\005\005\007\001\001" +
-    "\000\010\003\046\004\005\005\007\001\001\000\010\003" +
-    "\045\004\005\005\007\001\001\000\010\003\044\004\005" +
-    "\005\007\001\001\000\010\003\043\004\005\005\007\001" +
-    "\001\000\010\003\042\004\005\005\007\001\001\000\010" +
-    "\003\041\004\005\005\007\001\001\000\010\003\040\004" +
-    "\005\005\007\001\001\000\010\003\037\004\005\005\007" +
-    "\001\001\000\010\003\036\004\005\005\007\001\001\000" +
-    "\010\003\035\004\005\005\007\001\001\000\010\003\034" +
-    "\004\005\005\007\001\001\000\002\001\001\000\002\001" +
+    "\000\076\000\012\002\011\003\021\004\006\005\010\001" +
+    "\001\000\010\003\077\004\006\005\010\001\001\000\012" +
+    "\003\066\004\006\005\010\007\065\001\001\000\002\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\010\003\063\004" +
+    "\006\005\010\001\001\000\002\001\001\000\002\001\001" +
+    "\000\010\003\062\004\006\005\010\001\001\000\012\003" +
+    "\056\004\006\005\010\006\055\001\001\000\010\003\052" +
+    "\004\006\005\010\001\001\000\002\001\001\000\010\003" +
+    "\051\004\006\005\010\001\001\000\010\003\050\004\006" +
+    "\005\010\001\001\000\010\003\047\004\006\005\010\001" +
+    "\001\000\010\003\046\004\006\005\010\001\001\000\010" +
+    "\003\045\004\006\005\010\001\001\000\010\003\044\004" +
+    "\006\005\010\001\001\000\010\003\043\004\006\005\010" +
+    "\001\001\000\010\003\042\004\006\005\010\001\001\000" +
+    "\010\003\041\004\006\005\010\001\001\000\010\003\040" +
+    "\004\006\005\010\001\001\000\010\003\037\004\006\005" +
+    "\010\001\001\000\010\003\036\004\006\005\010\001\001" +
     "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
     "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
-    "\000\010\003\060\004\005\005\007\001\001\000\002\001" +
-    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
-    "\000\002\001\001\000\002\001\001\000\010\003\066\004" +
-    "\005\005\007\001\001\000\002\001\001\000\010\003\071" +
-    "\004\005\005\007\001\001\000\002\001\001\000\002\001" +
-    "\001\000\010\003\073\004\005\005\007\001\001\000\002" +
-    "\001\001" });
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\010\003\061\004\006" +
+    "\005\010\001\001\000\002\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\010\003\071\004\006\005" +
+    "\010\001\001\000\002\001\001\000\010\003\074\004\006" +
+    "\005\010\001\001\000\002\001\001\000\002\001\001\000" +
+    "\010\003\076\004\006\005\010\001\001\000\002\001\001" +
+    "\000\002\001\001" });
 
   /** Access to <code>reduce_goto</code> table. */
   public short[][] reduce_table() {return _reduce_table;}
@@ -272,7 +291,8 @@ public class JSONQLParser extends java_cup.runtime.lr_parser {
 		if (args.length < 1) {
 			System.out.println(parse(new InputStreamReader(System.in, "UTF8")).value);
 		} else for (int i = 0; i < args.length; ++i) {
-			System.out.println(parse(new InputStreamReader(new FileInputStream(args[i]), "UTF8")).value);
+			System.out.println(parse(new InputStreamReader(new FileInputStream("input.txt"), "UTF8")).value);
+			//System.out.println(parse(new InputStreamReader(new FileInputStream(args[i]), "UTF8")).value);
 		}
 	}
 
@@ -322,7 +342,7 @@ class CUP$JSONQLParser$actions {
 		int opleft = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).left;
 		int opright = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).right;
 		JSONQLExpression op = (JSONQLExpression)((java_cup.runtime.Symbol) CUP$JSONQLParser$stack.peek()).value;
-		System.out.println("S"); RESULT=op; 
+		 RESULT=op; 
               CUP$JSONQLParser$result = parser.getSymbolFactory().newSymbol("S",0, ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()), RESULT);
             }
           return CUP$JSONQLParser$result;
@@ -343,7 +363,7 @@ class CUP$JSONQLParser$actions {
 		int bleft = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).left;
 		int bright = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).right;
 		Boolean b = (Boolean)((java_cup.runtime.Symbol) CUP$JSONQLParser$stack.peek()).value;
-		RESULT = new JSONQLLiteral(b);
+		 RESULT = new JSONQLLiteral(b); 
               CUP$JSONQLParser$result = parser.getSymbolFactory().newSymbol("EXP",1, ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()), RESULT);
             }
           return CUP$JSONQLParser$result;
@@ -355,7 +375,7 @@ class CUP$JSONQLParser$actions {
 		int nleft = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).left;
 		int nright = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).right;
 		Double n = (Double)((java_cup.runtime.Symbol) CUP$JSONQLParser$stack.peek()).value;
-		RESULT = new JSONQLLiteral(n);
+		 RESULT = new JSONQLLiteral(n); 
               CUP$JSONQLParser$result = parser.getSymbolFactory().newSymbol("EXP",1, ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()), RESULT);
             }
           return CUP$JSONQLParser$result;
@@ -367,7 +387,7 @@ class CUP$JSONQLParser$actions {
 		int sleft = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).left;
 		int sright = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).right;
 		String s = (String)((java_cup.runtime.Symbol) CUP$JSONQLParser$stack.peek()).value;
-		System.out.println("STRING");RESULT = new JSONQLLiteral(s);
+		 RESULT = new JSONQLLiteral(s); 
               CUP$JSONQLParser$result = parser.getSymbolFactory().newSymbol("EXP",1, ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()), RESULT);
             }
           return CUP$JSONQLParser$result;
@@ -376,7 +396,7 @@ class CUP$JSONQLParser$actions {
           case 6: // EXP ::= NULL 
             {
               JSONQLExpression RESULT =null;
-		RESULT = new JSONQLLiteral(null);
+		RESULT = new JSONQLLiteral(null); 
               CUP$JSONQLParser$result = parser.getSymbolFactory().newSymbol("EXP",1, ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()), RESULT);
             }
           return CUP$JSONQLParser$result;
@@ -388,7 +408,7 @@ class CUP$JSONQLParser$actions {
 		int oleft = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).left;
 		int oright = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).right;
 		JSONQLObjectExpression o = (JSONQLObjectExpression)((java_cup.runtime.Symbol) CUP$JSONQLParser$stack.peek()).value;
-		RESULT = o;
+		 RESULT = o; 
               CUP$JSONQLParser$result = parser.getSymbolFactory().newSymbol("EXP",1, ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()), RESULT);
             }
           return CUP$JSONQLParser$result;
@@ -400,25 +420,49 @@ class CUP$JSONQLParser$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).right;
 		JSONQLArrayExpression a = (JSONQLArrayExpression)((java_cup.runtime.Symbol) CUP$JSONQLParser$stack.peek()).value;
-		RESULT = a;
+		 RESULT = a; 
               CUP$JSONQLParser$result = parser.getSymbolFactory().newSymbol("EXP",1, ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()), RESULT);
             }
           return CUP$JSONQLParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 9: // EXP ::= LPARENT EXP RPARENT 
+          case 9: // EXP ::= MINUS EXP 
+            {
+              JSONQLExpression RESULT =null;
+		int nleft = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).left;
+		int nright = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).right;
+		JSONQLExpression n = (JSONQLExpression)((java_cup.runtime.Symbol) CUP$JSONQLParser$stack.peek()).value;
+		 RESULT = new JSONQLUnaryExpression("-",n); 
+              CUP$JSONQLParser$result = parser.getSymbolFactory().newSymbol("EXP",1, ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-1)), ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()), RESULT);
+            }
+          return CUP$JSONQLParser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 10: // EXP ::= PLUS EXP 
+            {
+              JSONQLExpression RESULT =null;
+		int nleft = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).left;
+		int nright = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).right;
+		JSONQLExpression n = (JSONQLExpression)((java_cup.runtime.Symbol) CUP$JSONQLParser$stack.peek()).value;
+		 RESULT = new JSONQLUnaryExpression("+",n); 
+              CUP$JSONQLParser$result = parser.getSymbolFactory().newSymbol("EXP",1, ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-1)), ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()), RESULT);
+            }
+          return CUP$JSONQLParser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 11: // EXP ::= LPARENT EXP RPARENT 
             {
               JSONQLExpression RESULT =null;
 		int rleft = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-1)).left;
 		int rright = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-1)).right;
 		JSONQLExpression r = (JSONQLExpression)((java_cup.runtime.Symbol) CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-1)).value;
-		 RESULT = r;
+		 RESULT = r; 
               CUP$JSONQLParser$result = parser.getSymbolFactory().newSymbol("EXP",1, ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-2)), ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()), RESULT);
             }
           return CUP$JSONQLParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 10: // EXP ::= EXP MULT EXP 
+          case 12: // EXP ::= EXP MULT EXP 
             {
               JSONQLExpression RESULT =null;
 		int lleft = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-2)).left;
@@ -433,7 +477,7 @@ class CUP$JSONQLParser$actions {
           return CUP$JSONQLParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 11: // EXP ::= EXP DIV EXP 
+          case 13: // EXP ::= EXP DIV EXP 
             {
               JSONQLExpression RESULT =null;
 		int lleft = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-2)).left;
@@ -448,7 +492,7 @@ class CUP$JSONQLParser$actions {
           return CUP$JSONQLParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 12: // EXP ::= EXP PLUS EXP 
+          case 14: // EXP ::= EXP PLUS EXP 
             {
               JSONQLExpression RESULT =null;
 		int lleft = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-2)).left;
@@ -463,7 +507,7 @@ class CUP$JSONQLParser$actions {
           return CUP$JSONQLParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 13: // EXP ::= EXP MINUS EXP 
+          case 15: // EXP ::= EXP MINUS EXP 
             {
               JSONQLExpression RESULT =null;
 		int lleft = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-2)).left;
@@ -478,7 +522,7 @@ class CUP$JSONQLParser$actions {
           return CUP$JSONQLParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 14: // EXP ::= EXP EQUAL EXP 
+          case 16: // EXP ::= EXP EQUAL EXP 
             {
               JSONQLExpression RESULT =null;
 		int n1left = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-2)).left;
@@ -487,13 +531,13 @@ class CUP$JSONQLParser$actions {
 		int n2left = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).left;
 		int n2right = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).right;
 		JSONQLExpression n2 = (JSONQLExpression)((java_cup.runtime.Symbol) CUP$JSONQLParser$stack.peek()).value;
-		RESULT= new JSONQLBinaryExpression("==",n1,n2);
+		 RESULT = new JSONQLBinaryExpression("==",n1,n2); 
               CUP$JSONQLParser$result = parser.getSymbolFactory().newSymbol("EXP",1, ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-2)), ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()), RESULT);
             }
           return CUP$JSONQLParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 15: // EXP ::= EXP NOT_EQUAL EXP 
+          case 17: // EXP ::= EXP NOT_EQUAL EXP 
             {
               JSONQLExpression RESULT =null;
 		int n1left = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-2)).left;
@@ -502,13 +546,13 @@ class CUP$JSONQLParser$actions {
 		int n2left = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).left;
 		int n2right = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).right;
 		JSONQLExpression n2 = (JSONQLExpression)((java_cup.runtime.Symbol) CUP$JSONQLParser$stack.peek()).value;
-		RESULT= new JSONQLBinaryExpression("!=",n1,n2);
+		 RESULT = new JSONQLBinaryExpression("!=",n1,n2); 
               CUP$JSONQLParser$result = parser.getSymbolFactory().newSymbol("EXP",1, ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-2)), ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()), RESULT);
             }
           return CUP$JSONQLParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 16: // EXP ::= EXP LESS EXP 
+          case 18: // EXP ::= EXP LESS EXP 
             {
               JSONQLExpression RESULT =null;
 		int n1left = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-2)).left;
@@ -517,13 +561,13 @@ class CUP$JSONQLParser$actions {
 		int n2left = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).left;
 		int n2right = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).right;
 		JSONQLExpression n2 = (JSONQLExpression)((java_cup.runtime.Symbol) CUP$JSONQLParser$stack.peek()).value;
-		RESULT= new JSONQLBinaryExpression("<",n1,n2);
+		 RESULT = new JSONQLBinaryExpression("<",n1,n2); 
               CUP$JSONQLParser$result = parser.getSymbolFactory().newSymbol("EXP",1, ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-2)), ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()), RESULT);
             }
           return CUP$JSONQLParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 17: // EXP ::= EXP GREATER EXP 
+          case 19: // EXP ::= EXP GREATER EXP 
             {
               JSONQLExpression RESULT =null;
 		int n1left = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-2)).left;
@@ -532,13 +576,13 @@ class CUP$JSONQLParser$actions {
 		int n2left = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).left;
 		int n2right = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).right;
 		JSONQLExpression n2 = (JSONQLExpression)((java_cup.runtime.Symbol) CUP$JSONQLParser$stack.peek()).value;
-		RESULT= new JSONQLBinaryExpression(">",n1,n2);
+		 RESULT = new JSONQLBinaryExpression(">",n1,n2); 
               CUP$JSONQLParser$result = parser.getSymbolFactory().newSymbol("EXP",1, ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-2)), ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()), RESULT);
             }
           return CUP$JSONQLParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 18: // EXP ::= EXP LESS_EQUAL EXP 
+          case 20: // EXP ::= EXP LESS_EQUAL EXP 
             {
               JSONQLExpression RESULT =null;
 		int n1left = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-2)).left;
@@ -547,13 +591,13 @@ class CUP$JSONQLParser$actions {
 		int n2left = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).left;
 		int n2right = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).right;
 		JSONQLExpression n2 = (JSONQLExpression)((java_cup.runtime.Symbol) CUP$JSONQLParser$stack.peek()).value;
-		RESULT= new JSONQLBinaryExpression("<=",n1,n2);
+		 RESULT = new JSONQLBinaryExpression("<=",n1,n2); 
               CUP$JSONQLParser$result = parser.getSymbolFactory().newSymbol("EXP",1, ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-2)), ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()), RESULT);
             }
           return CUP$JSONQLParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 19: // EXP ::= EXP GREATER_EQUAL EXP 
+          case 21: // EXP ::= EXP GREATER_EQUAL EXP 
             {
               JSONQLExpression RESULT =null;
 		int n1left = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-2)).left;
@@ -562,25 +606,25 @@ class CUP$JSONQLParser$actions {
 		int n2left = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).left;
 		int n2right = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).right;
 		JSONQLExpression n2 = (JSONQLExpression)((java_cup.runtime.Symbol) CUP$JSONQLParser$stack.peek()).value;
-		RESULT= new JSONQLBinaryExpression(">=",n1,n2);
+		 RESULT = new JSONQLBinaryExpression(">=",n1,n2); 
               CUP$JSONQLParser$result = parser.getSymbolFactory().newSymbol("EXP",1, ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-2)), ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()), RESULT);
             }
           return CUP$JSONQLParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 20: // EXP ::= NOT EXP 
+          case 22: // EXP ::= NOT EXP 
             {
               JSONQLExpression RESULT =null;
 		int bleft = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).left;
 		int bright = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).right;
 		JSONQLExpression b = (JSONQLExpression)((java_cup.runtime.Symbol) CUP$JSONQLParser$stack.peek()).value;
-		RESULT=new JSONQLUnaryExpression("!",b);
+		 RESULT = new JSONQLUnaryExpression("!",b); 
               CUP$JSONQLParser$result = parser.getSymbolFactory().newSymbol("EXP",1, ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-1)), ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()), RESULT);
             }
           return CUP$JSONQLParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 21: // EXP ::= EXP AND EXP 
+          case 23: // EXP ::= EXP AND EXP 
             {
               JSONQLExpression RESULT =null;
 		int n1left = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-2)).left;
@@ -589,13 +633,13 @@ class CUP$JSONQLParser$actions {
 		int n2left = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).left;
 		int n2right = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).right;
 		JSONQLExpression n2 = (JSONQLExpression)((java_cup.runtime.Symbol) CUP$JSONQLParser$stack.peek()).value;
-		RESULT= new JSONQLBinaryExpression("&&",n1,n2);
+		 RESULT = new JSONQLBinaryExpression("&&",n1,n2); 
               CUP$JSONQLParser$result = parser.getSymbolFactory().newSymbol("EXP",1, ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-2)), ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()), RESULT);
             }
           return CUP$JSONQLParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 22: // EXP ::= EXP OR EXP 
+          case 24: // EXP ::= EXP OR EXP 
             {
               JSONQLExpression RESULT =null;
 		int n1left = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-2)).left;
@@ -604,13 +648,13 @@ class CUP$JSONQLParser$actions {
 		int n2left = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).left;
 		int n2right = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).right;
 		JSONQLExpression n2 = (JSONQLExpression)((java_cup.runtime.Symbol) CUP$JSONQLParser$stack.peek()).value;
-		RESULT= new JSONQLBinaryExpression("||",n1,n2);
+		 RESULT = new JSONQLBinaryExpression("||",n1,n2); 
               CUP$JSONQLParser$result = parser.getSymbolFactory().newSymbol("EXP",1, ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-2)), ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()), RESULT);
             }
           return CUP$JSONQLParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 23: // OBJECT ::= LBRACE RBRACE 
+          case 25: // OBJECT ::= LBRACE RBRACE 
             {
               JSONQLObjectExpression RESULT =null;
 		 Map<JSONQLExpression, JSONQLExpression> a = new HashMap(); RESULT = new JSONQLObjectExpression(a); 
@@ -619,7 +663,7 @@ class CUP$JSONQLParser$actions {
           return CUP$JSONQLParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 24: // OBJECT ::= LBRACE PAIRS RBRACE 
+          case 26: // OBJECT ::= LBRACE PAIRS RBRACE 
             {
               JSONQLObjectExpression RESULT =null;
 		int pleft = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-1)).left;
@@ -631,7 +675,7 @@ class CUP$JSONQLParser$actions {
           return CUP$JSONQLParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 25: // PAIRS ::= EXP COLON EXP 
+          case 27: // PAIRS ::= EXP COLON EXP 
             {
               Map<JSONQLExpression,JSONQLExpression> RESULT =null;
 		int kleft = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-2)).left;
@@ -640,13 +684,13 @@ class CUP$JSONQLParser$actions {
 		int vleft = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).left;
 		int vright = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).right;
 		JSONQLExpression v = (JSONQLExpression)((java_cup.runtime.Symbol) CUP$JSONQLParser$stack.peek()).value;
-		RESULT=new HashMap<JSONQLExpression,JSONQLExpression>(); RESULT.put(k,v);
+		 RESULT = new HashMap<JSONQLExpression,JSONQLExpression>(); RESULT.put(k,v); 
               CUP$JSONQLParser$result = parser.getSymbolFactory().newSymbol("PAIRS",5, ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-2)), ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()), RESULT);
             }
           return CUP$JSONQLParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 26: // PAIRS ::= PAIRS COMMA EXP COLON EXP 
+          case 28: // PAIRS ::= PAIRS COMMA EXP COLON EXP 
             {
               Map<JSONQLExpression,JSONQLExpression> RESULT =null;
 		int pleft = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-4)).left;
@@ -658,46 +702,46 @@ class CUP$JSONQLParser$actions {
 		int vleft = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).left;
 		int vright = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).right;
 		JSONQLExpression v = (JSONQLExpression)((java_cup.runtime.Symbol) CUP$JSONQLParser$stack.peek()).value;
-		p.put(k,v); System.out.println("p: "+p); RESULT=p;
+		 p.put(k,v); RESULT = p; 
               CUP$JSONQLParser$result = parser.getSymbolFactory().newSymbol("PAIRS",5, ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-4)), ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()), RESULT);
             }
           return CUP$JSONQLParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 27: // ARRAY ::= LBRACK RBRACK 
+          case 29: // ARRAY ::= LBRACK RBRACK 
             {
               JSONQLArrayExpression RESULT =null;
-		System.out.println("EMPTY ARRAY");JSONQLArrayExpression a = new JSONQLArrayExpression(); RESULT= a;
+		 JSONQLArrayExpression a = new JSONQLArrayExpression(); RESULT = a; 
               CUP$JSONQLParser$result = parser.getSymbolFactory().newSymbol("ARRAY",3, ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-1)), ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()), RESULT);
             }
           return CUP$JSONQLParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 28: // ARRAY ::= LBRACK VALUES RBRACK 
+          case 30: // ARRAY ::= LBRACK VALUES RBRACK 
             {
               JSONQLArrayExpression RESULT =null;
 		int vleft = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-1)).left;
 		int vright = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-1)).right;
 		List<JSONQLExpression> v = (List<JSONQLExpression>)((java_cup.runtime.Symbol) CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-1)).value;
-		System.out.println("ARRAY"); RESULT = new JSONQLArrayExpression(v);
+		 RESULT = new JSONQLArrayExpression(v);
               CUP$JSONQLParser$result = parser.getSymbolFactory().newSymbol("ARRAY",3, ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-2)), ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()), RESULT);
             }
           return CUP$JSONQLParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 29: // VALUES ::= EXP 
+          case 31: // VALUES ::= EXP 
             {
               List<JSONQLExpression> RESULT =null;
 		int vleft = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).left;
 		int vright = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).right;
 		JSONQLExpression v = (JSONQLExpression)((java_cup.runtime.Symbol) CUP$JSONQLParser$stack.peek()).value;
-		List<JSONQLExpression> a = List.of(v);;RESULT = a;
+		 List<JSONQLExpression> a = List.of(v);;RESULT = a; 
               CUP$JSONQLParser$result = parser.getSymbolFactory().newSymbol("VALUES",4, ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()), RESULT);
             }
           return CUP$JSONQLParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 30: // VALUES ::= VALUES COMMA EXP 
+          case 32: // VALUES ::= VALUES COMMA EXP 
             {
               List<JSONQLExpression> RESULT =null;
 		int aleft = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-2)).left;
@@ -706,7 +750,7 @@ class CUP$JSONQLParser$actions {
 		int vleft = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).left;
 		int vright = ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()).right;
 		JSONQLExpression v = (JSONQLExpression)((java_cup.runtime.Symbol) CUP$JSONQLParser$stack.peek()).value;
-		a.add(v); RESULT=a;
+		 a.add(v); RESULT=a; 
               CUP$JSONQLParser$result = parser.getSymbolFactory().newSymbol("VALUES",4, ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.elementAt(CUP$JSONQLParser$top-2)), ((java_cup.runtime.Symbol)CUP$JSONQLParser$stack.peek()), RESULT);
             }
           return CUP$JSONQLParser$result;

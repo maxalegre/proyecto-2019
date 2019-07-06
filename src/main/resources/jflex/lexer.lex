@@ -40,7 +40,7 @@ null   				{ return new Symbol(NULL, yyline, yycolumn); }
 ":"     			{ return new Symbol(COLON, yyline, yycolumn); }
 ","     			{ return new Symbol(COMMA, yyline, yycolumn); }
 "["     			{ System.out.println("LBRACK: " + yytext());return new Symbol(LBRACK, yyline, yycolumn); }
-"]"     			{ return new Symbol(RBRACK, yyline, yycolumn); }
+"]"     			{ System.out.println("RBRACK: " + yytext()); return new Symbol(RBRACK, yyline, yycolumn); }
    
 "*"     			{ return new Symbol(MULT, yyline, yycolumn); }
 "/"     			{ return new Symbol(DIV, yyline, yycolumn); }

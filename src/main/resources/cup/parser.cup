@@ -24,7 +24,7 @@ parser code {:
 :}
 
 
-terminal ROOT, MULT, DIV, LPARENT, RPARENT, EQ, EQUAL, NOT_EQUAL, LESS, GREATER, LESS_EQUAL, GREATER_EQUAL, NOT, AND, OR, PLUS, MINUS, LBRACE, RBRACE, LBRACK, RBRACK, COLON, COMMA, NULL, ENC, ENCA, NENCA, IF, ELSE, DOT, LET, IN, BSLASH, OPASIGN;
+terminal ROOT, MULT, DIV, LPARENT, RPARENT, EQ, EQUAL, NOT_EQUAL, LESS, GREATER, LESS_EQUAL, GREATER_EQUAL, NOT, AND, OR, PLUS, MINUS, LBRACE, RBRACE, LBRACK, RBRACK, COLON, COMMA, NULL, ENC, ENCA, NENCA, IF, ELSE, DOT, LET, IN, BSLASH, OPASIGN,MEMBER;
 terminal Double NUMBER;
 terminal String	STRING, REGEX;
 terminal Boolean BOOL;
@@ -92,7 +92,8 @@ VALUES ::= EXP:v {: List<JSONQLExpression> a = List.of(v); RESULT = a; :} |
       
 C ::= LPARENT EXP:e1 RPARENT IF LPARENT EXP:e2 RPARENT ELSE LPARENT EXP:e3 RPARENT {:JSONQLConditionalExpression consulta = new JSONQLConditionalExpression(e1,e2,e3); RESULT = consulta; :} | 
 	  LET ID:id EQ LPARENT EXP:e1 RPARENT IN LPARENT EXP:e2 RPARENT {: JSONQLArrayExpression a = new JSONQLArrayExpression(e1, e2); JSONQLCallExpression e = new JSONQLCallExpression("in", a.elements); RESULT = new JSONQLProperty(id, e); :} |
-      ID:f1 LPARENT EXP:e1 COMMA EXP:e2 RPARENT {: JSONQLArrayExpression a = new JSONQLArrayExpression(e1, e2); RESULT = new JSONQLCallExpression("function", a.elements); :} ;
+      ID:f1 LPARENT EXP:e1 COMMA EXP:e2 RPARENT {: JSONQLArrayExpression a = new JSONQLArrayExpression(e1, e2); RESULT = new JSONQLCallExpression("function", a.elements); :} |
+      EXP:e1 MEMBER ARRAY:a1  {: RESULT = new JSONQLElementExpression(e1,a1); :} ;
 
 INDIZ ::= ROOT:r MEM_VALUES:e {: JSONQLExpression root = new JSONQLLiteral("$"); RESULT = new JSONQLMemberExpression(root, e); :} ;
 

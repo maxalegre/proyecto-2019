@@ -23,7 +23,7 @@ parser code {:
 	}
 :}
 
-terminal ROOT, MULT, DIV,LPARENT, RPARENT, EQUAL, NOT_EQUAL, LESS, GREATER, LESS_EQUAL, GREATER_EQUAL, NOT, AND, OR, PLUS, MINUS, LBRACE,RBRACE,LBRACK,RBRACK, COLON, COMMA, NULL, ENC, ENCA, NENCA;
+terminal ROOT, MULT, DIV,LPARENT, RPARENT, EQUAL, NOT_EQUAL, LESS, GREATER, LESS_EQUAL, GREATER_EQUAL, NOT, AND, OR, PLUS, MINUS, LBRACE,RBRACE,LBRACK,RBRACK, COLON, COMMA, NULL, ENC, ENCA, NENCA,IF,ELSE;
 terminal Double NUMBER;
 terminal String	STRING;
 terminal Boolean BOOL;
@@ -37,6 +37,7 @@ non terminal List<JSONQLExpression> VALUES;
 non terminal Map<JSONQLExpression,JSONQLExpression> PAIRS;  
 non terminal JSONQLMemberExpression INDIZ;
 non terminal List<JSONQLExpression> MEM_VALUES;
+non terminal JSONQLExpression C; 
 
 precedence left PLUS, MINUS;   
 precedence left MULT, DIV;   
@@ -46,7 +47,8 @@ precedence left ENC, ENCA, NENCA;
 start with S;
 
 S ::= EXP:op {: RESULT = op; :} |
-	  INDIZ:ind {: RESULT = ind; :} ;  
+	  INDIZ:ind {: RESULT = ind; :} |  
+	  C:s {:RESULT=s;:};	
 
 EXP ::= ROOT {: RESULT = JSONQLRoot.ROOT; :} |
 		BOOL:b {: RESULT = new JSONQLLiteral(b); :} |
@@ -93,4 +95,5 @@ INDIZ ::= ROOT:r MEM_VALUES:e {: JSONQLExpression root = new JSONQLLiteral("$");
 MEM_VALUES ::= EXP:e {: List<JSONQLExpression> a = List.of(e); RESULT = a; :} |
 			   MEM_VALUES:e1 LBRACE EXP:e2 RBRACE {: e1.add(e2); RESULT = e1; :} |
 			   MEM_VALUES:e1  EXP:e2 {: e1.add(e2); RESULT = e1; :} ;
+C ::= LPARENT EXP:e1 RPARENT IF LPARENT EXP:e2 RPARENT ELSE LPARENT EXP:e3 RPARENT {:JSONQLConditionalExpression consulta = new JSONQLConditionalExpression(e1,e2,e3); RESULT = consulta; :} ;
 

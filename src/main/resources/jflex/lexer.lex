@@ -70,6 +70,8 @@ null   				{ return new Symbol(NULL, yyline, yycolumn); }
 
 "<-"			{ return new Symbol(OPASIGN, yyline, yycolumn); }
 "\\"			{ return new Symbol(BSLASH, yyline, yycolumn); }
+\/\\			{ return new Symbol(INT, yyline, yycolumn); }
+\\\/			{ return new Symbol(UNI, yyline, yycolumn); }
      
 {String}     		{ System.out.println("STRING: " + yytext()); return new Symbol(STRING, yyline, yycolumn, new String(yytext())); }
 {Hexa}				{ return new Symbol(NUMBER, yyline, yycolumn, Double.valueOf(Integer.parseInt(yytext().split("x")[1], 16))); }           	

@@ -76,6 +76,5 @@ null   				{ return new Symbol(NULL, yyline, yycolumn); }
 {Regex}     		{ System.out.println("REGEX: " + yytext());return new Symbol(REGEX, yyline, yycolumn,new String(yytext())); }
 "else"          	{ return new Symbol(ELSE, yyline, yycolumn, yytext()); }
 "if"   		     	{ return new Symbol(IF, yyline, yycolumn, yytext()); }
-{Identifier}     	{ return new Symbol(ID, yyline, yycolumn); }
-
+{Identifier}     	{ System.out.println("id: " + yytext());return new Symbol(ID, yyline, yycolumn); }
 

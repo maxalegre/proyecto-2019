@@ -23,10 +23,11 @@ parser code {:
 	}
 :}
 
-terminal ROOT, MULT, DIV,LPARENT, RPARENT, EQUAL, NOT_EQUAL, LESS, GREATER, LESS_EQUAL, GREATER_EQUAL, NOT, AND, OR, PLUS, MINUS, LBRACE,RBRACE,LBRACK,RBRACK, COLON, COMMA, NULL;
+terminal ROOT, MULT, DIV,LPARENT, RPARENT, EQUAL, NOT_EQUAL, LESS, GREATER, LESS_EQUAL, GREATER_EQUAL, NOT, AND, OR, PLUS, MINUS, LBRACE,RBRACE,LBRACK,RBRACK, COLON, COMMA, NULL, ENC, ENCA, NENCA;
 terminal Double NUMBER;
 terminal String	STRING;
 terminal Boolean BOOL;
+terminal String REGEX;
 
 non terminal JSONQLExpression S;
 non terminal JSONQLExpression EXP;
@@ -38,6 +39,7 @@ non terminal Map<JSONQLExpression,JSONQLExpression> PAIRS;
 precedence left PLUS, MINUS;   
 precedence left MULT, DIV;   
 precedence left AND, EQUAL, OR, NOT_EQUAL, GREATER, LESS, GREATER_EQUAL, LESS_EQUAL;
+precedence left ENC, ENCA, NENCA; 
 
 start with S;
 
@@ -50,6 +52,7 @@ EXP ::= ROOT {: RESULT = JSONQLRoot.ROOT; :} |
 	  	NULL {:RESULT = new JSONQLLiteral(null); :} |
        	OBJECT:o {: RESULT = o; :} |  
        	ARRAY:a  {: RESULT = a; :} |
+       	REGEX:re{: RESULT= new JSONQLLiteral(re); :}  |
        	MINUS EXP:n {: RESULT = new JSONQLUnaryExpression("-",n); :} |
        	PLUS EXP:n {: RESULT = new JSONQLUnaryExpression("+",n); :} |
        	LPARENT EXP:r RPARENT {: RESULT = r; :} |
@@ -64,6 +67,9 @@ EXP ::= ROOT {: RESULT = JSONQLRoot.ROOT; :} |
 		EXP:n1 LESS_EQUAL EXP:n2 {: RESULT = new JSONQLBinaryExpression("<=",n1,n2); :} |
 		EXP:n1 GREATER_EQUAL EXP:n2 {: RESULT = new JSONQLBinaryExpression(">=",n1,n2); :} |
 		NOT EXP:b  {: RESULT = new JSONQLUnaryExpression("!",b); :} |
+		EXP:b ENC REGEX:re {: RESULT = new JSONQLUnaryExpression("~",b); RESULT = new JSONQLLiteral(re); :} |
+		EXP:b ENCA REGEX:re {: RESULT = new JSONQLUnaryExpression("~=",b); RESULT = new JSONQLLiteral(re); :} |
+		EXP:b NENCA REGEX:re {: RESULT = new JSONQLUnaryExpression("!~",b); RESULT = new JSONQLLiteral(re); :} |
 		EXP:n1 AND EXP:n2 {: RESULT = new JSONQLBinaryExpression("&&",n1,n2); :} |
 		EXP:n1 OR EXP:n2 {: RESULT = new JSONQLBinaryExpression("||",n1,n2); :} ;   
            	
@@ -78,4 +84,6 @@ ARRAY  ::= LBRACK RBRACK {: JSONQLArrayExpression a = new JSONQLArrayExpression(
  
 VALUES ::= EXP:v {: List<JSONQLExpression> a = List.of(v);;RESULT = a; :} |
            VALUES:a COMMA EXP:v {: a.add(v); RESULT=a; :} ;
+           
+           
 

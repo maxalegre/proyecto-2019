@@ -23,6 +23,7 @@ Boolean=true|false
 String=(\"([^\\'\n]|\\[bfnrt'\\\/])*\")|(\'([^\\'\n]|\\[bfnrt'\\\/])*\')
 Number=[+-]?(([0-9]\.)?[0-9]+)([eE][+-]?[0-9]+)?
 Hexa=[+-]?0[xX][0-9a-fA-F]+
+Regex=\/[^\/]*\/
 
 
 %%
@@ -59,6 +60,10 @@ null   				{ return new Symbol(NULL, yyline, yycolumn); }
 "!"				{ return new Symbol(NOT, yyline, yycolumn); }
 "&&"			{ return new Symbol(AND, yyline, yycolumn); }
 "||"			{ return new Symbol(OR, yyline, yycolumn); }
+
+"~"				{ return new Symbol(ENC, yyline, yycolumn); }
+"~="			{ return new Symbol(ENCA, yyline, yycolumn); }
+"!~"			{ return new Symbol(NENCA, yyline, yycolumn); }
      
 {String}     		{ System.out.println("STRING: " + yytext());return new Symbol(STRING, yyline, yycolumn,new String(yytext())); }
 {Hexa}				{ return new Symbol(NUMBER, yyline, yycolumn,Double.valueOf(Integer.parseInt(yytext().split("x")[1], 16))); }           	
@@ -66,4 +71,5 @@ null   				{ return new Symbol(NULL, yyline, yycolumn); }
 [+-]?NaN+  			{ return new Symbol(NUMBER, yyline, yycolumn,Double.NaN); }	
 \+?Infinity+ 		{ return new Symbol(NUMBER, yyline, yycolumn,Double.POSITIVE_INFINITY); }
 \-Infinity+ 		{ return new Symbol(NUMBER, yyline, yycolumn,Double.NEGATIVE_INFINITY); }
+{Regex}     		{ System.out.println("REGEX: " + yytext());return new Symbol(REGEX, yyline, yycolumn,new String(yytext())); }
 

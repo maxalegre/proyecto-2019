@@ -284,15 +284,14 @@ public class JSONQLParser extends java_cup.runtime.lr_parser {
 	}
 
 	public static Symbol parse(Reader input) throws Exception {
-		return (new JSONQLParser(new JSONQLLexer(input))).unparse();
+		return (new JSONQLParser(new JSONQLLexer(input))).parse();
 	}
 
 	public static void main(String[] args) throws Exception {
 		if (args.length < 1) {
 			System.out.println(parse(new InputStreamReader(System.in, "UTF8")).value);
 		} else for (int i = 0; i < args.length; ++i) {
-			System.out.println(parse(new InputStreamReader(new FileInputStream("input.txt"), "UTF8")).value);
-			//System.out.println(parse(new InputStreamReader(new FileInputStream(args[i]), "UTF8")).value);
+			System.out.println(parse(new InputStreamReader(new FileInputStream(args[i]), "UTF8")).value);
 		}
 	}
 

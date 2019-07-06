@@ -89,7 +89,7 @@ VALUES ::= EXP:v {: List<JSONQLExpression> a = List.of(v); RESULT = a; :} |
            VALUES:a COMMA EXP:v {: a.add(v); RESULT=a; :} ;
            
 C ::= LPARENT EXP:e1 RPARENT IF LPARENT EXP:e2 RPARENT ELSE LPARENT EXP:e3 RPARENT {:JSONQLConditionalExpression consulta = new JSONQLConditionalExpression(e1,e2,e3); RESULT = consulta; :} |
-      ID:f1 LPARENT EXP:e1 COMMA EXP:e2 RPARENT {: JSONQLExpression[]a ={e1,e2};JSONQLCallExpression consulta = new JSONQLCallExpression(f1.unparse(),a); RESULT = consulta; :} ;
+      ID:f1 LPARENT EXP:e1 COMMA EXP:e2 RPARENT {: JSONQLExpression[]a ={e1,e2};JSONQLCallExpression consulta = new JSONQLCallExpression("function",a); RESULT = consulta; :} ;
 
 INDIZ ::= ROOT:r MEM_VALUES:e {: JSONQLExpression root = new JSONQLLiteral("$"); RESULT = new JSONQLMemberExpression(root, e); :} ;
 

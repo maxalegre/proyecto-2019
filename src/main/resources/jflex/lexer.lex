@@ -66,6 +66,9 @@ null   				{ return new Symbol(NULL, yyline, yycolumn); }
 "~"				{ return new Symbol(ENC, yyline, yycolumn); }
 "~="			{ return new Symbol(ENCA, yyline, yycolumn); }
 "!~"			{ return new Symbol(NENCA, yyline, yycolumn); }
+
+"<-"			{ return new Symbol(OPASIGN, yyline, yycolumn); }
+"\\"			{ return new Symbol(BSLASH, yyline, yycolumn); }
      
 {String}     		{ System.out.println("STRING: " + yytext()); return new Symbol(STRING, yyline, yycolumn,new String(yytext())); }
 {Hexa}				{ return new Symbol(NUMBER, yyline, yycolumn,Double.valueOf(Integer.parseInt(yytext().split("x")[1], 16))); }           	

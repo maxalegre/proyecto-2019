@@ -13,37 +13,39 @@ public interface JSONQLTokens {
   public static final int MULT = 3;
   public static final int NOT_EQUAL = 8;
   public static final int GREATER = 10;
-  public static final int REGEX = 33;
+  public static final int REGEX = 35;
   public static final int LESS = 9;
   public static final int MINUS = 17;
   public static final int NOT = 13;
   public static final int AND = 14;
+  public static final int IN = 32;
   public static final int OR = 15;
-  public static final int BOOL = 34;
+  public static final int BOOL = 36;
   public static final int COMMA = 23;
   public static final int NENCA = 27;
   public static final int DIV = 4;
   public static final int LESS_EQUAL = 11;
   public static final int PLUS = 16;
   public static final int IF = 28;
-  public static final int ID = 35;
+  public static final int ID = 37;
   public static final int DOT = 30;
   public static final int EOF = 0;
   public static final int EQUAL = 7;
   public static final int GREATER_EQUAL = 12;
   public static final int error = 1;
   public static final int NULL = 24;
-  public static final int NUMBER = 31;
+  public static final int NUMBER = 33;
   public static final int LBRACK = 20;
   public static final int COLON = 22;
   public static final int LBRACE = 18;
   public static final int ELSE = 29;
   public static final int ENCA = 26;
   public static final int RBRACK = 21;
+  public static final int LET = 31;
   public static final int RBRACE = 19;
   public static final int ENC = 25;
   public static final int ROOT = 2;
-  public static final int STRING = 32;
+  public static final int STRING = 34;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
@@ -76,6 +78,8 @@ public interface JSONQLTokens {
   "IF",
   "ELSE",
   "DOT",
+  "LET",
+  "IN",
   "NUMBER",
   "STRING",
   "REGEX",

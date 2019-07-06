@@ -23,19 +23,18 @@ parser code {:
 	}
 :}
 
-terminal ROOT, MULT, DIV, LPARENT, RPARENT, EQUAL, NOT_EQUAL, LESS, GREATER, LESS_EQUAL, GREATER_EQUAL, NOT, AND, OR, PLUS, MINUS, LBRACE, RBRACE, LBRACK, RBRACK, COLON, COMMA, NULL, ENC, ENCA, NENCA, IF, ELSE, DOT;
+terminal ROOT, MULT, DIV, LPARENT, RPARENT, EQUAL, NOT_EQUAL, LESS, GREATER, LESS_EQUAL, GREATER_EQUAL, NOT, AND, OR, PLUS, MINUS, LBRACE, RBRACE, LBRACK, RBRACK, COLON, COMMA, NULL, ENC, ENCA, NENCA, IF, ELSE, DOT, LET, IN;
 terminal Double NUMBER;
 terminal String	STRING, REGEX;
 terminal Boolean BOOL;
 terminal JSONQLIdentifier ID;
 
-non terminal JSONQLExpression S, EXP;
+non terminal JSONQLExpression S, EXP, C;
 non terminal JSONQLObjectExpression OBJECT; 
 non terminal JSONQLArrayExpression ARRAY;       
 non terminal List<JSONQLExpression> VALUES, MEM_VALUES, MEM_LIST, MEM_ELEMENT;
 non terminal Map<JSONQLExpression,JSONQLExpression> PAIRS;  
 non terminal JSONQLMemberExpression INDIZ;
-non terminal JSONQLExpression C;
 
 precedence left PLUS, MINUS;   
 precedence left MULT, DIV;   
@@ -87,9 +86,10 @@ ARRAY  ::= LBRACK RBRACK {: JSONQLArrayExpression a = new JSONQLArrayExpression(
  
 VALUES ::= EXP:v {: List<JSONQLExpression> a = List.of(v); RESULT = a; :} |
            VALUES:a COMMA EXP:v {: a.add(v); RESULT=a; :} ;
-           
-C ::= LPARENT EXP:e1 RPARENT IF LPARENT EXP:e2 RPARENT ELSE LPARENT EXP:e3 RPARENT {:JSONQLConditionalExpression consulta = new JSONQLConditionalExpression(e1,e2,e3); RESULT = consulta; :} |
-      ID:f1 LPARENT EXP:e1 COMMA EXP:e2 RPARENT {: JSONQLExpression[]a ={e1,e2};JSONQLCallExpression consulta = new JSONQLCallExpression("function",a); RESULT = consulta; :} ;
+      
+C ::= LPARENT EXP:e1 RPARENT IF LPARENT EXP:e2 RPARENT ELSE LPARENT EXP:e3 RPARENT {:JSONQLConditionalExpression consulta = new JSONQLConditionalExpression(e1,e2,e3); RESULT = consulta; :} | 
+	  LET ID:id EQUAL LPARENT EXP:e1 RPARENT IN LPARENT EXP:e2 RPARENT {: JSONQLArrayExpression a = new JSONQLArrayExpression(e1, e2); JSONQLCallExpression e = new JSONQLCallExpression("in", a.elements); RESULT = new JSONQLProperty(id, e); :} |
+      ID:f1 LPARENT EXP:e1 COMMA EXP:e2 RPARENT {: JSONQLArrayExpression a = new JSONQLArrayExpression(e1, e2); RESULT = new JSONQLCallExpression("function", a.elements); :} ;
 
 INDIZ ::= ROOT:r MEM_VALUES:e {: JSONQLExpression root = new JSONQLLiteral("$"); RESULT = new JSONQLMemberExpression(root, e); :} ;
 

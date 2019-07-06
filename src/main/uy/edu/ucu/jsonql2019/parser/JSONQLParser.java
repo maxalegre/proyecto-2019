@@ -284,7 +284,7 @@ public class JSONQLParser extends java_cup.runtime.lr_parser {
 	}
 
 	public static Symbol parse(Reader input) throws Exception {
-		return (new JSONQLParser(new JSONQLLexer(input))).parse();
+		return (new JSONQLParser(new JSONQLLexer(input))).unparse();
 	}
 
 	public static void main(String[] args) throws Exception {

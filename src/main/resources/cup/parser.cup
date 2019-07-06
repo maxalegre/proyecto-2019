@@ -84,19 +84,20 @@ EXP ::= ROOT {: RESULT = JSONQLRoot.ROOT; :} |
 OBJECT ::= LBRACE RBRACE {: Map<JSONQLExpression, JSONQLExpression> a = new HashMap(); RESULT = new JSONQLObjectExpression(a); :} | 
 	       LBRACE PAIRS:p RBRACE {: RESULT = new JSONQLObjectExpression(p); :}; 	
 			
-PAIRS  ::= EXP:k COLON EXP:v {: RESULT = new HashMap<JSONQLExpression,JSONQLExpression>(); RESULT.put(k,v); :} | 
-	       PAIRS:p COMMA EXP:k COLON EXP:v {: p.put(k,v); RESULT = p; :}; 
+PAIRS  ::= ID:k COLON EXP:v {: RESULT = new HashMap<JSONQLExpression,JSONQLExpression>(); RESULT.put(k,v); :} | 
+	       PAIRS:p COMMA KEYVALUE:kv {: p.put(kv.key,kv.value); RESULT = p; :}; 
 	   
 ARRAY  ::= LBRACK RBRACK {: JSONQLArrayExpression a = new JSONQLArrayExpression(); RESULT = a; :} |
 		   LBRACK VALUES:v RBRACK {: RESULT = new JSONQLArrayExpression(v); :} ;
  
-VALUES ::= EXP:v {: List<JSONQLExpression> a = List.of(v); RESULT = a; :} |
+VALUES ::= EXP:v {: List<JSONQLExpression> a = new ArrayList<JSONQLExpression>(); a.add(v); RESULT = a; :} |
            VALUES:a COMMA EXP:v {: a.add(v); RESULT=a; :} ;
       
 C ::= LPARENT EXP:e1 RPARENT IF LPARENT EXP:e2 RPARENT ELSE LPARENT EXP:e3 RPARENT {: JSONQLConditionalExpression consulta = new JSONQLConditionalExpression(e1,e2,e3); RESULT = consulta; :} | 
 	  LET ID:id EQ LPARENT EXP:e1 RPARENT IN LPARENT EXP:e2 RPARENT {: JSONQLArrayExpression a = new JSONQLArrayExpression(e1, e2); JSONQLCallExpression e = new JSONQLCallExpression("in", a.elements); RESULT = new JSONQLProperty(id, e); :} |
       ID:f1 LPARENT EXP:e1 COMMA EXP:e2 RPARENT {: JSONQLArrayExpression a = new JSONQLArrayExpression(e1, e2); RESULT = new JSONQLCallExpression("function", a.elements); :} |
-      EXP:e1 OPASIGN ARRAY:a1  {: RESULT = new JSONQLElementExpression(e1,a1); :} |
+      LPARENT EXP:e1 RPARENT OPASIGN LPARENT ARRAY:a1 RPARENT  {: RESULT = new JSONQLElementExpression(e1,a1); :} |
+      LPARENT ID:e1 COLON EXP:e2 RPARENT OPASIGN LPARENT OBJECT:o RPARENT  {: JSONQLProperty p = new JSONQLProperty(e1,e2); RESULT = new JSONQLElementExpression(p,o); :} |
       LPARENT EXP:e1 RPARENT INT LPARENT EXP:e2 RPARENT {: RESULT = new JSONQLBinaryExpression("/\\", e1, e2); :} |
       LPARENT EXP:e1 RPARENT UNI LPARENT EXP:e2 RPARENT {: RESULT = new JSONQLBinaryExpression("\\/", e1, e2); :} ;
 

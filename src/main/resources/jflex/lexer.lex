@@ -64,9 +64,9 @@ null   				{ return new Symbol(NULL, yyline, yycolumn); }
 "~="			{ return new Symbol(ENCA, yyline, yycolumn); }
 "!~"			{ return new Symbol(NENCA, yyline, yycolumn); }
      
-{String}     		{ return new Symbol(STRING, yyline, yycolumn,new String(yytext())); }
+{String}     		{ System.out.println("STRING: " + yytext()); return new Symbol(STRING, yyline, yycolumn,new String(yytext())); }
 {Hexa}				{ return new Symbol(NUMBER, yyline, yycolumn,Double.valueOf(Integer.parseInt(yytext().split("x")[1], 16))); }           	
-{Number}   			{ return new Symbol(NUMBER, yyline, yycolumn,Double.parseDouble(yytext())); }
+{Number}   			{ System.out.println("NUMBER: " + yytext()); return new Symbol(NUMBER, yyline, yycolumn,Double.parseDouble(yytext())); }
 [+-]?NaN+  			{ return new Symbol(NUMBER, yyline, yycolumn,Double.NaN); }	
 \+?Infinity+ 		{ return new Symbol(NUMBER, yyline, yycolumn,Double.POSITIVE_INFINITY); }
 \-Infinity+ 		{ return new Symbol(NUMBER, yyline, yycolumn,Double.NEGATIVE_INFINITY); }

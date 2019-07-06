@@ -70,9 +70,9 @@ EXP ::= ROOT {: RESULT = JSONQLRoot.ROOT; :} |
 		EXP:n1 LESS_EQUAL EXP:n2 {: RESULT = new JSONQLBinaryExpression("<=",n1,n2); :} |
 		EXP:n1 GREATER_EQUAL EXP:n2 {: RESULT = new JSONQLBinaryExpression(">=",n1,n2); :} |
 		NOT EXP:b  {: RESULT = new JSONQLUnaryExpression("!",b); :} |
-		EXP:b ENC REGEX:re {: RESULT = new JSONQLUnaryExpression("~",b); RESULT = new JSONQLLiteral(re); :} |
-		EXP:b ENCA REGEX:re {: RESULT = new JSONQLUnaryExpression("~=",b); RESULT = new JSONQLLiteral(re); :} |
-		EXP:b NENCA REGEX:re {: RESULT = new JSONQLUnaryExpression("!~",b); RESULT = new JSONQLLiteral(re); :} |
+		EXP:b ENC REGEX:re {: RESULT = new JSONQLBinaryExpression("~",b,new JSONQLLiteral(re)); :} |
+		EXP:b ENCA REGEX:re {: RESULT = new JSONQLBinaryExpression("~=",b,new JSONQLLiteral(re)); :} |
+		EXP:b NENCA REGEX:re {: RESULT = new JSONQLBinaryExpression("!~",b,new JSONQLLiteral(re)); :}  |
 		EXP:n1 AND EXP:n2 {: RESULT = new JSONQLBinaryExpression("&&",n1,n2); :} |
 		EXP:n1 OR EXP:n2 {: RESULT = new JSONQLBinaryExpression("||",n1,n2); :} ;   
            	

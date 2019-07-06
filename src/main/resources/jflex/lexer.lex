@@ -83,4 +83,5 @@ null   				{ return new Symbol(NULL, yyline, yycolumn); }
 "let"   		    { return new Symbol(LET, yyline, yycolumn); }
 "in"   		    	{ return new Symbol(IN, yyline, yycolumn); }
 {Identifier}     	{ return new Symbol(ID, yyline, yycolumn); }
+ "<-"               { return new Symbol(MEMBER, yyline, yycolumn); }
 

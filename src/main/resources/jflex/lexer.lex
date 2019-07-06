@@ -23,6 +23,8 @@ String=(\"([^\\'\n]|\\[bfnrt'\\\/])*\")|(\'([^\\'\n]|\\[bfnrt'\\\/])*\')
 Number=[+-]?(([0-9]\.)?[0-9]+)([eE][+-]?[0-9]+)?
 Hexa=[+-]?0[xX][0-9a-fA-F]+
 Regex=\/[^\/]*\/
+Identifier=([a-zA-Z_])+([0-9a-zA-Z])*
+
 
 
 %%
@@ -32,12 +34,13 @@ Regex=\/[^\/]*\/
 
 \$							{ return new Symbol(ROOT, yyline, yycolumn); }
 
-true|false     		{ return new Symbol(BOOL, yyline, yycolumn); }
+true|false     		{ return new Symbol(BOOL, yyline, yycolumn, new Boolean(yytext())); }
 null   				{ return new Symbol(NULL, yyline, yycolumn); }
    
 "{"     			{ return new Symbol(LBRACE, yyline, yycolumn); }  
 "}"     			{ return new Symbol(RBRACE, yyline, yycolumn); }
 ":"     			{ return new Symbol(COLON, yyline, yycolumn); }
+"."					{ return new Symbol(DOT, yyline, yycolumn); }
 ","     			{ return new Symbol(COMMA, yyline, yycolumn); }
 "["     			{ return new Symbol(LBRACK, yyline, yycolumn); }
 "]"     			{ return new Symbol(RBRACK, yyline, yycolumn); }
@@ -73,4 +76,6 @@ null   				{ return new Symbol(NULL, yyline, yycolumn); }
 {Regex}     		{ System.out.println("REGEX: " + yytext());return new Symbol(REGEX, yyline, yycolumn,new String(yytext())); }
 "else"          	{ return new Symbol(ELSE, yyline, yycolumn, yytext()); }
 "if"   		     	{ return new Symbol(IF, yyline, yycolumn, yytext()); }
+{Identifier}     	{ return new Symbol(ID, yyline, yycolumn); }
+
 

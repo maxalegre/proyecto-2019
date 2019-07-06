@@ -23,21 +23,19 @@ parser code {:
 	}
 :}
 
-terminal ROOT, MULT, DIV,LPARENT, RPARENT, EQUAL, NOT_EQUAL, LESS, GREATER, LESS_EQUAL, GREATER_EQUAL, NOT, AND, OR, PLUS, MINUS, LBRACE,RBRACE,LBRACK,RBRACK, COLON, COMMA, NULL, ENC, ENCA, NENCA,IF,ELSE;
+terminal ROOT, MULT, DIV, LPARENT, RPARENT, EQUAL, NOT_EQUAL, LESS, GREATER, LESS_EQUAL, GREATER_EQUAL, NOT, AND, OR, PLUS, MINUS, LBRACE, RBRACE, LBRACK, RBRACK, COLON, COMMA, NULL, ENC, ENCA, NENCA, IF, ELSE, DOT;
 terminal Double NUMBER;
-terminal String	STRING;
+terminal String	STRING, REGEX;
 terminal Boolean BOOL;
-terminal String REGEX;
+terminal JSONQLIdentifier ID;
 
-non terminal JSONQLExpression S;
-non terminal JSONQLExpression EXP;
+non terminal JSONQLExpression S, EXP;
 non terminal JSONQLObjectExpression OBJECT; 
 non terminal JSONQLArrayExpression ARRAY;       
-non terminal List<JSONQLExpression> VALUES;
+non terminal List<JSONQLExpression> VALUES, MEM_VALUES, MEM_LIST, MEM_ELEMENT;
 non terminal Map<JSONQLExpression,JSONQLExpression> PAIRS;  
 non terminal JSONQLMemberExpression INDIZ;
-non terminal List<JSONQLExpression> MEM_VALUES;
-non terminal JSONQLExpression C; 
+non terminal JSONQLExpression C;
 
 precedence left PLUS, MINUS;   
 precedence left MULT, DIV;   
@@ -85,15 +83,26 @@ PAIRS  ::= EXP:k COLON EXP:v {: RESULT = new HashMap<JSONQLExpression,JSONQLExpr
 	       PAIRS:p COMMA EXP:k COLON EXP:v {: p.put(k,v); RESULT = p; :}; 
 	   
 ARRAY  ::= LBRACK RBRACK {: JSONQLArrayExpression a = new JSONQLArrayExpression(); RESULT = a; :} |
-		   LBRACK VALUES:v RBRACK {: RESULT = new JSONQLArrayExpression(v);:} ;
+		   LBRACK VALUES:v RBRACK {: RESULT = new JSONQLArrayExpression(v); :} ;
  
 VALUES ::= EXP:v {: List<JSONQLExpression> a = List.of(v); RESULT = a; :} |
            VALUES:a COMMA EXP:v {: a.add(v); RESULT=a; :} ;
+           
+C ::= LPARENT EXP:e1 RPARENT IF LPARENT EXP:e2 RPARENT ELSE LPARENT EXP:e3 RPARENT {:JSONQLConditionalExpression consulta = new JSONQLConditionalExpression(e1,e2,e3); RESULT = consulta; :} ;
 
 INDIZ ::= ROOT:r MEM_VALUES:e {: JSONQLExpression root = new JSONQLLiteral("$"); RESULT = new JSONQLMemberExpression(root, e); :} ;
 
-MEM_VALUES ::= EXP:e {: List<JSONQLExpression> a = List.of(e); RESULT = a; :} |
-			   MEM_VALUES:e1 LBRACE EXP:e2 RBRACE {: e1.add(e2); RESULT = e1; :} |
-			   MEM_VALUES:e1  EXP:e2 {: e1.add(e2); RESULT = e1; :} ;
-C ::= LPARENT EXP:e1 RPARENT IF LPARENT EXP:e2 RPARENT ELSE LPARENT EXP:e3 RPARENT {:JSONQLConditionalExpression consulta = new JSONQLConditionalExpression(e1,e2,e3); RESULT = consulta; :} ;
+MEM_VALUES ::= DOT ID:e {: List<JSONQLExpression> a = new ArrayList<JSONQLExpression>(); a.add(e); RESULT = a; :} |
+			   MEM_VALUES:e1 DOT ID:e2 {: e1.add(e2); RESULT = e1; :} |
+			   LBRACK MEM_LIST:e RBRACK {: RESULT = e; :} |
+			   MEM_VALUES:e1 LBRACK MEM_LIST:e2 RBRACK {: e1.addAll(e2); RESULT = e1; :} ;
+			   
+MEM_LIST ::= MEM_ELEMENT:e {: RESULT = e; :} |
+			 MEM_LIST:e1 COMMA MEM_ELEMENT:e2 {: e1.addAll(e2); RESULT = e1; :} ;
+
+MEM_ELEMENT ::= INDIZ:e {: List<JSONQLExpression> a = new ArrayList<JSONQLExpression>(); a.add(e); RESULT = a; :} |
+				EXP:e {: List<JSONQLExpression> a = new ArrayList<JSONQLExpression>(); a.add(e); RESULT = a; :} |  
+				EXP:e1 COLON EXP:e2 {: List<JSONQLExpression> a = new ArrayList<JSONQLExpression>(); a.add(e1); a.add(e2); RESULT = a; :} |
+			 	EXP:e COLON {: List<JSONQLExpression> a = new ArrayList<JSONQLExpression>(); a.add(e); RESULT = a; :} |
+			 	COLON EXP:e {: List<JSONQLExpression> a = new ArrayList<JSONQLExpression>(); a.add(e); RESULT = a; :} ;
 

@@ -35,6 +35,8 @@ non terminal JSONQLObjectExpression OBJECT;
 non terminal JSONQLArrayExpression ARRAY;       
 non terminal List<JSONQLExpression> VALUES;
 non terminal Map<JSONQLExpression,JSONQLExpression> PAIRS;  
+non terminal JSONQLMemberExpression INDIZ;
+non terminal List<JSONQLExpression> MEM_VALUES;
 
 precedence left PLUS, MINUS;   
 precedence left MULT, DIV;   
@@ -43,7 +45,8 @@ precedence left ENC, ENCA, NENCA;
 
 start with S;
 
-S ::= EXP:op {: RESULT=op; :} ;  
+S ::= EXP:op {: RESULT = op; :} |
+	  INDIZ:ind {: RESULT = ind; :} ;  
 
 EXP ::= ROOT {: RESULT = JSONQLRoot.ROOT; :} |
 		BOOL:b {: RESULT = new JSONQLLiteral(b); :} |
@@ -82,8 +85,12 @@ PAIRS  ::= EXP:k COLON EXP:v {: RESULT = new HashMap<JSONQLExpression,JSONQLExpr
 ARRAY  ::= LBRACK RBRACK {: JSONQLArrayExpression a = new JSONQLArrayExpression(); RESULT = a; :} |
 		   LBRACK VALUES:v RBRACK {: RESULT = new JSONQLArrayExpression(v);:} ;
  
-VALUES ::= EXP:v {: List<JSONQLExpression> a = List.of(v);;RESULT = a; :} |
+VALUES ::= EXP:v {: List<JSONQLExpression> a = List.of(v); RESULT = a; :} |
            VALUES:a COMMA EXP:v {: a.add(v); RESULT=a; :} ;
-           
-           
+
+INDIZ ::= ROOT:r MEM_VALUES:e {: JSONQLExpression root = new JSONQLLiteral("$"); RESULT = new JSONQLMemberExpression(root, e); :} ;
+
+MEM_VALUES ::= EXP:e {: List<JSONQLExpression> a = List.of(e); RESULT = a; :} |
+			   MEM_VALUES:e1 LBRACE EXP:e2 RBRACE {: e1.add(e2); RESULT = e1; :} |
+			   MEM_VALUES:e1  EXP:e2 {: e1.add(e2); RESULT = e1; :} ;
 

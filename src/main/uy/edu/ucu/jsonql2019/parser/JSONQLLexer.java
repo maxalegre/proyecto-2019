@@ -36,13 +36,13 @@ public class JSONQLLexer implements java_cup.runtime.Scanner, JSONQLTokens {
    * Translates characters to character classes
    */
   private static final String ZZ_CMAP_PACKED = 
-    "\11\0\1\26\1\12\2\0\1\26\22\0\1\26\1\44\1\11\1\0"+
-    "\1\27\1\0\1\47\1\15\1\41\1\42\1\37\1\40\1\34\1\16"+
-    "\1\20\1\14\1\22\11\17\1\33\1\0\1\45\1\43\1\46\2\0"+
-    "\4\24\1\21\1\24\2\0\1\52\4\0\1\51\11\0\1\23\2\0"+
-    "\1\35\1\13\1\36\3\0\1\6\1\25\2\24\1\4\1\5\2\0"+
-    "\1\53\2\0\1\7\1\0\1\30\3\0\1\2\1\10\1\1\1\3"+
-    "\2\0\1\23\1\54\1\0\1\31\1\50\1\32\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uff92\0";
+    "\11\0\1\16\1\2\2\0\1\16\22\0\1\16\1\44\1\1\1\0"+
+    "\1\17\1\0\1\47\1\5\1\41\1\42\1\37\1\40\1\34\1\6"+
+    "\1\10\1\4\1\12\11\7\1\33\1\0\1\45\1\43\1\46\2\0"+
+    "\4\14\1\11\1\14\2\0\1\52\4\0\1\51\11\0\1\13\2\0"+
+    "\1\35\1\3\1\36\3\0\1\25\1\15\2\14\1\23\1\24\2\0"+
+    "\1\53\2\0\1\26\1\0\1\30\3\0\1\21\1\27\1\20\1\22"+
+    "\2\0\1\13\1\54\1\0\1\31\1\50\1\32\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uff92\0";
 
   /** 
    * Translates characters to character classes
@@ -55,12 +55,12 @@ public class JSONQLLexer implements java_cup.runtime.Scanner, JSONQLTokens {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\4\0\1\1\1\2\1\0\1\3\2\4\1\5\1\0"+
+    "\2\0\1\1\1\2\1\0\1\3\2\4\1\5\3\0"+
     "\1\6\1\7\1\10\1\11\1\12\1\13\1\14\1\15"+
-    "\1\16\1\17\1\0\1\20\1\21\1\22\6\0\1\23"+
-    "\2\0\1\23\2\0\1\4\3\0\1\24\1\25\1\26"+
-    "\1\27\1\30\1\31\6\0\1\4\1\32\1\0\1\33"+
-    "\1\0\1\34\1\0\1\35\10\0\1\36\1\37";
+    "\1\16\1\17\1\0\1\20\1\21\1\22\4\0\1\23"+
+    "\2\0\1\23\1\0\1\4\6\0\1\24\1\25\1\26"+
+    "\1\27\1\30\1\31\4\0\1\4\1\32\3\0\1\33"+
+    "\2\0\1\34\1\35\10\0\1\36\1\37";
 
   private static int [] zzUnpackAction() {
     int [] result = new int[72];
@@ -88,14 +88,14 @@ public class JSONQLLexer implements java_cup.runtime.Scanner, JSONQLTokens {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\55\0\132\0\207\0\264\0\264\0\341\0\u010e"+
-    "\0\u013b\0\u0168\0\264\0\u0195\0\264\0\264\0\264\0\264"+
-    "\0\264\0\264\0\264\0\u01c2\0\264\0\264\0\u01ef\0\u021c"+
-    "\0\u0249\0\u0276\0\u02a3\0\u02d0\0\u02fd\0\u032a\0\u0357\0\u0384"+
-    "\0\207\0\u03b1\0\u03de\0\264\0\u040b\0\u0438\0\u0465\0\u0492"+
-    "\0\u04bf\0\u04ec\0\264\0\264\0\264\0\264\0\264\0\264"+
-    "\0\u0519\0\u0546\0\u0573\0\u05a0\0\u05cd\0\u05fa\0\u05fa\0\u04bf"+
-    "\0\u0627\0\u0519\0\u0654\0\264\0\u0681\0\264\0\u06ae\0\u06db"+
+    "\0\0\0\55\0\132\0\132\0\207\0\264\0\341\0\u010e"+
+    "\0\132\0\u013b\0\u0168\0\u0195\0\132\0\132\0\132\0\132"+
+    "\0\132\0\132\0\132\0\u01c2\0\132\0\132\0\u01ef\0\u021c"+
+    "\0\u0249\0\u0276\0\u02a3\0\u02d0\0\u02fd\0\u032a\0\55\0\u0357"+
+    "\0\u0384\0\132\0\u03b1\0\u03de\0\u040b\0\u0438\0\u0465\0\u0492"+
+    "\0\u04bf\0\u04ec\0\132\0\132\0\132\0\132\0\132\0\132"+
+    "\0\u0519\0\u0546\0\u0573\0\u05a0\0\u05a0\0\u0465\0\u05cd\0\u05fa"+
+    "\0\u0627\0\u0519\0\u0654\0\u0681\0\132\0\132\0\u06ae\0\u06db"+
     "\0\u0708\0\u0735\0\u0762\0\u078f\0\u07bc\0\u07e9\0\u07bc\0\u07e9";
 
   private static int [] zzUnpackRowMap() {
@@ -122,30 +122,30 @@ public class JSONQLLexer implements java_cup.runtime.Scanner, JSONQLTokens {
   private static final int [] ZZ_TRANS = zzUnpackTrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\0\1\2\3\0\1\3\3\0\1\4\1\5\1\0"+
-    "\1\6\1\7\1\10\1\11\2\0\1\12\3\0\1\5"+
-    "\1\13\1\14\1\15\1\16\1\17\1\20\1\21\1\22"+
+    "\1\0\1\2\1\3\1\0\1\4\1\5\1\6\1\7"+
+    "\2\0\1\10\3\0\1\3\1\11\1\12\3\0\1\13"+
+    "\3\0\1\14\1\15\1\16\1\17\1\20\1\21\1\22"+
     "\1\23\1\24\1\25\1\26\1\27\1\30\1\31\1\32"+
-    "\1\33\1\34\1\35\1\36\4\0\1\37\60\0\1\40"+
-    "\46\0\11\4\1\41\1\0\1\42\1\4\1\0\37\4"+
-    "\55\0\12\7\1\0\1\43\1\7\1\44\37\7\17\0"+
-    "\1\11\2\0\1\12\26\0\1\35\1\45\6\0\1\46"+
-    "\12\0\1\47\1\50\1\46\1\47\36\0\1\46\12\0"+
-    "\1\47\1\50\1\46\1\47\1\51\34\0\1\52\70\0"+
-    "\1\11\2\0\1\12\26\0\1\35\1\36\45\0\1\53"+
+    "\1\33\1\34\1\35\1\36\2\0\1\2\1\37\1\0"+
+    "\1\40\1\2\1\0\47\2\55\0\2\5\1\0\1\41"+
+    "\1\5\1\42\47\5\7\0\1\7\2\0\1\10\36\0"+
+    "\1\35\1\43\11\0\1\44\1\45\1\46\1\44\10\0"+
+    "\1\46\40\0\1\44\1\45\1\46\1\44\1\47\7\0"+
+    "\1\46\52\0\1\50\60\0\1\51\51\0\1\52\41\0"+
+    "\1\7\2\0\1\10\36\0\1\35\1\36\45\0\1\53"+
     "\54\0\1\54\54\0\1\55\54\0\1\56\60\0\1\57"+
-    "\55\0\1\60\12\0\1\61\76\0\1\62\27\0\1\63"+
-    "\60\0\1\64\46\0\2\4\2\0\1\4\5\0\3\4"+
-    "\7\0\1\4\2\0\1\4\25\0\2\7\2\0\1\7"+
-    "\5\0\3\7\7\0\1\7\2\0\1\7\54\0\1\65"+
-    "\42\0\1\66\1\67\2\0\1\67\15\0\1\66\20\0"+
-    "\1\46\12\0\1\47\1\0\1\46\1\47\51\0\1\47"+
-    "\2\0\1\47\36\0\3\70\10\0\1\70\1\0\2\70"+
-    "\1\0\2\70\36\0\1\71\116\0\1\72\10\0\1\73"+
-    "\53\0\1\74\60\0\1\63\51\0\1\75\66\0\1\67"+
-    "\2\0\1\67\41\0\1\76\120\0\1\77\54\0\1\100"+
+    "\55\0\1\60\31\0\1\61\57\0\1\62\27\0\3\2"+
+    "\7\0\1\2\2\0\2\2\2\0\1\2\3\0\1\2"+
+    "\27\0\3\5\7\0\1\5\2\0\2\5\2\0\1\5"+
+    "\3\0\1\5\54\0\1\63\33\0\1\44\1\0\1\46"+
+    "\1\44\10\0\1\46\40\0\1\44\2\0\1\44\50\0"+
+    "\1\64\1\65\2\0\1\65\25\0\1\64\23\0\1\66"+
+    "\1\0\2\66\1\0\2\66\5\0\3\66\51\0\1\67"+
+    "\60\0\1\70\54\0\1\71\77\0\1\72\27\0\1\73"+
+    "\54\0\1\74\37\0\1\65\2\0\1\65\65\0\1\75"+
+    "\60\0\1\67\53\0\1\76\101\0\1\77\54\0\1\100"+
     "\31\0\1\101\54\0\1\102\77\0\1\103\54\0\1\104"+
-    "\2\0\1\105\54\0\1\106\127\0\1\107\54\0\1\110";
+    "\21\0\1\105\54\0\1\106\110\0\1\107\54\0\1\110";
 
   private static int [] zzUnpackTrans() {
     int [] result = new int[2070];
@@ -186,10 +186,10 @@ public class JSONQLLexer implements java_cup.runtime.Scanner, JSONQLTokens {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\4\0\2\11\1\0\3\1\1\11\1\0\7\11\1\1"+
-    "\2\11\1\0\3\1\6\0\1\1\2\0\1\11\2\0"+
-    "\1\1\3\0\6\11\6\0\2\1\1\0\1\1\1\0"+
-    "\1\11\1\0\1\11\10\0\2\1";
+    "\2\0\2\11\1\0\3\1\1\11\3\0\7\11\1\1"+
+    "\2\11\1\0\3\1\4\0\1\1\2\0\1\11\1\0"+
+    "\1\1\6\0\6\11\4\0\2\1\3\0\1\1\2\0"+
+    "\2\11\10\0\2\1";
 
   private static int [] zzUnpackAttribute() {
     int [] result = new int[72];
@@ -670,7 +670,7 @@ public class JSONQLLexer implements java_cup.runtime.Scanner, JSONQLTokens {
             // fall through
           case 34: break;
           case 4: 
-            { System.out.println("NUMBER: " + yytext());return new Symbol(NUMBER, yyline, yycolumn,Double.parseDouble(yytext()));
+            { return new Symbol(NUMBER, yyline, yycolumn,Double.parseDouble(yytext()));
             } 
             // fall through
           case 35: break;
@@ -700,12 +700,12 @@ public class JSONQLLexer implements java_cup.runtime.Scanner, JSONQLTokens {
             // fall through
           case 40: break;
           case 10: 
-            { System.out.println("LBRACK: " + yytext());return new Symbol(LBRACK, yyline, yycolumn);
+            { return new Symbol(LBRACK, yyline, yycolumn);
             } 
             // fall through
           case 41: break;
           case 11: 
-            { System.out.println("RBRACK: " + yytext()); return new Symbol(RBRACK, yyline, yycolumn);
+            { return new Symbol(RBRACK, yyline, yycolumn);
             } 
             // fall through
           case 42: break;
@@ -745,7 +745,7 @@ public class JSONQLLexer implements java_cup.runtime.Scanner, JSONQLTokens {
             // fall through
           case 49: break;
           case 19: 
-            { System.out.println("STRING: " + yytext());return new Symbol(STRING, yyline, yycolumn,new String(yytext()));
+            { return new Symbol(STRING, yyline, yycolumn,new String(yytext()));
             } 
             // fall through
           case 50: break;

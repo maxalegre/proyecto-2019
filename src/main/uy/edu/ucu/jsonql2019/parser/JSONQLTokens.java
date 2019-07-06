@@ -11,6 +11,7 @@ public interface JSONQLTokens {
   public static final int RBRACK = 21;
   public static final int ROOT = 2;
   public static final int AND = 14;
+  public static final int ELSE = 29;
   public static final int PLUS = 16;
   public static final int RBRACE = 19;
   public static final int OR = 15;
@@ -19,22 +20,27 @@ public interface JSONQLTokens {
   public static final int RPARENT = 6;
   public static final int LBRACK = 20;
   public static final int NOT = 13;
+  public static final int ENC = 25;
   public static final int GREATER_EQUAL = 12;
   public static final int NOT_EQUAL = 8;
   public static final int GREATER = 10;
+  public static final int IF = 28;
   public static final int COLON = 22;
   public static final int LBRACE = 18;
-  public static final int STRING = 26;
+  public static final int STRING = 31;
   public static final int COMMA = 23;
   public static final int LPARENT = 5;
-  public static final int NUMBER = 25;
+  public static final int NUMBER = 30;
   public static final int EOF = 0;
   public static final int MULT = 3;
   public static final int DIV = 4;
   public static final int MINUS = 17;
   public static final int error = 1;
-  public static final int BOOL = 27;
+  public static final int REGEX = 33;
+  public static final int BOOL = 32;
+  public static final int ENCA = 26;
   public static final int NULL = 24;
+  public static final int NENCA = 27;
   public static final int LESS = 9;
   public static final String[] terminalNames = new String[] {
   "EOF",
@@ -62,9 +68,15 @@ public interface JSONQLTokens {
   "COLON",
   "COMMA",
   "NULL",
+  "ENC",
+  "ENCA",
+  "NENCA",
+  "IF",
+  "ELSE",
   "NUMBER",
   "STRING",
-  "BOOL"
+  "BOOL",
+  "REGEX"
   };
 }
 

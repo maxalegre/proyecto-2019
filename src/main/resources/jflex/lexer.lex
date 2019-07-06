@@ -71,4 +71,6 @@ null   				{ return new Symbol(NULL, yyline, yycolumn); }
 \+?Infinity+ 		{ return new Symbol(NUMBER, yyline, yycolumn,Double.POSITIVE_INFINITY); }
 \-Infinity+ 		{ return new Symbol(NUMBER, yyline, yycolumn,Double.NEGATIVE_INFINITY); }
 {Regex}     		{ System.out.println("REGEX: " + yytext());return new Symbol(REGEX, yyline, yycolumn,new String(yytext())); }
+"else"          	{ return new Symbol(ELSE, yyline, yycolumn, yytext()); }
+"if"   		     	{ return new Symbol(IF, yyline, yycolumn, yytext()); }
 

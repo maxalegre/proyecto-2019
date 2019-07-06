@@ -53,6 +53,7 @@ null   				{ return new Symbol(NULL, yyline, yycolumn); }
 "("     			{ return new Symbol(LPARENT, yyline, yycolumn); }  
 ")"     			{ return new Symbol(RPARENT, yyline, yycolumn); }
 
+"="				{ return new Symbol(EQ, yyline, yycolumn);}
 "=="			{ return new Symbol(EQUAL, yyline, yycolumn);}
 "!="  		    { return new Symbol(NOT_EQUAL, yyline, yycolumn);}
 "<"				{ return new Symbol(LESS, yyline, yycolumn); }

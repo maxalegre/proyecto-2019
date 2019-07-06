@@ -24,8 +24,7 @@ parser code {:
 :}
 
 
-terminal ROOT, MULT, DIV, LPARENT, RPARENT, EQUAL, NOT_EQUAL, LESS, GREATER, LESS_EQUAL, GREATER_EQUAL, NOT, AND, OR, PLUS, MINUS, LBRACE, RBRACE, LBRACK, RBRACK, COLON, COMMA, NULL, ENC, ENCA, NENCA, IF, ELSE, DOT, LET, IN, BSLASH, OPASIGN;
-
+terminal ROOT, MULT, DIV, LPARENT, RPARENT, EQ, EQUAL, NOT_EQUAL, LESS, GREATER, LESS_EQUAL, GREATER_EQUAL, NOT, AND, OR, PLUS, MINUS, LBRACE, RBRACE, LBRACK, RBRACK, COLON, COMMA, NULL, ENC, ENCA, NENCA, IF, ELSE, DOT, LET, IN, BSLASH, OPASIGN;
 terminal Double NUMBER;
 terminal String	STRING, REGEX;
 terminal Boolean BOOL;
@@ -48,8 +47,8 @@ start with S;
 
 S ::= EXP:op {: RESULT = op; :} |
 	  INDIZ:ind {: RESULT = ind; :} |  
-	  C:s {:RESULT=s;:} |
-	  ACOMP:a {:RESULT=a:} ;	
+	  C:s {: RESULT=s; :} |
+	  ACOMP:a {: RESULT=a; :} ;	
 
 EXP ::= ROOT {: RESULT = JSONQLRoot.ROOT; :} |
 		BOOL:b {: RESULT = new JSONQLLiteral(b); :} |
@@ -92,7 +91,7 @@ VALUES ::= EXP:v {: List<JSONQLExpression> a = List.of(v); RESULT = a; :} |
            VALUES:a COMMA EXP:v {: a.add(v); RESULT=a; :} ;
       
 C ::= LPARENT EXP:e1 RPARENT IF LPARENT EXP:e2 RPARENT ELSE LPARENT EXP:e3 RPARENT {:JSONQLConditionalExpression consulta = new JSONQLConditionalExpression(e1,e2,e3); RESULT = consulta; :} | 
-	  LET ID:id EQUAL LPARENT EXP:e1 RPARENT IN LPARENT EXP:e2 RPARENT {: JSONQLArrayExpression a = new JSONQLArrayExpression(e1, e2); JSONQLCallExpression e = new JSONQLCallExpression("in", a.elements); RESULT = new JSONQLProperty(id, e); :} |
+	  LET ID:id EQ LPARENT EXP:e1 RPARENT IN LPARENT EXP:e2 RPARENT {: JSONQLArrayExpression a = new JSONQLArrayExpression(e1, e2); JSONQLCallExpression e = new JSONQLCallExpression("in", a.elements); RESULT = new JSONQLProperty(id, e); :} |
       ID:f1 LPARENT EXP:e1 COMMA EXP:e2 RPARENT {: JSONQLArrayExpression a = new JSONQLArrayExpression(e1, e2); RESULT = new JSONQLCallExpression("function", a.elements); :} ;
 
 INDIZ ::= ROOT:r MEM_VALUES:e {: JSONQLExpression root = new JSONQLLiteral("$"); RESULT = new JSONQLMemberExpression(root, e); :} ;
@@ -111,7 +110,7 @@ MEM_ELEMENT ::= INDIZ:e {: List<JSONQLExpression> a = new ArrayList<JSONQLExpres
 			 	EXP:e COLON {: List<JSONQLExpression> a = new ArrayList<JSONQLExpression>(); a.add(e); RESULT = a; :} |
 			 	COLON EXP:e {: List<JSONQLExpression> a = new ArrayList<JSONQLExpression>(); a.add(e); RESULT = a; :} ;
 			 	
-ACOMP ::= LBRACK VALUES:list BSLASH EXP:e OPASIGN ROOT RBRACK {: JSONQLArrayComprehension array = new JSONQLArrayComprehension(list,e); RESULT = array; :} ;
+ACOMP ::= LBRACK VALUES:list BSLASH ID:e OPASIGN ROOT RBRACK {: JSONQLArrayExpression a = new JSONQLArrayExpression(list); RESULT = new JSONQLArrayComprehension(e, a.elements); :} ;
 
 
 

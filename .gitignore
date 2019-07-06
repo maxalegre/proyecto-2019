@@ -28,3 +28,6 @@ hs_err_pid*
 
 # IntelliJ IDEA
 .idea/
+
+input.txt
+src/main/uy/edu/ucu/jsonql2019/parser/*

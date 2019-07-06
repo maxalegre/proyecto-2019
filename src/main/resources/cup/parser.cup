@@ -37,6 +37,8 @@ non terminal List<JSONQLExpression> VALUES, MEM_VALUES, MEM_LIST, MEM_ELEMENT;
 non terminal Map<JSONQLExpression,JSONQLExpression> PAIRS;  
 non terminal JSONQLMemberExpression INDIZ;
 non terminal JSONQLArrayComprehension ACOMP;
+non terminal JSONQLObjectComprehension OCOMP;
+non terminal JSONQLProperty KEYVALUE;
 
 precedence left PLUS, MINUS;   
 precedence left MULT, DIV;   
@@ -48,7 +50,8 @@ start with S;
 S ::= EXP:op {: RESULT = op; :} |
 	  INDIZ:ind {: RESULT = ind; :} |  
 	  C:s {: RESULT=s; :} |
-	  ACOMP:a {: RESULT=a; :} ;	
+	  ACOMP:a {: RESULT=a; :} |
+	  OCOMP:o {: RESULT=o; :} ;	
 
 EXP ::= ROOT {: RESULT = JSONQLRoot.ROOT; :} |
 		BOOL:b {: RESULT = new JSONQLLiteral(b); :} |
@@ -112,5 +115,8 @@ MEM_ELEMENT ::= INDIZ:e {: List<JSONQLExpression> a = new ArrayList<JSONQLExpres
 			 	
 ACOMP ::= LBRACK VALUES:list BSLASH ID:e OPASIGN ROOT RBRACK {: JSONQLArrayExpression a = new JSONQLArrayExpression(list); RESULT = new JSONQLArrayComprehension(e, a.elements); :} ;
 
+OCOMP ::= LBRACE VALUES:list BSLASH KEYVALUE:k OPASIGN ROOT RBRACE {: JSONQLArrayExpression a = new JSONQLArrayExpression(list); RESULT = new JSONQLObjectComprehension(k, a.elements); :} ;
+
+KEYVALUE ::= ID:e1 COLON EXP:e2 {: RESULT = new JSONQLProperty(e1,e2); :} ;
 
 
